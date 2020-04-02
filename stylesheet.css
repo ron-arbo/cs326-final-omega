@@ -1,8 +1,75 @@
+#topBar {
+	position: absrelativeolute;
+	height: 100px;
+	width: 100%;
+	/* border: solid red 3px; */
+}
+
+.profileArea {
+	top: 50%;
+}
+
 .profile {
-	position: absolute;
-	right: 100px;
-}
-.topProfile {
+	font-size: 11pt;
 	position: relative;
-	right: 20px;
+	right: 75px;
+	top: 10px;
 }
+.profImg {
+	position: absolute;
+	right: 20px;
+	top: 15px;
+}
+
+#filters {
+	float: left;
+	width: 29%;
+	height: 90%;
+	/* border: solid black 3px; */
+}
+
+.radioFormat {
+	font-size: 10pt;
+}
+
+#project {
+	float: right;
+	width: 69%;
+	height: 90%;
+	/* border: solid blue 3px; */
+}
+
+.main{
+	max-width: 850px;
+}
+
+.search {
+	width: 80%;
+	font-size: 12px;
+	display: inline-block;
+}
+
+#results{
+
+	max-width: 800px;
+}
+
+#bottom {
+	clear: both;
+	width: 100%;
+}
+#bottom > p {
+	position: fixed;
+	bottom: 0%;
+	right: 2%;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	color: white;
+	text-align: right;
+	margin-right: 10px;
+ }
