@@ -49,28 +49,9 @@
 	display: inline-block;
 }
 
-#myTable {
-	border-collapse: collapse; /* Collapse borders */
-	width: 80%; /* Full-width */
-	border: 1px solid #ddd; /* Add a grey border */
-	font-size: 15px; /* Increase font-size */
-}
+#results{
 
-#myTable th,
-#myTable td {
-	text-align: left; /* Left-align text */
-	padding: 12px; /* Add padding */
-}
-
-#myTable tr {
-	/* Add a bottom border to all table rows */
-	border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header,
-#myTable tr:hover {
-	/* Add a grey background color to the table header and on hover */
-	background-color: #f1f1f1;
+	max-width: 800px;
 }
 
 #bottom {
@@ -89,5 +70,6 @@
 	bottom: 0;
 	width: 100%;
 	color: white;
-	text-align: center;
+	text-align: right;
+	margin-right: 10px;
  }
