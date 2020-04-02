@@ -39,6 +39,10 @@
 	/* border: solid blue 3px; */
 }
 
+.main{
+	max-width: 850px;
+}
+
 .search {
 	width: 80%;
 	font-size: 12px;
