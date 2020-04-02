@@ -5,30 +5,76 @@
 	/* border: solid red 3px; */
 }
 
-.profile {
-	position: absolute;
-	right: 100px;
+.profileArea {
+	top: 50%;
 }
-.topProfile {
+
+.profile {
+	font-size: 11pt;
 	position: relative;
+	right: 75px;
+	top: 10px;
+}
+.profImg {
+	position: absolute;
 	right: 20px;
+	top: 15px;
 }
 
 #filters {
 	float: left;
 	width: 29%;
-	height: 100%;
+	height: 90%;
 	/* border: solid black 3px; */
 }
+
+.radioFormat {
+	font-size: 10pt;
+}
+
 #project {
 	float: right;
 	width: 69%;
-	height: 100%;
+	height: 90%;
 	/* border: solid blue 3px; */
 }
 
 .search {
-	width: 500px;
+	width: 80%;
 	font-size: 12px;
 	display: inline-block;
+}
+
+#myTable {
+	border-collapse: collapse; /* Collapse borders */
+	width: 80%; /* Full-width */
+	border: 1px solid #ddd; /* Add a grey border */
+	font-size: 15px; /* Increase font-size */
+}
+
+#myTable th,
+#myTable td {
+	text-align: left; /* Left-align text */
+	padding: 12px; /* Add padding */
+}
+
+#myTable tr {
+	/* Add a bottom border to all table rows */
+	border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header,
+#myTable tr:hover {
+	/* Add a grey background color to the table header and on hover */
+	background-color: #f1f1f1;
+}
+
+#bottom {
+	clear: both;
+	width: 100%;
+}
+#bottom > p {
+	position: fixed;
+	bottom: 0%;
+	right: 2%;
 }
