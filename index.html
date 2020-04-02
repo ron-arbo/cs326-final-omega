@@ -4,12 +4,57 @@
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 <body>
-    <div class="topBar" style="clear: both">
+    <div id="topBar" style="clear: both">
         <h1 style="float: left;">CodeTogether</h1>
+
         <h3 style="float: right" class="profile">Your Profile</h3>
+
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Wac_nearside_3000.jpg/1200px-Wac_nearside_3000.jpg"
             width="50" height="50" class="topProfile" style="float: right;"> </a>
     </div>
+
+
+
+    <div id="filters">
+        <h3><u>Search Filters:</u></h3>
+        <div id="language">
+            <u>Language:</u></p>
+            <input type="radio" name="lang" value="py">Python<br />
+            <input type="radio" name="lang" value="js">JavaScript<br />
+            <input type="radio" name="lang" value="jv">Java<br />
+            <input type="radio" name="lang" value="c">C<br />
+            <input type="radio" name="lang" value="c++">C++<br />
+        </div>
+
+        <div id="skill">
+            <p><u>Skill Level:</u></p>
+            <input type="radio" name="lang" value="b">Beginner<br />
+            <input type="radio" name="lang" value="i">Intermediate<br />
+            <input type="radio" name="lang" value="a">Advanced<br />
+        </div>
+
+        <div id="finish">
+            <p><u>Expected Finish Time:</u></p>
+            <input type="radio" name="lang" value="24">less than a Day<br />
+            <input type="radio" name="lang" value="3-5">3-5 Days<br />
+            <input type="radio" name="lang" value="2wk">2+ Weeks<br />
+        </div>
+
+        <div id="concepts">
+            <p><u>Concepts:</u></p>
+            <input type="radio" name="lang" value="alg">Algorithms<br />
+            <input type="radio" name="lang" value="ml">Machine Learning<br />
+            <input type="radio" name="lang" value="ds">Data Science<br />
+        </div>
+    </div>
+
+    <div id="project">
+        <h3><u>Project Search:</u></h3>
+        <input class="search" type="text" placeholder="Search..">
+    </div>
+
+
+</body>
 </body>
 
 </html>

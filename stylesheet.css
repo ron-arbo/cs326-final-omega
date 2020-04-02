@@ -1,3 +1,10 @@
+#topBar {
+	position: absrelativeolute;
+	height: 100px;
+	width: 100%;
+	/* border: solid red 3px; */
+}
+
 .profile {
 	position: absolute;
 	right: 100px;
@@ -5,4 +12,23 @@
 .topProfile {
 	position: relative;
 	right: 20px;
+}
+
+#filters {
+	float: left;
+	width: 29%;
+	height: 100%;
+	/* border: solid black 3px; */
+}
+#project {
+	float: right;
+	width: 69%;
+	height: 100%;
+	/* border: solid blue 3px; */
+}
+
+.search {
+	width: 500px;
+	font-size: 12px;
+	display: inline-block;
 }
