@@ -7,28 +7,70 @@
     font-size: 60px;
 }
 
-.divide-top {
-    border-top: 2px solid black;
-}
-
 .social-media {
     padding: 3px;
 }
 
 .skills {
-    background-color: #2d5986;
+    background-color: #556c9a;
     border-radius: 5px;
     font-size: 30px;
     padding: 17px;
-    color: white;
+    color: #ccd4e5;
+}
+
+.social-media {
+    background-color: #556c9a;
+    border-radius: 5px;
+    font-size: 30px;
+    padding: 17px;
+    color: #ccd4e5;
+}
+
+/* .social-media img {
+    border: 1px solid #ccd4e5;
+    border-radius: 50%;
+} */
+
+.attribute {
+    color: #c1c7d0;
 }
 
 .tag {
-    color: white;
-    background-color:gray;
-    font-size: 20px;
+    color: #1b273e;
+    background-color:#ccd4e5;
+    font-size: 15px;
     padding: 5px;
     border: 1px solid black;
     border-radius: 4px;
-
 }
+
+.top-profile {
+    background-color: #556c9a;
+    color: 	#ccd4e5;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+body {
+    background-color: #1b273e;
+    color: #ccd4e5;
+    font-family: Verdana;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #c1c7d0;
+    color: #1b273e;
+    text-align: left;
+    font-size: 15px;
+  }
+
