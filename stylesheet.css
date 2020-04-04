@@ -5,6 +5,12 @@
 	/* border: solid red 3px; */
 }
 
+.logo {
+	position: relative;
+	right: -10px;
+	top: 10px;
+}
+
 .profileArea {
 	top: 50%;
 }
@@ -39,7 +45,7 @@
 	/* border: solid blue 3px; */
 }
 
-.main{
+.main {
 	max-width: 850px;
 }
 
@@ -49,8 +55,7 @@
 	display: inline-block;
 }
 
-#results{
-
+#results {
 	max-width: 800px;
 }
 
@@ -72,4 +77,4 @@
 	color: white;
 	text-align: right;
 	margin-right: 10px;
- }
+}
