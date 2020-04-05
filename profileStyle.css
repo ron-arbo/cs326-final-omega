@@ -1,10 +1,10 @@
 .logo {
 	position: relative;
-	right: 100px;
+	right: 50px;
 	top: 10px;
 }
 .divider {
-	border-right: 1px solid grey;
+	border-right: 1px solid #c1c7d0;
 	text-align: center;
 }
 

@@ -5,7 +5,7 @@ body {
 }
 
 #topBar {
-	position: absrelativeolute;
+	/*position: */
 	height: 100px;
 	width: 100%;
 	/* border: solid red 3px; */
@@ -18,12 +18,13 @@ body {
 }
 
 .profileArea {
-	/* top: 50%; */
+	top: -5px;
+	position: relative;
 }
 
 .profileArea img{
-	width: 50px;
-	height: 50px;
+	width: 35px;
+	height: 35px;
 	border-radius: 50%;
 }
 
@@ -31,7 +32,9 @@ body {
 	font-size: 11pt;
 	position: relative;
 	right: 75px;
-	top: 10px;
+	top: 19px;
+	color: #ccd4e5;
+	
 }
 .profImg {
 	position: absolute;
@@ -114,8 +117,8 @@ body {
 	bottom: 0;
 	width: 100%;
 	background-color: #c1c7d0;
-	color: white;
+	color: #1b273e;
 	text-align: left;
 	font-size: 15px;
-    z-index: 919;
+	z-index: 919;
 }
