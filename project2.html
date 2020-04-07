@@ -105,57 +105,56 @@
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
         <h3 class="mt-5">Create Project</h1>
             <div class="card col-12" class="center" class="text-center">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Project Name</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Name" aria-label="Name"
-                                aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Project Description</span>
-                            </div>
-                            <textarea class="form-control" placeholder="Description"
-                                aria-label="Description"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
+                <form>
+                    <div class="card-body">
                         <div class="row">
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Javascript</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Java</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Python</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Ruby</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">React</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Flask</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Angular</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Django</button>
-                            <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                data-toggle="button" aria-pressed="false" autocomplete="off">Mongo
-                                DB</button>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Project Name:</label>
+                                <input type="text" class="form-control" id="inputProjectName"
+                                    aria-describedby="projectName" placeholder="Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <button class="btn btn-success btn-sm" type="submit">Submit</button>
-                    </div>
-                </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Project Description:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="50"
+                                    placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Javascript</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Java</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Python</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Ruby</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">React</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Flask</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Angular</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Django</button>
+                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
+                                    data-toggle="button" aria-pressed="false" autocomplete="off">Mongo
+                                    DB</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-success btn-sm" style="font-size: 10px;"
+                                type="submit">Submit</button>
+                        </div>
+                </form>
+            </div>
 
             </div>
     </main>
