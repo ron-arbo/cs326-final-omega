@@ -103,60 +103,94 @@
 
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
-        <h3 class="mt-5">Create Project</h1>
-            <div class="card col-12" class="center" class="text-center">
-                <form>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Project Name:</label>
-                                <input type="text" class="form-control" id="inputProjectName"
-                                    aria-describedby="projectName" placeholder="Name">
-                            </div>
-                        </div>
+        <div class="container">
+            <h1 class="mt-5">Create a Project!</h1>
 
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Project Description:</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="50"
-                                    placeholder="Description"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row">
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">HTML</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Javascript</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">CSS</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Java</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Python</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Ruby</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">React</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Flask</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Angular</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Django</button>
-                                <button type="button" class="btn btn-outline-success ml-2" style="font-size: 12px;"
-                                    data-toggle="button" aria-pressed="false" autocomplete="off">Mongo
-                                    DB</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <button class="btn btn-success btn-sm" style="font-size: 10px;"
-                                type="submit">Submit</button>
-                        </div>
-                </form>
-            </div>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
+                    
+                </div>
 
-            </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email address</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Describe your Project</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <small id="descriptionHelpBlock" class="form-text text-muted">
+                        A small description for all other developers, Eg: A mobile app for security with all the features
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">How far along are you?</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder=""></textarea>
+                    <small id="farHelpBlock" class="form-text text-muted">
+                        Tell developers about the progress you've made so far
+                    </small>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Helpful Links</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder=""></textarea>
+                    <small id="linksHelpBlock" class="form-text text-muted">
+                        Any other relevant links, for instance GitHub or social media (Twitter/Facebook)
+                    </small>
+                    
+                </div>
+
+                <div>
+                    <label for="skill">Programming languages</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">HTML</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">Java</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">Javascript</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox4">Java</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox5">CSS</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox6">React</label>
+                    </div>
+                </div>
+                <br>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Number of co-developers</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <small id="linksHelpBlock" class="form-text text-muted">
+                        Range from 3-6
+                    </small>
+                </div>
+
+                <button type="button" class="btn btn-success">Submit</button>
+
+                
+              </form>
+
+
+        </div>
     </main>
 
     <footer class="footer mt-auto py-3 bg-dark">
