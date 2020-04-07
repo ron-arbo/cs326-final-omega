@@ -4,7 +4,8 @@
   }
 
   .logo {
-      background-color: green;
+      background-color: #292b2c;
+      border: 4px solid green;
       border-radius: 32px;
       width: 48%;
       margin: auto;
