@@ -1,5 +1,5 @@
 .container > span {
-	position: fixed;
-	right: 10px;
-	bottom: 5px;
+	position: relative;
+	float: right;
+	left: 140px;
 }
