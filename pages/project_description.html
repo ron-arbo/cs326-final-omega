@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<link type="text/css" id="dark-mode" rel="stylesheet" href="">
+
+
+<style type="text/css" id="dark-mode-custom-style">
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>CodeTogether</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheet.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <style></style>
+    <script async="" src="https://negbar.ad-blocker.org/chrome/adblocker-chromeglobalinjectjs.js">
+    </script>
+</head>
+
+<body class="d-flex flex-column h-100" style="background-color: #F4F5F7;">
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/../index.html">CodeTogether</a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="create_project.html">Create Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/signup.html">Sign Up</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <a href="profile.html">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                            alt="" width="40" height="30" style="padding-left: 10px;">
+                    </a>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0 mt-5 mb-5">
+        <div class="container">
+            <h1 class="mt-5">Project Description</h1>
+
+            <form style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <p>#Covid19 has already resulted in several job losses. We are seeking to host set of 3 career fairs and seeking volunteer support to mobilize recruiters and job seekers who are most effected by #covid19 outbreak. From store workers, to small business workers, we will provide a job fair platform and also provide support system. These global job fairs would bring a virtual job fair to skills categories most impacted by Covid19. The job fair is planned on 1st Friday of May, June, and July.
+
+                            We are seeking a team of volunteers to reach-out to recruiters and employment office communities and spread the word, build technology and provide ecosystem to help people find jobs.
+                            
+                            We will all be working towards creating world's largest career drive to support and help workers most impacted by #covid19 outbreak.
+                            
+                            Update:
+                            We've launched #stage1 beta site to get the signups rolling. Check: https://jobsoffice.org
+                            Launched 1st and largest career event to support covid impacted workers: Check: https://covidjobfair.eventbrite.com
+                            
+                            With 10m unemployment claims just in US, we need a healthy and sustained ecosystem to provide help to most vulnerable in these new times.</p>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Who is already working on this?</label>
+                    <div class="col-sm-10">
+                        <p>We have team of 20 already working on the project. But seeking to put together a bigger team to quickly put together high impact solution to address individuals and families suffering through this tough times.</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">How far along are you?</label>
+                    <div class="col-sm-10">
+                        <p>We have identified the set of initial tools(duck-taped solution) to rollout our first job fair as soon as possible.
+                        </p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tasks need to be done</label>
+                    <div class="col-sm-10">
+                        <p>Tasks that need to get done:
+                            <p>Stage 1:</p>
+                            <ol>
+                                <li>Connect with employment office to spread the word about virtual job fair,</li>
+                                <li>Request companies to signup</li>
+                                <li>Using technologies put together a signup sight for jobfair</li>
+                                <li>Promote job fair</li>
+                                <li>Provide job fair support</li>
+                                <li>Facilitate the job fair</li>
+                            </ol>
+                            
+                            At the same time, use data to improve process, maximize outcome and keep maturing jobs office's capabilities to address immediate job search needs for #Covid19 impacted workforce.</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Programming Languages</label>
+                    <div class="col-sm-10">
+                        <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veritatis rem, porro explicabo est excepturi veniam nesciunt? Temporibus voluptatibus similique optio iste dolore modi, maxime molestiae earum quam, molestias facilis. consectetur adipisicing elit. Vero error quod provident obcaecati ex, nam ullam accusantium porro aut fugiat consequatur officia ab commodi at voluptate expedita iure eligendi. Ex!</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Skills Needed?</label>
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-success">HTML</button>
+                        <button type="button" class="btn btn-success">CSS</button>
+                        <button type="button" class="btn btn-success">Javascript</button>
+                        <button type="button" class="btn btn-success">Node JS</button>
+                        <button type="button" class="btn btn-success">Mongo DB</button>
+
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Number of developers needed</label>
+                    <div class="col-sm-10">
+                        <p>3-5</p>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-success btn-lg btn-block">Apply</button>
+
+                
+
+
+            </form>
+
+
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <center>
+            <span class="navbar-link text-light">&copy; Group Omega, UMass Amherst</span>
+        </center>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="/docs/4.4/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

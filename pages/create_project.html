@@ -67,7 +67,7 @@
     </script>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" style="background-color: #F4F5F7;">
     <header>
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -108,17 +108,11 @@
         <div class="container">
             <h1 class="mt-5">Create a Project</h1>
 
-            <form>
+            <form style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Name</label>
+                    <label for="exampleFormControlInput1">Project Name</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
 
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
                 </div>
 
 
@@ -126,8 +120,16 @@
                     <label for="exampleFormControlTextarea1">Describe your Project</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     <small id="descriptionHelpBlock" class="form-text text-muted">
-                        A small description for all other developers, Eg: A mobile app for security with all the
+                        A small description for the product, Eg: A mobile app for security with all the
                         features
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Who is already working on this?</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <small id="descriptionHelpBlock" class="form-text text-muted">
+                        Other developers, volunteers working on this
                     </small>
                 </div>
 
@@ -135,7 +137,7 @@
                     <label for="exampleFormControlTextarea1">How far along are you?</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder=""></textarea>
                     <small id="farHelpBlock" class="form-text text-muted">
-                        Tell developers about the progress you've made so far
+                        Eg: Just began, in the middle somewhere, almost complete, complete - need feedback. 
                     </small>
                 </div>
 
@@ -222,9 +224,8 @@
                         Range from 3-6
                     </small>
                 </div>
-
-                <button type="button" class="btn btn-success">Create Project</button>
-
+                
+                <button type="button" class="btn btn-success btn-lg btn-block">Create Project</button>
 
             </form>
 
