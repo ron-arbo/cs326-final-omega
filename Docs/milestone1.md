@@ -19,3 +19,14 @@
 
 ## Sign Up
 <img width="1429" alt="Screen Shot 2020-04-08 at 5 50 03 PM" src="https://user-images.githubusercontent.com/31454667/78837209-90033600-79c1-11ea-92ca-1c1f54a06e5b.png">
+
+# Wireframe Screenshots
+
+## Welcome Screen
+![Wireframe1](https://user-images.githubusercontent.com/42826472/78842846-2d189b80-79cf-11ea-9b06-282b177bb966.jpg)
+
+## Profile Section
+![Wireframe2](https://user-images.githubusercontent.com/42826472/78842870-399cf400-79cf-11ea-9ba1-c024395e8e7f.jpg)
+
+## Project Create/View
+![Wireframe3](https://user-images.githubusercontent.com/42826472/78842882-40c40200-79cf-11ea-9610-24cb21ab15d7.jpg)
