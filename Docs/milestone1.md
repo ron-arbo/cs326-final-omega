@@ -1,4 +1,4 @@
-# Group Omega, CS 326, UMass Amherst
+# Group Omega, CS 326, UMass Amherst, Website: CodeTogether
 
 ## Data interaction- From Milestone 0:
 
@@ -50,3 +50,13 @@ Users will be able to search for and browse potential projects, filtering result
 
 ## Sign Up
 <img width="1429" alt="Screen Shot 2020-04-08 at 5 50 03 PM" src="https://user-images.githubusercontent.com/31454667/78837209-90033600-79c1-11ea-92ca-1c1f54a06e5b.png">
+
+*Rough* Breakdown of work:
+index.html - TJ & Aryan
+profile.html - Ron
+create_project.html - Aryan & TJ
+project_description.html - Aryan
+login.html and signup.html - Ron
+extra.html - Aryan
+All CSS files related to these html files were, for the most part, worked on by the same people. Plus, some of the styling ws done within the HTML with bootstrap.
+
