@@ -20,35 +20,50 @@
           </div>  
           <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-              <div class="card card-signin my-5">
+              <div class="card card-signin my-3">
                 <div class="card-body text-center">
                   <h5 class="card-title text-center"><b>Sign Up</b></h5>
-                  <form class="form-signin">
+                  <form class="form-signin needs-validation" novalidate>
                     
-                    <div class="row">
+                    <div class="form-row">
                         <div class="col">
                             <div class="form-label-group">
-                                <input type="firstname" id="firstname" class="form-control" placeholder="First" required autofocus>
+                              <input type="firstname" id="firstname" class="form-control" placeholder="First" required autofocus>
+                              <div class="invalid-feedback">
+                                Please Enter your First Name
                               </div>
+                            </div>
                         </div>
 
                         <div class="col">
                             <div class="form-label-group">
                                 <input type="lastname" id="lastname" class="form-control" placeholder="Last" required>
-                              </div>
+                                <div class="invalid-feedback">
+                                  Please Enter your Last Name
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-label-group">
                       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                      <div class="invalid-feedback">
+                        Please Enter a Valid Email Address
+                      </div>
                     </div>
       
                     <div class="form-label-group">
                       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                      <div class="invalid-feedback">
+                        Please Enter a Valid Password
+                      </div>
                     </div>
 
                     <div class="form-label-group">
                       <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+                      <div class="invalid-feedback">
+                        Passwords Must Match
+                      </div>
                     </div>
       
                     <div class="custom-control custom-checkbox mb-3">
@@ -64,4 +79,39 @@
           </div>
         </div>
       </body>
+
+      <script>
+        var password = document.getElementById("inputPassword");
+        let confirmPassword = document.getElementById("confirmPassword");
+
+        function validatePassword(){
+            if(password.value != confirmPassword.value) {
+              confirmPassword.setCustomValidity("Passwords Don't Match");
+            } 
+            else {
+              confirmPassword.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirmPassword.onkeyup = validatePassword;
+        
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+      </script>
 </html>

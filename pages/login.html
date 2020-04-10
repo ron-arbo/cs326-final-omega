@@ -24,16 +24,20 @@
         <div class="card card-signin my-5">
           <div class="card-body text-center">
             <h5 class="card-title text-center"><b>Log In</b></h5>
-            <form class="form-signin">
+            <form class="form-signin needs-validation" novalidate>
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
-                  autofocus />
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus/>
+                <div class="invalid-feedback">
+                  Please Enter a Valid Email Address
+                </div>
               </div>
 
               <div class="form-label-group">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                <div class="invalid-feedback">
+                  Please Enter a Valid Password
+                </div>
               </div>
-
               <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="customCheck1" />
                 <label class="custom-control-label" for="customCheck1">Remember Me</label>
@@ -50,5 +54,25 @@
     </div>
   </div>
 </body>
+
+<script>
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
 
 </html>
