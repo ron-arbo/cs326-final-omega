@@ -1,9 +1,8 @@
 # Todo
 
-- [ ] Add pictures, prepare folders and release for Milestone 1, due at latest 7am EST
-- [ ] Connect different pages for browser
-- [ ] Add more search filters
-- [ ] Make sure CSS for tags are consistent
-- [ ] Add a confirm password section to sign up and make sure we double check they're the same in JS
-- [ ] Add a project viewing page with all details of a project? Or is search result enough
-- [ ] Figure out media links in profile with bootstrap
+- [ ] Identify objects and their attributes, along with CRUD operation endpoints
+- [ ] Create server.ts, database.ts, and specific page typescript file
+- [ ] Plan out possible functions for API. (Ex: Create, Read, Update, Complete. Use project IDs, user IDs)
+- [ ] Dummy server, just make sure client requests are addressed
+- [ ] Clean up front end to work with what we're adding
+
