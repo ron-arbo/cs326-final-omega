@@ -1,4 +1,13 @@
-# Group Omega, CS 326, UMass Amherst
+# Code Together
+
+## Todo
+
+- [ ] Identify objects and their attributes, along with CRUD operation endpoints
+- [ ] Create server.ts, database.ts, and specific page typescript file
+- [ ] Plan out possible functions for API. (Ex: Create, Read, Update, Complete. Use project IDs, user IDs)
+- [ ] Dummy server, just make sure client requests are addressed
+- [ ] Clean up front end to work with what we're adding
+
 
 ## Welcome screen, all projects
 <img width="1430" alt="Screen Shot 2020-04-08 at 5 49 23 PM" src="https://user-images.githubusercontent.com/31454667/78837203-8f6a9f80-79c1-11ea-95ac-3e9f55ecd21b.png">
