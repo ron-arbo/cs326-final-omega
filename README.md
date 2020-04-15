@@ -10,7 +10,10 @@
 - [ ] Button filters on index.html
 - [ ] Add functionality to all buttons (create, update profile, etc.)
 - [ ] Add another account option to indicate devloper/investor (or both)
-- [ ] Add ability to update profile info
+- [ ] Find a way to hyperlink user profile to edit profile, but only for the specific user logged in
+- [ ] If no user logged in, hyperlink account page to sign up
+- [ ] Create a list of all the most relevant languages and frameworks people use. Make sure to include the option to include any of    these in a project or user skills section. There may be so many we may need to resort to dropdown menus
+
 
 
 * Project - 
