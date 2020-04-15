@@ -7,6 +7,10 @@
 - [ ] Plan out possible functions for API. (Ex: Create, Read, Update, Complete. Use project IDs, user IDs)
 - [ ] Dummy server, just make sure client requests are addressed
 - [ ] Clean up front end to work with what we're adding
+- [ ] Button filters on index.html
+- [ ] Add functionality to all buttons (create, update profile, etc.)
+- [ ] Add another account option to indicate devloper/investor (or both)
+- [ ] Add ability to update profile info
 
 
 * Project - 
@@ -16,7 +20,7 @@
     * already_working: string
     * helpful_links:[string]
     * programming_languages: [string]
-    * developers_working: int
+    * developers_working: int (or could be an array of develop ids?)
     * developers_needed: int
 
 * Developer
