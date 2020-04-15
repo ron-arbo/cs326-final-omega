@@ -1,0 +1,19 @@
+{
+  "name": "cs326-final-omega",
+  "version": "1.0.0",
+  "description": "Team Omega Final",
+  "main": "myserver.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ron-arbo/cs326-final-omega.git"
+  },
+  "author": "Ron, Aryan, TJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ron-arbo/cs326-final-omega/issues"
+  },
+  "homepage": "https://github.com/ron-arbo/cs326-final-omega#readme"
+}
