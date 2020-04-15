@@ -4,6 +4,7 @@
   "description": "Team Omega Final",
   "main": "myserver.ts",
   "scripts": {
+    "start": "ts-node myserver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
