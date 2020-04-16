@@ -4,7 +4,7 @@
   "description": "Team Omega Final",
   "main": "myserver.ts",
   "scripts": {
-    "start": "node myserver.js",
+    "start": "node /backend/pcrud-class-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/ron-arbo/cs326-final-omega/issues"
   },
-  "homepage": "https://github.com/ron-arbo/cs326-final-omega#readme"
+  "homepage": "https://github.com/ron-arbo/cs326-final-omega#readme",
+  "devDependencies": {
+    "@types/node": "^13.11.1"
+  },
+  "dependencies": {
+   "level": "^6.0.1"
+  }
 }
