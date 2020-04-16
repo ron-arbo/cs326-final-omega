@@ -2,7 +2,7 @@
   "name": "cs326-final-omega",
   "version": "1.0.0",
   "description": "Team Omega Final",
-  "main": "myserver.ts",
+  "main": "backend/pcrud-class-server.js",
   "scripts": {
     "start": "node /backend/pcrud-class-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
