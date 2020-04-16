@@ -4,7 +4,7 @@
   "description": "Team Omega Final",
   "main": "backend/pcrud-class-server.js",
   "scripts": {
-    "start": "node /backend/pcrud-class-server.js",
+    "start": "node backend/pcrud-class-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
