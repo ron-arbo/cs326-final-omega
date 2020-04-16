@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/ron-arbo/cs326-final-omega/issues"
   },
-  "homepage": "https://github.com/ron-arbo/cs326-final-omega#readme",
+  "homepage": "https://github.com/ron-arbo/cs326-final-omega/index.html",
   "devDependencies": {
     "@types/node": "^13.11.1"
   },
