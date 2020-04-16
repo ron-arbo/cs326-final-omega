@@ -21,6 +21,8 @@
     "@types/node": "^13.11.1"
   },
   "dependencies": {
-   "level": "^6.0.1"
+    "express": "^4.17.1",
+    "level": "^6.0.1",
+    "mongodb": "^3.5.6"
   }
 }

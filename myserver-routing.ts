@@ -29,14 +29,6 @@ export class MyServer {
 		this.router.get('/users/:userId/update', this.updateHandler.bind(this));
 		this.router.get('/users/:userId/delete', this.deleteHandler.bind(this));
 		// HANDLE ERRORS WITH A WILDCARD (*)
-		
-		this.router.get('*', this.errorHandler.bind(this));
-		// this.router.get('*', async (request, response) => {
-        //     response.send(JSON.stringify({ "result" : "command-not-found" }));
-        // });
-
-		// Start up the counter endpoint at '/counter'.
-		this.server.use('/counter', this.router);
 	}
 
 	private async errorHandler(request, response, next): Promise<void> {
