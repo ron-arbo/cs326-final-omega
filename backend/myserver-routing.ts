@@ -8,7 +8,7 @@ export class MyServer {
 
     // Server stuff: use express instead of http.createServer
     private server = express();
-    private port = 8080;
+    private port = process.env.PORT || 8080;
     private router = express.Router();
 
     constructor(db) {
