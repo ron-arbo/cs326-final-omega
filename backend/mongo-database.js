@@ -45,21 +45,22 @@ var Database = /** @class */ (function () {
         this.collectionName = collectionName;
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
         // Open up a connection to the client.
+        // Open up a connection to the client.
         // The connection is asynchronous, but we can't call await directly
         // in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
         /* from https://anthonychu.ca/post/async-await-typescript-nodejs/
-     ​
+    
           Async/Await and the Async IIFE
-     ​
+    
           The await keyword can only be used inside of a function
           marked with the async keyword. [...] One way to do this is
           with an "async IIFE" (immediately invoked function
           expression)...
-     ​
+    
            (async () => {
-           code goes here
+           // code goes here
            })();
-     ​
+    
         */
         (function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -78,9 +79,9 @@ var Database = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log("put: key = " + key + ", value = " + value);
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
+                        console.log("put: key = " + key + ", value = " + value);
                         return [4 /*yield*/, collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true })];
                     case 1:
                         result = _a.sent();
@@ -98,6 +99,7 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
+                        console.log("get: key = " + key);
                         return [4 /*yield*/, collection.findOne({ 'name': key })];
                     case 1:
                         result = _a.sent();
@@ -115,32 +117,22 @@ var Database = /** @class */ (function () {
     };
     Database.prototype.del = function (key) {
         return __awaiter(this, void 0, void 0, function () {
-            var db, collection;
+            var db, collection, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log("delete: key = " + key);
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
+                        console.log("delete: key = " + key);
                         return [4 /*yield*/, collection.deleteOne({ 'name': key })];
                     case 1:
-                        _a.sent();
+                        result = _a.sent();
+                        console.log("result = " + result);
                         return [2 /*return*/];
                 }
             });
         });
     };
-    // public async isFound(key: string): Promise<boolean> {
-    //     // console.log("isFound: key = " + key);
-    //     // let v = await this.get(key);
-    //     // console.log("is found result = " + v);
-    //     try {
-    //         let v : string = await this.get(key);
-    //         return true;
-    //     } catch (err) {
-    //         return false;
-    //     }
-    // }
     Database.prototype.isFound = function (key) {
         return __awaiter(this, void 0, void 0, function () {
             var v;
