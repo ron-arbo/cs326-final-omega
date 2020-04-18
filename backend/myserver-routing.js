@@ -55,7 +55,7 @@ var MyServer = /** @class */ (function () {
             next();
         });
         // Serve static pages from a particular path.
-        this.server.use('/', express.static('../html'));
+        this.server.use('/', express.static('../html/index.php'));
         this.server.use('/counter', this.router);
         this.router.get('/users/:userId/create', this.createHandler.bind(this));
         this.router.get('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
@@ -63,7 +63,7 @@ var MyServer = /** @class */ (function () {
         this.router.get('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         this.router.get('*', function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                response.send(JSON.stringify({ "result": "command-not-found" }));
+                response.send(JSON.stringify({ result: 'command-not-found' }));
                 return [2 /*return*/];
             });
         }); });
@@ -73,11 +73,11 @@ var MyServer = /** @class */ (function () {
             var value;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.params['userId'] + "-" + request.query.name)];
+                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.params['userId'] + '-' + request.query.name)];
                     case 1:
                         value = _a.sent();
                         if (!value) {
-                            response.write(JSON.stringify({ 'result': 'error' }));
+                            response.write(JSON.stringify({ result: 'error' }));
                             response.end();
                         }
                         else {
@@ -92,7 +92,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createCounter(request.params['userId'] + "-" + request.query.name, response)];
+                    case 0: return [4 /*yield*/, this.createCounter(request.params['userId'] + '-' + request.query.name, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -104,7 +104,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.readCounter(request.params['userId'] + "-" + request.query.name, response)];
+                    case 0: return [4 /*yield*/, this.readCounter(request.params['userId'] + '-' + request.query.name, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -116,7 +116,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateCounter(request.params['userId'] + "-" + request.query.name, request.query.value, response)];
+                    case 0: return [4 /*yield*/, this.updateCounter(request.params['userId'] + '-' + request.query.name, request.query.value, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -128,7 +128,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteCounter(request.params['userId'] + "-" + request.query.name, response)];
+                    case 0: return [4 /*yield*/, this.deleteCounter(request.params['userId'] + '-' + request.query.name, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -148,9 +148,11 @@ var MyServer = /** @class */ (function () {
                         return [4 /*yield*/, this.theDatabase.put(name, 0)];
                     case 1:
                         _a.sent();
-                        response.write(JSON.stringify({ 'result': 'created',
-                            'name': name,
-                            'value': 0 }));
+                        response.write(JSON.stringify({
+                            result: 'created',
+                            name: name,
+                            value: 0
+                        }));
                         response.end();
                         return [2 /*return*/];
                 }
@@ -160,7 +162,7 @@ var MyServer = /** @class */ (function () {
     MyServer.prototype.errorCounter = function (name, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                response.write(JSON.stringify({ 'result': 'error' }));
+                response.write(JSON.stringify({ result: 'error' }));
                 response.end();
                 return [2 /*return*/];
             });
@@ -174,9 +176,11 @@ var MyServer = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.theDatabase.get(name)];
                     case 1:
                         value = _a.sent();
-                        response.write(JSON.stringify({ 'result': 'read',
-                            'name': name,
-                            'value': value }));
+                        response.write(JSON.stringify({
+                            result: 'read',
+                            name: name,
+                            value: value
+                        }));
                         response.end();
                         return [2 /*return*/];
                 }
@@ -190,9 +194,11 @@ var MyServer = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.theDatabase.put(name, value)];
                     case 1:
                         _a.sent();
-                        response.write(JSON.stringify({ 'result': 'updated',
-                            'name': name,
-                            'value': value }));
+                        response.write(JSON.stringify({
+                            result: 'updated',
+                            name: name,
+                            value: value
+                        }));
                         response.end();
                         return [2 /*return*/];
                 }
@@ -206,8 +212,10 @@ var MyServer = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.theDatabase.del(name)];
                     case 1:
                         _a.sent();
-                        response.write(JSON.stringify({ 'result': 'deleted',
-                            'value': name }));
+                        response.write(JSON.stringify({
+                            result: 'deleted',
+                            value: name
+                        }));
                         response.end();
                         return [2 /*return*/];
                 }
