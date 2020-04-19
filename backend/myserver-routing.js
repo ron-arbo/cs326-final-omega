@@ -56,6 +56,7 @@ var MyServer = /** @class */ (function () {
         });
         // Serve static pages from a particular path.
         this.server.use(express.static('html'));
+        this.server.use('/pages', express.static('pages'));
         // this.server.use(express.static('assets'));
         // this.server.use('/', express.static('../html'));
         this.server.use('/assets', express.static('assets'));
