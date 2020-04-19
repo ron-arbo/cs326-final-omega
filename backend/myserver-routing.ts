@@ -20,7 +20,10 @@ export class MyServer {
 			next();
 		});
 		// Serve static pages from a particular path.
-		this.server.use('/', express.static('../html/index.html'));
+		this.server.use(express.static('html'));
+		// this.server.use('/', express.static('../html'));
+
+		// this.server.use('/html', express.static(__dirname + '/html'));
 
 		this.server.use('/counter', this.router);
 

@@ -55,7 +55,9 @@ var MyServer = /** @class */ (function () {
             next();
         });
         // Serve static pages from a particular path.
-        this.server.use('/', express.static('../html/index.php'));
+        this.server.use(express.static('html'));
+        // this.server.use('/', express.static('../html'));
+        // this.server.use('/html', express.static(__dirname + '/html'));
         this.server.use('/counter', this.router);
         this.router.get('/users/:userId/create', this.createHandler.bind(this));
         this.router.get('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
