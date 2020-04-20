@@ -14,7 +14,9 @@
 - [ ] If no user logged in, hyperlink account page to sign up
 - [ ] Create a list of all the most relevant languages and frameworks people use. Make sure to include the option to include any of    these in a project or user skills section. There may be so many we may need to resort to dropdown menus
 
-
+## How to run
+* node backend/server-main.js
+* Go to http://localhost:8080/
 
 * Project - 
     * project_id: int
