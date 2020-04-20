@@ -17,6 +17,7 @@
 ## How to run
 * node backend/server-main.js
 * Go to http://localhost:8080/
+* website: https://cs-326-final-omega.herokuapp.com/
 
 * Project - 
     * project_id: int
