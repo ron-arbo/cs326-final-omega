@@ -19,6 +19,9 @@ export class MyServer {
 			response.header('Access-Control-Allow-Headers', '*');
 			next();
 		});
+		//Used to handle POST
+		this.server.use(express.json());
+		
 		// Serve static pages from a particular path.
 		this.server.use('/', express.static('html'));
 		this.server.use('/pages', express.static('pages'));
@@ -27,17 +30,17 @@ export class MyServer {
 
 		this.server.use('/counter', this.router);
 
-		this.router.get('/users/:userId/create', this.createHandler.bind(this));
-		this.router.get('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-		this.router.get('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
-		this.router.get('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
-		this.router.get('*', async (request, response) => {
+		this.router.post('/users/:userId/create', this.createHandler.bind(this));
+		this.router.post('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+		this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
+		this.router.post('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+		this.router.post('*', async (request, response) => {
 			response.send(JSON.stringify({ result: 'command-not-found' }));
 		});
 	}
 
 	private async errorHandler(request, response, next): Promise<void> {
-		let value: boolean = await this.theDatabase.isFound(request.params['userId'] + '-' + request.query.name);
+		let value: boolean = await this.theDatabase.isFound(request.params['userId'] + '-' + request.body.name);
 		if (!value) {
 			response.write(JSON.stringify({ result: 'error' }));
 			response.end();
@@ -47,19 +50,19 @@ export class MyServer {
 	}
 
 	private async createHandler(request, response): Promise<void> {
-		await this.createCounter(request.params['userId'] + '-' + request.query.name, response);
+		await this.createCounter(request.params['userId'] + '-' + request.body.name, response);
 	}
 
 	private async readHandler(request, response): Promise<void> {
-		await this.readCounter(request.params['userId'] + '-' + request.query.name, response);
+		await this.readCounter(request.params['userId'] + '-' + request.body.name, response);
 	}
 
 	private async updateHandler(request, response): Promise<void> {
-		await this.updateCounter(request.params['userId'] + '-' + request.query.name, request.query.value, response);
+		await this.updateCounter(request.params['userId'] + '-' + request.body.name, request.body.value, response);
 	}
 
 	private async deleteHandler(request, response): Promise<void> {
-		await this.deleteCounter(request.params['userId'] + '-' + request.query.name, response);
+		await this.deleteCounter(request.params['userId'] + '-' + request.body.name, response);
 	}
 
 	public listen(port): void {
