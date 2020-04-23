@@ -33,11 +33,13 @@ export class Database {
 		})();
 	}
 
-	public async put(key: string, value: string): Promise<void> {
+	public async put(key: string, description: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		console.log("put: key = " + key + ", value = " + value);
-		let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
+		console.log("put: key = " + key + ", value = " + description);
+		// let result = await collection.updateOne({ 'name': key }, { $set: { 'description': description } }, { 'upsert': true });
+		let result = await collection.updateOne({'name': key}, { $set: { 'description': description } }, { 'upsert': true });
+		
 		console.log("result = " + result);
 	}
 
@@ -46,6 +48,9 @@ export class Database {
 		let collection = db.collection(this.collectionName);
 		console.log("get: key = " + key);
 		let result = await collection.findOne({ 'name': key });
+
+		// is result in JSON here?
+
 		console.log("get: returned " + JSON.stringify(result));
 		if (result) {
 			return result.value;
