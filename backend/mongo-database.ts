@@ -33,11 +33,21 @@ export class Database {
 		})();
 	}
 
-	public async put(key: string, value: string): Promise<void> {
+	public async put(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		console.log("put: key = " + key + ", value = " + value);
-		let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
+
+		// console.log("put: key = " + projectName + ", value = " + value);
+		// insert one PROJECT into the database
+		let result = await collection.insertOne({
+			'projectName': projectName,
+			'projectDecription': projectDescription,
+			'projectWorkers': projectWorkers,
+			'projectProgress': projectProgress,
+			'projectLinks': projectLinks,
+			'projectNumWorkers': projectNumWorkers
+		});
+		// let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
 		console.log("result = " + result);
 	}
 
@@ -54,14 +64,14 @@ export class Database {
 		}
 	}
 
-	public async del(key: string): Promise<void> {
-		let db = this.client.db(this.dbName);
-		let collection = db.collection(this.collectionName);
-		console.log("delete: key = " + key);
-		let result = await collection.deleteOne({ 'name': key });
-		console.log("result = " + result);
-		// await this.db.del(key);
-	}
+	// public async del(key: string): Promise<void> {
+	// 	let db = this.client.db(this.dbName);
+	// 	let collection = db.collection(this.collectionName);
+	// 	console.log("delete: key = " + key);
+	// 	let result = await collection.deleteOne({ 'name': key });
+	// 	console.log("result = " + result);
+	// 	// await this.db.del(key);
+	// }
 
 	public async isFound(key: string): Promise<boolean> {
 		console.log("isFound: key = " + key);
