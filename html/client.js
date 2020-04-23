@@ -16,40 +16,40 @@ async function postData(url, data) {
     return resp;
 }
 
-// function projectCreate() {
-//     (async () => {
-// 	let projectName = document.getElementById("exampleFormControlInput1").value;
-// 	let projectDescription = document.getElementById("exampleFormControlTextarea1").value;
-// 	let projectWorkers = document.getElementById("exampleFormControlTextarea2").value;
-// 	let projectProgress = document.getElementById("exampleFormControlTextarea4").value;
-// 	let projectLinks = document.getElementById("exampleFormControlTextarea5").value;
-// 	//HOW TO INCORPORATE BUTTONS??
-// 	let projectNumWorkers = document.getElementById("exampleFormControlInput2").value;
+function projectCreate() {
+    (async () => {
+	let projectName = document.getElementById("projectName").value;
+	let projectDescription = document.getElementById("projectDescription").value;
+	let projectWorkers = document.getElementById("projectWorkers").value;
+	let projectProgress = document.getElementById("projectProgress").value;
+	let projectLinks = document.getElementById("projectLinks").value;
+	//HOW TO INCORPORATE BUTTONS??
+	let projectNumWorkers = document.getElementById("projectNumWorkers").value;
 
-// 	const projectData = {   'projectName' : projectName,
-// 							'projectDecription' : projectDescription,
-// 							'projectWorkers' : projectWorkers,
-// 							'projectProgress' : projectProgress,
-// 							'projectLinks' : projectLinks,
-// 							'projectNumWorkers' : projectNumWorkers };
+	const projectData = {   'projectName' : projectName,
+							'projectDecription' : projectDescription,
+							'projectWorkers' : projectWorkers,
+							'projectProgress' : projectProgress,
+							'projectLinks' : projectLinks,
+							'projectNumWorkers' : projectNumWorkers };
 
-// 	//For now, userName will be omega
-// 	const newURL = url + "/users/" + "omega" + "/createProject";
-// 	console.log("projectCreate: fetching " + newURL);
-// 	const resp = await postData(newURL, projectData);
-// 	const j = await resp.json();
+	//For now, userName will be omega
+	const newURL = url + "/users/" + "omega" + "/createProject";
+	console.log("projectCreate: fetching " + newURL);
+	const resp = await postData(newURL, projectData);
+	const j = await resp.json();
 
-// 	//GOAL: Find a way to display the json response on a DIFFERENT PAGE, namely project_description.html.
-// 	//This create_project --> project_description may be more straightforward since it is the same exact content, but eventually
-// 	//we'll need to get new content to diplay on the project_desciption page (when we click on the link to a project, for example)
+	//GOAL: Find a way to display the json response on a DIFFERENT PAGE, namely project_description.html.
+	//This create_project --> project_description may be more straightforward since it is the same exact content, but eventually
+	//we'll need to get new content to diplay on the project_desciption page (when we click on the link to a project, for example)
 
-// 	if (j['result'] !== 'error') {
-// 	    console.log(j['result']);
-// 	} else {
-// 	    conole.log("Error occurred");
-// 	}
-//     })();
-// }
+	if (j['result'] !== 'error') {
+	    console.log(j['result']);
+	} else {
+	    conole.log("Error occurred");
+	}
+    })();
+}
 
 function counterCreate() {
     (async () => {	
