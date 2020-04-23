@@ -33,7 +33,7 @@ export class MyServer {
 		// Set a single handler for a route.
 		this.router.post('/users/:userId/create', this.createHandler.bind(this));
 		// Set multiple handlers for a route, in sequence.
-		// this.router.post('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+		this.router.post('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
 		// this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
 		// this.router.post('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 		// Set a fall-through handler if nothing matches.
@@ -66,10 +66,16 @@ export class MyServer {
 			response);
 	}
 
-	// private async readHandler(request, response): Promise<void> {
-	// 	console.log(request.params['userId']);
-	// 	await this.readCounter(request.params['userId'] + "-" + request.body.name, response);
-	// }
+	private async readHandler(request, response): Promise<void> {
+		await this.createProject(
+			request.params['userId'] + "-" + request.body.projectName, 
+			request.body.projectDescription, 
+			request.body.projectWorkers, 
+			request.body.projectProgress, 
+			request.body.projectLinks, 
+			request.body.projectNumWorkers, 
+			response);
+	}
 
 	// private async updateHandler(request, response): Promise<void> {
 	// 	await this.updateCounter(request.params['userId'] + "-" + request.body.name, request.body.value, response);
@@ -110,16 +116,15 @@ export class MyServer {
 	// 	response.end();
 	// }
 
-	// public async readCounter(name: string, response): Promise<void> {
-	// 	//let value = await this.theDatabase.get(name);
-	// 	let value = 5;
-	// 	response.write(JSON.stringify({
-	// 		'result': 'read',
-	// 		'name': name,
-	// 		'value': value
-	// 	}));
-	// 	response.end();
-	// }
+	public async readProject(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers, response): Promise<void> {
+		//let value = await this.theDatabase.get(name);
+		
+		response.write(JSON.stringify({
+			'result': 'read',
+			'name': projectName
+		}));
+		response.end();
+	}
 
 	// public async updateCounter(name: string, value: number, response): Promise<void> {
 	// 	await this.theDatabase.put(name, value);

@@ -54,6 +54,52 @@ function projectCreate() {
 	})();
 }
 
+function projectRead() {
+	(async () => {
+		//Get these elements from Database vvvv
+		// let projectName = document.getElementById("projectName").value;
+		// let projectDescription = document.getElementById("projectDescription").value;
+		// let projectWorkers = document.getElementById("projectWorkers").value;
+		// let projectProgress = document.getElementById("projectProgress").value;
+		// let projectLinks = document.getElementById("projectLinks").value;
+		// //HOW TO INCORPORATE BUTTONS??
+		// let projectNumWorkers = document.getElementById("projectNumWorkers").value;
+
+		//For now, fill these variables with fake data
+		let projectName = 'sampleName';
+		let projectDescription = 'sampleDescription';
+		let projectWorkers = 'sampleWorkers';
+		let projectProgress = 'sampleProgress';
+		let projectLinks = 'sampleLinks';
+		//Buttons
+		let projectNumWorkers = 1;
+
+		//Then create JSON to return
+		const projectData = {
+			'projectName': projectName,
+			'projectDecription': projectDescription,
+			'projectWorkers': projectWorkers,
+			'projectProgress': projectProgress,
+			'projectLinks': projectLinks,
+			//Buttons
+			'projectNumWorkers': projectNumWorkers
+		};
+
+		let userName = 'omega'
+
+		const newURL = url + "/users/" + userName + "/read";
+		console.log("counterRead: fetching " + newURL);
+		const resp = await postData(newURL, projectData);
+		console.log(resp);
+		const j = await resp.json();
+		if (j['result'] !== 'error') {
+			document.getElementById('readOutput').innerHTML = 'works';
+		} else {
+			document.getElementById("readOutput").innerHTML = "Does not work"
+		}
+	})();
+}
+
 // function counterCreate() {
 // 	(async () => {
 // 		// let counterName = document.getElementById("countername").value;
