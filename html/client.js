@@ -272,8 +272,39 @@ function profileDelete() {
 	})();
 }
 
-function allProjects(){
-	(async ()=> {
+// incomplete
+function findAllProjects(){
+	(async () => {
+		let counterName = document.getElementById("countername").value;
+		let userName = document.getElementById("username").value;
 		
-	})
+		const data = { 'name' : counterName }; 
+		const newURL = url + "/users/" + userName + "/allProjects"; 
+		const resp = await postData(newURL, data);
+		
+		const j = await resp.json();
+		// we need to loop over all projects
+		for(){
+			let projectName = j['projectName'];
+			let projectDescription = j['projectDescription'];
+			let projectWorkers = j['projectWorkers'];
+			let projectProgress = j['projectProgress'];
+			let projectLinks = j['projectLinks'];
+			let projectNumWorkers = j['projectNumWorkers'];
+			if (j['result'] !== 'error') {
+				// change html for all projects
+				// dynamically add projects here?
+				document.getElementById("output").innerHTML = "201: <b>"  + userName + ", " + counterName + " value = " + j['value'] + "</b>";
+			} 
+		}
+
+		
+
+		if (j['result'] !== 'error') {
+			// change the html here
+			document.getElementById("output").innerHTML = "201: <b>"  + userName + ", " + counterName + " value = " + j['value'] + "</b>";
+		} else {
+			document.getElementById("output").innerHTML = "200: " +  userName + ", " + counterName + " not found.</b>";
+		}	    
+		})();
 }

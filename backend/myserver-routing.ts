@@ -42,7 +42,7 @@ export class MyServer {
 		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
 		// this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
-		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
+		this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
 
 		// Set a fall-through handler if nothing matches.
 		this.router.post('*', async (request, response) => {
