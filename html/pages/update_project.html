@@ -82,8 +82,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../../html/index.html">Home</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Create Project<span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="create_project.html">Create Project<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">Login</a>
@@ -107,7 +107,7 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
         <div class="container">
-            <h1 class="mt-5">Create a Project</h1>
+            <h1 class="mt-5">Edit Project</h1>
 
             <form action="project_description.html" id="createProject" style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group">
@@ -225,7 +225,7 @@
                         Choose the number of developers you want to work with
                     </small>
                 </div>
-                <button type="submit" onsubmit="return false" class="btn btn-success btn-lg btn-block" onclick="projectCreate()" >Create</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="projectUpdate()">Update</button>
             </form>
 
 
