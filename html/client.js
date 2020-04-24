@@ -31,6 +31,8 @@ function projectCreate() {
 			projectWorkers    : projectWorkers,
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
+			//Buttons
+			// projectButtons    : projectButtons,
 			projectNumWorkers : projectNumWorkers
 		};
 
@@ -151,3 +153,92 @@ function projectDelete() {
 }
 
 // tsc backend/mongo-database.ts; tsc backend/myserver-routing.ts; tsc backend/server-main.ts;
+
+function profileUpdate() {
+	(async () => {
+		//Get relevant info from html page
+		//NOTE: email and password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
+		let email = 'example@gmail.com';
+		let password = 'myPassword';
+		let name = document.getElementById('nameInput').value;
+		let bio = document.getElementById('bioInput').value;
+		let about = document.getElementById('aboutInput').value;
+		let projects = document.getElementById('projectInput').value;
+		let links = document.getElementById('linkInput').value;
+		//BUTTONS, IDK
+
+		const profileData = {
+			email           : email,
+			password        : password,
+			profileName     : name,
+			profileBio      : bio,
+			profileAbout    : about,
+			profileProjects : projects,
+			profileLinks    : links
+			//BUTTONS
+		};
+
+		//Example userName for now
+		let userName = 'omega';
+
+		const newURL = url + '/users/' + userName + '/updateProfile';
+		console.log('counterUpdate: fetching ' + newURL);
+		const resp = await postData(newURL, profileData);
+		const j = await resp.json();
+		let updateOutput = document.getElementById('updateOutput');
+		updateOutput.style.visibility = 'visible';
+		if (j['result'] !== 'error') {
+			updateOutput.innerHTML = 'User: ' + name + "'s " + 'profile has been updated';
+		} else {
+			updateOutput.innerHTML = 'Error Occurred During Update';
+		}
+	})();
+}
+
+function profileRead() {
+	(async () => {
+		//Get these elements from Database vvvv
+		// let projectName = document.getElementById("projectName").value;
+		// let projectDescription = document.getElementById("projectDescription").value;
+		// let projectWorkers = document.getElementById("projectWorkers").value;
+		// let projectProgress = document.getElementById("projectProgress").value;
+		// let projectLinks = document.getElementById("projectLinks").value;
+		// //HOW TO INCORPORATE BUTTONS??
+		// let projectNumWorkers = document.getElementById("projectNumWorkers").value;
+
+		//For now, fill these variables with fake data
+		let email = 'example@gmail.com';
+		let password = 'myPassword';
+		let name = 'sampleName';
+		let bio = 'sampleBio';
+		let about = 'sampleAbout';
+		let projects = [];
+		let links = [];
+		//Buttons
+		//Then create JSON to return
+		const profileData = {
+			email           : email,
+			password        : password,
+			profileName     : name,
+			profileBio      : bio,
+			profileAbout    : about,
+			profileProjects : projects,
+			profileLinks    : links
+			//BUTTONS
+		};
+
+		let userName = 'omega';
+
+		const newURL = url + '/users/' + userName + '/readProfile';
+		console.log('counterRead: fetching ' + newURL);
+		const resp = await postData(newURL, profileData);
+		console.log(resp);
+		const j = await resp.json();
+		if (j['result'] !== 'error') {
+			console.log('Read works!');
+			document.getElementById('readOutput').innerHTML = 'works';
+		} else {
+			document.getElementById('readOutput').innerHTML = 'Does not work';
+		}
+	})();
+}
