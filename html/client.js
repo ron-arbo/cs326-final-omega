@@ -1,5 +1,4 @@
 const url = 'http://localhost:8080/counter'; // NOTE NEW URL
-
 async function postData(url, data) {
 	const resp = await fetch(url, {
 		method      : 'POST',
@@ -24,14 +23,13 @@ function projectCreate() {
 		let projectLinks = document.getElementById('projectLinks').value;
 		//HOW TO INCORPORATE BUTTONS??
 		let projectNumWorkers = document.getElementById('projectNumWorkers').value;
-		let projectButtons = [];
-		let checkboxes = document.querySelectorAll('input[type=checkbox]:checked'); //trying to get all of the checked buttons
+		// let projectButtons = [];
+		// let checkboxes = document.querySelectorAll('input[type=checkbox]:checked'); //trying to get all of the checked buttons
 
-		for (var i = 0; i < checkboxes.length; i++) {
-			projectButtons.push(checkboxes[i].value);
-		}
-		console.log(projectButtons);
-		let projectNumWorkers = 1;
+		// for (var i = 0; i < checkboxes.length; i++) {
+		// 	projectButtons.push(checkboxes[i].value);
+		// }
+		// console.log(projectButtons);
 
 		//Then create JSON to return
 		const projectData = {
@@ -58,6 +56,7 @@ function projectCreate() {
 		if (j['result'] !== 'error') {
 			console.log(j['result']);
 			document.getElementById('output').innerHTML = 'works';
+			console.log('YAY!');
 		} else {
 			document.getElementById('output').innerHTML = 'Does not work';
 		}
@@ -81,6 +80,7 @@ function projectRead() {
 		let projectWorkers = 'sampleWorkers';
 		let projectProgress = 'sampleProgress';
 		let projectLinks = 'sampleLinks';
+		let projectNumWorkers = 1;
 		//Buttons
 		//Then create JSON to return
 		const projectData = {
