@@ -112,14 +112,14 @@
             <form action="project_description.html" id="createProject" style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Project Name</label>
-                    <input type="email" class="form-control" id="projectName" placeholder="John Doe">
+                    <input type="text" class="form-control" id="projectName" placeholder="CS 326 Final Project" required>
 
                 </div>
 
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Describe your Project</label>
-                    <textarea class="form-control" id="projectDescription" rows="3"></textarea>
+                    <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
                     <small id="descriptionHelpBlock" class="form-text text-muted">
                         A small description for the product, Eg: A mobile app for security with all the
                         features
@@ -220,16 +220,12 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Number of co-developers</label>
-                    <input type="number" class="form-control col-sm-1" id="projectNumWorkers" placeholder="" min="1" max="6">
+                    <input type="number" class="form-control col-sm-1" id="projectNumWorkers" placeholder="" min="1" max="6" required>
                     <small id="linksHelpBlock" class="form-text text-muted">
                         Choose the number of developers you want to work with
                     </small>
                 </div>
                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="projectCreate()">Create </button>
-            </form>
-                
-                <button onclick="projectCreate()" type="button" class="btn btn-success btn-lg btn-block">Create </button>
-                <h2 id="output">Message</h2>
             </form>
 
 

@@ -99,6 +99,35 @@ function projectRead() {
 	})();
 }
 
+function projectUpdate() {
+	(async () => {
+		let projectName = 'sampleName';
+		let projectDescription = 'sampleDescription';
+		let projectWorkers = 'sampleWorkers';
+		let projectProgress = 'sampleProgress';
+		let projectLinks = 'sampleLinks';
+		const projectData = {
+			projectName       : projectName,
+			projectDecription : projectDescription,
+			projectWorkers    : projectWorkers,
+			projectProgress   : projectProgress,
+			projectLinks      : projectLinks,
+			//Buttons
+			projectNumWorkers : projectNumWorkers
+		};
+
+		const newURL = url + '/users/' + userName + '/updateProject';
+		console.log('counterUpdate: fetching ' + newURL);
+		const resp = await postData(newURL, projectData);
+		const j = await resp.json();
+		if (j['result'] !== 'error') {
+			document.getElementById('readOutput').innerHTML = 'works';
+		} else {
+			document.getElementById('readOutput').innerHTML = 'Does not work';
+		}
+	})();
+}
+
 function projectDelete() {
 	(async () => {
 		let projectName = document.getElementById('projectName').innerHTML;
