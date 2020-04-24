@@ -188,8 +188,10 @@ function profileUpdate() {
 		let updateOutput = document.getElementById('updateOutput');
 		updateOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
+			console.log('Profile update works');
 			updateOutput.innerHTML = 'User: ' + name + "'s " + 'profile has been updated';
 		} else {
+			console.log('Profile update didnt work');
 			updateOutput.innerHTML = 'Error Occurred During Update';
 		}
 	})();
