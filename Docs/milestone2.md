@@ -23,8 +23,8 @@ update - N/A
 delete - Ron  
 Profile Endpoints:  
 create - N/A  
-read - N/A  
+read - TJ
 update - Ron  
-delete -   
+delete - TJ
 
 

@@ -248,3 +248,26 @@ function profileRead() {
 		}
 	})();
 }
+
+function profileDelete() {
+	(async () => {
+		let profileName = document.getElementById('profileName').innerHTML;
+		profileName = 'sampleUser';
+		//Then, delete in database using projectName
+		let userName = 'omega';
+
+		const data = { name: profileName };
+
+		const newURL = url + '/users/' + userName + '/deleteProfile';
+		console.log('counterDelete: fetching ' + newURL);
+		const resp = await postData(newURL, data);
+		const j = await resp.json();
+		if (j['result'] !== 'error') {
+			let deleteOutput = document.getElementById('deleteOutput');
+			deleteOutput.style.visibility = 'visible';
+			deleteOutput.innerHTML = 'Profile: ' + profileName + ' has been deleted';
+		} else {
+			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
+		}
+	})();
+}
