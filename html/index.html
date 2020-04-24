@@ -3,8 +3,7 @@
 <link type="text/css" id="dark-mode" rel="stylesheet" href="">
 <link rel="stylesheet" type="text/css" href="../assets/stylesheet.css">
 
-<style type="text/css" id="dark-mode-custom-style">
-</style>
+<style type="text/css" id="dark-mode-custom-style"></style>
 
 <head>
     
@@ -33,6 +32,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src='client.js'></script>
 
 
     <!-- Favicons -->
@@ -119,7 +119,6 @@
                             waste any time and find the right team here</h5>
                         <a href="/pages/create_project.html" class="btn btn-outline-success ml-3">Create Project</a>
                     </div>
-
                 </div>
             </div>
 
@@ -127,7 +126,11 @@
             <div class="card mt-3">
                 <!-- <h5 class="card-header">Featured</h5> -->
                 <div class="card-body">
-                    <h5 class="card-title mt-1">Filter projects by skills </h5>
+                    <h5 class="card-title mt-1">Filter projects by skills  
+                        <button type="button" onclick='projectRead()' class="btn btn-success ml-2" style="font-size: 14px;">Filter (Read)</button>
+                        <p id="readOutput"></p>
+                    </h5>
+                    
                     <div class="row">
                         <button type="button" class="btn btn-success ml-2" style="font-size: 14px;">HTML</button>
                         <button type="button" class="btn btn-success ml-2" style="font-size: 14px;">Javascript</button>

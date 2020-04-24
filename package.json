@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/ron-arbo/cs326-final-omega",
   "devDependencies": {
-    "@types/node": "^13.11.1"
+    "@types/node": "^13.13.2"
   },
   "dependencies": {
     "express": "^4.17.1",

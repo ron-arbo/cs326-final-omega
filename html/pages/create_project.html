@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en" class="h-100">
 <link type="text/css" id="dark-mode" rel="stylesheet" href="">
 <script type="text/javascript" src="../client.js"></script>
@@ -14,13 +14,13 @@
     <meta name="generator" content="Jekyll v3.8.6">
     <title>CodeTogether</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sticky-footer-navbar/">
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sticky-footer-navbar/"> -->
 
     <!-- Bootstrap core CSS -->
     <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="../assets/stylesheet.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/stylesheet.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -32,14 +32,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="../client.js"></script>
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <!-- <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
     <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico"> -->
     <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#563d7c">
 
@@ -111,14 +112,14 @@
             <form action="project_description.html" id="createProject" style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Project Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John Doe" required>
+                    <input type="email" class="form-control" id="projectName" placeholder="John Doe">
 
                 </div>
 
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Describe your Project</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    <textarea class="form-control" id="projectDescription" rows="3"></textarea>
                     <small id="descriptionHelpBlock" class="form-text text-muted">
                         A small description for the product, Eg: A mobile app for security with all the
                         features
@@ -126,16 +127,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea2">Who is already working on this?</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                    <label for="exampleFormControlTextarea1">Who is already working on this?</label>
+                    <textarea class="form-control" id="projectWorkers" rows="3"></textarea>
                     <small id="descriptionHelpBlock" class="form-text text-muted">
                         Other developers, volunteers working on this
                     </small>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea4">How far along are you?</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" placeholder=""></textarea>
+                    <label for="exampleFormControlTextarea1">How far along are you?</label>
+                    <textarea class="form-control" id="projectProgress" rows="3" placeholder=""></textarea>
                     <small id="farHelpBlock" class="form-text text-muted">
                         Eg: Just began, in the middle somewhere, almost complete, complete - need feedback. 
                     </small>
@@ -143,8 +144,8 @@
 
 
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea5">Helpful Links</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" placeholder=""></textarea>
+                    <label for="exampleFormControlTextarea1">Helpful Links</label>
+                    <textarea class="form-control" id="projectLinks" rows="3" placeholder=""></textarea>
                     <small id="linksHelpBlock" class="form-text text-muted">
                         Any other relevant links, for instance GitHub or social media (Twitter/Facebook)
                     </small>
@@ -218,8 +219,8 @@
                 <hr>
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput2">Number of co-developers</label>
-                    <input type="number" class="form-control col-sm-1" id="exampleFormControlInput2" placeholder="" min="1" max="6" required>
+                    <label for="exampleFormControlInput1">Number of co-developers</label>
+                    <input type="number" class="form-control col-sm-1" id="projectNumWorkers" placeholder="" min="1" max="6">
                     <small id="linksHelpBlock" class="form-text text-muted">
                         Choose the number of developers you want to work with
                     </small>
@@ -227,8 +228,9 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="projectCreate()">Create </button>
             </form>
                 
-
-           
+                <button onclick="projectCreate()" type="button" class="btn btn-success btn-lg btn-block">Create </button>
+                <h2 id="output">Message</h2>
+            </form>
 
 
         </div>
