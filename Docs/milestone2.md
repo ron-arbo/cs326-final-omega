@@ -25,6 +25,8 @@ Profile Endpoints:
 create - N/A  
 read - TJ
 update - Ron  
-delete - TJ
+delete - TJ  
+Other:  
+findAllProjects - Aryan  
 
 

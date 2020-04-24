@@ -109,7 +109,7 @@
         <div class="container">
             <h1 class="mt-5">Edit Project</h1>
 
-            <form action="project_description.html" id="createProject" style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
+            <form id="createProject" style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Project Name</label>
                     <input type="text" class="form-control" id="projectName" placeholder="CS 326 Final Project" required>
@@ -225,7 +225,9 @@
                         Choose the number of developers you want to work with
                     </small>
                 </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="projectUpdate()">Update</button>
+                <button type="button" class="btn btn-success btn-lg btn-block" onclick="projectUpdate()">Update</button>
+                <br>
+                <div id='updateProjectOutput' class="alert alert-success" role="alert" style="visibility: hidden;"></div>
             </form>
 
 

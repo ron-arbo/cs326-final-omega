@@ -33,7 +33,7 @@ export class MyServer {
 		//Project-related endpoints
 		this.router.post('/users/:userId/createProject', this.createHandler.bind(this));
 		this.router.post('/users/:userId/readProject', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-		// this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
+		this.router.post('/users/:userId/updateProject', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
 		this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
 		//Profile-related endpoints
@@ -55,6 +55,7 @@ export class MyServer {
 	private async errorHandler(request, response, next): Promise<void> {
 		//let value: boolean = await this.theDatabase.isFound(request.params['userId'] + "-" + request.body.name);
 		//	console.log("result from database.isFound: " + JSON.stringify(value));
+		
 		//For now, since DB is not implemented, just go to correct handler
 		if (false) {
 			response.write(JSON.stringify({ 'result': 'error' }));
@@ -76,6 +77,17 @@ export class MyServer {
 	}
 
 	private async readHandler(request, response): Promise<void> {
+		await this.readProject(
+			request.params['userId'] + "-" + request.body.projectName, 
+			request.body.projectDescription, 
+			request.body.projectWorkers, 
+			request.body.projectProgress, 
+			request.body.projectLinks, 
+			request.body.projectNumWorkers, 
+			response);
+	}
+
+	private async updateHandler(request, response): Promise<void> {
 		await this.createProject(
 			request.params['userId'] + "-" + request.body.projectName, 
 			request.body.projectDescription, 
@@ -86,12 +98,8 @@ export class MyServer {
 			response);
 	}
 
-	// private async updateHandler(request, response): Promise<void> {
-	// 	await this.updateCounter(request.params['userId'] + "-" + request.body.name, request.body.value, response);
-	// }
-
 	private async updateProfileHandler(request, response): Promise<void> {
-		await this.updateProfile(request.params['userId'] + "-" + request.body.name, request.body.value, response);
+		await this.updateProfile(request.params['userId'] + "-" + request.body.profileName, request.body.value, response);
 	}
 
 	private async deleteHandler(request, response): Promise<void> {
@@ -128,15 +136,14 @@ export class MyServer {
 		response.end();
 	}
 
-	// public async updateCounter(name: string, value: number, response): Promise<void> {
-	// 	await this.theDatabase.put(name, value);
-	// 	response.write(JSON.stringify({
-	// 		'result': 'updated',
-	// 		'name': name,
-	// 		'value': value
-	// 	}));
-	// 	response.end();
-	// }
+	public async updateProject(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers: string, response): Promise<void> {
+		await this.theDatabase.put(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers);
+		response.write(JSON.stringify({
+			'result': 'updated',
+			'name': projectName
+		}));
+		response.end();
+	}
 
 	public async updateProfile(name: string, value: number, response): Promise<void> {
 		//await this.theDatabase.put(name, value);

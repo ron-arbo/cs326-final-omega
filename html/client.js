@@ -125,14 +125,17 @@ function projectUpdate() {
 			projectNumWorkers : projectNumWorkers
 		};
 
+		let userName = "omega";
 		const newURL = url + '/users/' + userName + '/updateProject';
 		console.log('counterUpdate: fetching ' + newURL);
 		const resp = await postData(newURL, projectData);
 		const j = await resp.json();
+		let updateProjectOutput = document.getElementById('updateProjectOutput');
+		updateProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
-			document.getElementById('readOutput').innerHTML = 'works';
+			updateProjectOutput.innerHTML = 'Project: ' + j['name'] + ' has been updated successfully';
 		} else {
-			document.getElementById('readOutput').innerHTML = 'Does not work';
+			updateProjectOutput.innerHTML = 'Error Occurred During Update';
 		}
 	})();
 }
@@ -195,7 +198,7 @@ function profileUpdate() {
 		let updateOutput = document.getElementById('updateOutput');
 		updateOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
-			updateOutput.innerHTML = 'User: ' + name + "'s " + 'profile has been updated';
+			updateOutput.innerHTML = 'User: ' + j['name'] + "'s " + 'profile has been updated';
 		} else {
 			updateOutput.innerHTML = 'Error Occurred During Update';
 		}
@@ -283,8 +286,8 @@ function findAllProjects(){
 		const resp = await postData(newURL, data);
 		
 		const j = await resp.json();
-		// we need to loop over all projects
-		for(){
+		// we need to loop over all projects, set to do nothing FOR NOW
+		for(let i = 0; i <= 0; i++){
 			let projectName = j['projectName'];
 			let projectDescription = j['projectDescription'];
 			let projectWorkers = j['projectWorkers'];
@@ -297,6 +300,7 @@ function findAllProjects(){
 				document.getElementById("output").innerHTML = "201: <b>"  + userName + ", " + counterName + " value = " + j['value'] + "</b>";
 			} 
 		}
+
 
 		
 
