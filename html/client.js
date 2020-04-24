@@ -84,13 +84,13 @@ function projectRead() {
 		//Buttons
 		//Then create JSON to return
 		const projectData = {
-			projectName       : projectName,
-			projectDecription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
+			'projectName'       : projectName,
+			'projectDecription' : projectDescription,
+			'projectWorkers'    : projectWorkers,
+			'projectProgress'   : projectProgress,
+			'projectLinks'      : projectLinks,
 			//Buttons
-			projectNumWorkers : projectNumWorkers
+			'projectNumWorkers' : projectNumWorkers
 		};
 
 		let userName = 'omega';
@@ -116,11 +116,11 @@ function projectUpdate() {
 		let projectProgress = 'sampleProgress';
 		let projectLinks = 'sampleLinks';
 		const projectData = {
-			projectName       : projectName,
-			projectDecription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
+			'projectName'       : projectName,
+			'projectDecription' : projectDescription,
+			'projectWorkers'    : projectWorkers,
+			'projectProgress'   : projectProgress,
+			'projectLinks'      : projectLinks,
 			//Buttons
 			projectNumWorkers : projectNumWorkers
 		};
@@ -175,13 +175,13 @@ function profileUpdate() {
 		//BUTTONS, IDK
 
 		const profileData = {
-			email           : email,
-			password        : password,
-			profileName     : name,
-			profileBio      : bio,
-			profileAbout    : about,
-			profileProjects : projects,
-			profileLinks    : links
+			'email'           : email,
+			'password'        : password,
+			'profileName'     : name,
+			'profileBio'      : bio,
+			'profileAbout'    : about,
+			'profileProjects' : projects,
+			'profileLinks'    : links
 			//BUTTONS
 		};
 
@@ -223,13 +223,13 @@ function profileRead() {
 		//Buttons
 		//Then create JSON to return
 		const profileData = {
-			email           : email,
-			password        : password,
-			profileName     : name,
-			profileBio      : bio,
-			profileAbout    : about,
-			profileProjects : projects,
-			profileLinks    : links
+			'email'           : email,
+			'password'        : password,
+			'profileName'     : name,
+			'profileBio'      : bio,
+			'profileAbout'    : about,
+			'profileProjects' : projects,
+			'profileLinks'    : links
 			//BUTTONS
 		};
 
@@ -270,4 +270,10 @@ function profileDelete() {
 			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
 		}
 	})();
+}
+
+function allProjects(){
+	(async ()=> {
+		
+	})
 }
