@@ -197,7 +197,6 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 //await this.theDatabase.del(name);
-                console.log(name + ' was deleted from the database');
                 response.write(JSON.stringify({
                     'result': 'deleted',
                     'name': name
