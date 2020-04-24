@@ -33,14 +33,14 @@ function projectCreate() {
 
 		//Then create JSON to return
 		const projectData = {
-			projectName       : projectName,
-			projectDecription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
+			'projectName'       : projectName,
+			'projectDecription' : projectDescription,
+			'projectWorkers'    : projectWorkers,
+			'projectProgress'   : projectProgress,
+			'projectLinks'      : projectLinks,
 			//Buttons
 			// projectButtons    : projectButtons,
-			projectNumWorkers : projectNumWorkers
+			'projectNumWorkers' : projectNumWorkers
 		};
 
 		//For now, userName will be omega
@@ -84,13 +84,13 @@ function projectRead() {
 		//Buttons
 		//Then create JSON to return
 		const projectData = {
-			projectName       : projectName,
-			projectDecription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
+			'projectName'       : projectName,
+			'projectDecription' : projectDescription,
+			'projectWorkers'    : projectWorkers,
+			'projectProgress'   : projectProgress,
+			'projectLinks'      : projectLinks,
 			//Buttons
-			projectNumWorkers : projectNumWorkers
+			'projectNumWorkers' : projectNumWorkers
 		};
 
 		let userName = 'omega';
@@ -116,13 +116,13 @@ function projectUpdate() {
 		let projectProgress = 'sampleProgress';
 		let projectLinks = 'sampleLinks';
 		const projectData = {
-			projectName       : projectName,
-			projectDecription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
+			'projectName'       : projectName,
+			'projectDecription' : projectDescription,
+			'projectWorkers'    : projectWorkers,
+			'projectProgress'   : projectProgress,
+			'projectLinks'      : projectLinks,
 			//Buttons
-			projectNumWorkers : projectNumWorkers
+			'projectNumWorkers' : projectNumWorkers
 		};
 
 		const newURL = url + '/users/' + userName + '/updateProject';
@@ -143,7 +143,7 @@ function projectDelete() {
 		//Then, delete in database using projectName
 		let userName = 'omega';
 
-		const data = { name: projectName };
+		const data = { 'name': projectName };
 
 		const newURL = url + '/users/' + userName + '/deleteProject';
 		console.log('counterDelete: fetching ' + newURL);
@@ -160,3 +160,45 @@ function projectDelete() {
 }
 
 // tsc backend/mongo-database.ts; tsc backend/myserver-routing.ts; tsc backend/server-main.ts;
+
+function profileUpdate() {
+	(async () => {
+		//Get relevant info from html page
+		//NOTE: email and password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
+		let email = 'example@gmail.com';
+		let password = 'myPassword';
+		let name = document.getElementById("nameInput").value;
+		let bio = document.getElementById("bioInput").value;
+		let about = document.getElementById("aboutInput").value;
+		let projects = document.getElementById("projectInput").value;
+		let links = document.getElementById("linkInput").value;
+		//BUTTONS, IDK
+
+
+		const profileData = {
+			'email' : email,
+			'password' : password,
+			'profileName' : name,
+			'profileBio' : bio,
+			'profileAbout' : about,
+			'profileProjects' : projects,
+			'profileLinks' : links
+			//BUTTONS
+		};
+
+		//Example userName for now
+		let userName = 'omega';
+		
+		const newURL = url + '/users/' + userName + '/updateProfile';
+		console.log('counterUpdate: fetching ' + newURL);
+		const resp = await postData(newURL, profileData);
+		const j = await resp.json();
+		let updateOutput = document.getElementById('updateOutput');
+		updateOutput.style.visibility = 'visible';
+		if (j['result'] !== 'error') {
+			updateOutput.innerHTML = 'User: ' + name + '\'s ' + 'profile has been updated';
+		} else {
+			updateOutput.innerHTML = 'Error Occurred During Update';
+		}
+	})();
+}

@@ -32,6 +32,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="../client.js"></script>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -110,31 +111,31 @@
 
             <form style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
+                    <label for="nameInput">Name</label>
+                    <input type="text" class="form-control" id="nameInput" placeholder="John Doe">
 
                 </div>
 
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput21">Bio</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="IMPORTANT NOTE: for the future, once we have this functionality, we should auto-fill these inputs with the user's current bio, projects, etc. Get from db">
+                    <label for="bioInput">Bio</label>
+                    <input type="text" class="form-control" id="bioInput" placeholder="IMPORTANT NOTE: for the future, once we have this functionality, we should auto-fill these inputs with the user's current bio, projects, etc. Get from db">
                     <small id="descriptionHelpBlock" class="form-text text-muted">
                         A short snippet about you
                     </small>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">About/Experience</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                    <label for="aboutInput">About/Experience</label>
+                    <textarea class="form-control" id="aboutInput" rows="3"></textarea>
                     <small id="descriptionHelpBlock" class="form-text text-muted">
                         A more detailed description of who you are and what you can bring to a project team
                     </small>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Your Projects</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" placeholder=""></textarea>
+                    <label for="projectInput">Your Projects</label>
+                    <textarea class="form-control" id="projectInput" rows="3" placeholder=""></textarea>
                     <small id="farHelpBlock" class="form-text text-muted">
                         A chance for you to describe past projects and give people an idea of what you're capable of
                     </small>
@@ -142,8 +143,8 @@
 
 
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Helpful Links</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" placeholder=""></textarea>
+                    <label for="linkInput">Helpful Links</label>
+                    <textarea class="form-control" id="linkInput" rows="3" placeholder=""></textarea>
                     <small id="linksHelpBlock" class="form-text text-muted">
                         Any other relevant links, for instance GitHub or social media (Twitter/Facebook)
                     </small>
@@ -214,7 +215,9 @@
                     </small>
                 </div>
                 <br>
-                <button type="button" class="btn btn-success btn-lg btn-block">Save changes</button>
+                <button onclick='profileUpdate()' type="button" class="btn btn-success btn-lg btn-block">Save changes</button>
+                <br>
+                <div id='updateOutput' class="alert alert-success" role="alert" style="visibility: hidden;"></div>
 
             </form>
 

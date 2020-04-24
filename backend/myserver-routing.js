@@ -61,12 +61,16 @@ var MyServer = /** @class */ (function () {
         this.server.use('/backend', express.static('backend'));
         //handle POST in JSON format
         this.server.use(express.json());
-        // Set a single handler for a route.
+        //Project-related endpoints
         this.router.post('/users/:userId/createProject', this.createHandler.bind(this));
-        // Set multiple handlers for a route, in sequence.
         this.router.post('/users/:userId/readProject', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
         // this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
         this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+        //Profile-related endpoints
+        // this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
+        // this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+        this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
+        // this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         // Set a fall-through handler if nothing matches.
         this.router.post('*', function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -121,6 +125,18 @@ var MyServer = /** @class */ (function () {
     // private async updateHandler(request, response): Promise<void> {
     // 	await this.updateCounter(request.params['userId'] + "-" + request.body.name, request.body.value, response);
     // }
+    MyServer.prototype.updateProfileHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.updateProfile(request.params['userId'] + "-" + request.body.name, request.body.value, response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     MyServer.prototype.deleteHandler = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -157,16 +173,6 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    // public async createCounter(name: string, response): Promise<void> {
-    // 	console.log("creating counter named '" + name + "'");
-    // 	//await this.theDatabase.put(name, 0);
-    // 	response.write(JSON.stringify({
-    // 		'result': 'created',
-    // 		'name': name,
-    // 		'value': 0
-    // 	}));
-    // 	response.end();
-    // }
     // public async errorCounter(name: string, response): Promise<void> {
     // 	response.write(JSON.stringify({ 'result': 'error' }));
     // 	response.end();
@@ -193,6 +199,20 @@ var MyServer = /** @class */ (function () {
     // 	}));
     // 	response.end();
     // }
+    MyServer.prototype.updateProfile = function (name, value, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                //await this.theDatabase.put(name, value);
+                response.write(JSON.stringify({
+                    'result': 'updated',
+                    'name': name,
+                    'value': value
+                }));
+                response.end();
+                return [2 /*return*/];
+            });
+        });
+    };
     MyServer.prototype.deleteProject = function (name, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

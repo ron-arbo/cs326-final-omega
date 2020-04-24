@@ -30,12 +30,18 @@ export class MyServer {
 		//handle POST in JSON format
 		this.server.use(express.json());
 
-		// Set a single handler for a route.
+		//Project-related endpoints
 		this.router.post('/users/:userId/createProject', this.createHandler.bind(this));
-		// Set multiple handlers for a route, in sequence.
 		this.router.post('/users/:userId/readProject', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
 		// this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
 		this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+
+		//Profile-related endpoints
+		// this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
+		// this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
+		// this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+		
 		// Set a fall-through handler if nothing matches.
 		this.router.post('*', async (request, response) => {
 			response.send(JSON.stringify({ "result": "command-not-found" }));
@@ -82,6 +88,10 @@ export class MyServer {
 	// 	await this.updateCounter(request.params['userId'] + "-" + request.body.name, request.body.value, response);
 	// }
 
+	private async updateProfileHandler(request, response): Promise<void> {
+		await this.updateProfile(request.params['userId'] + "-" + request.body.name, request.body.value, response);
+	}
+
 	private async deleteHandler(request, response): Promise<void> {
 		await this.deleteProject(request.params['userId'] + "-" + request.body.name, response);
 	}
@@ -100,17 +110,6 @@ export class MyServer {
 		}));
 		response.end();
 	}
-
-	// public async createCounter(name: string, response): Promise<void> {
-	// 	console.log("creating counter named '" + name + "'");
-	// 	//await this.theDatabase.put(name, 0);
-	// 	response.write(JSON.stringify({
-	// 		'result': 'created',
-	// 		'name': name,
-	// 		'value': 0
-	// 	}));
-	// 	response.end();
-	// }
 
 	// public async errorCounter(name: string, response): Promise<void> {
 	// 	response.write(JSON.stringify({ 'result': 'error' }));
@@ -136,6 +135,16 @@ export class MyServer {
 	// 	}));
 	// 	response.end();
 	// }
+
+	public async updateProfile(name: string, value: number, response): Promise<void> {
+		//await this.theDatabase.put(name, value);
+		response.write(JSON.stringify({
+			'result': 'updated',
+			'name': name,
+			'value': value
+		}));
+		response.end();
+	}
 
 	public async deleteProject(name: string, response): Promise<void> {
 		//await this.theDatabase.del(name);
