@@ -48,17 +48,12 @@ function projectCreate() {
 		console.log('projectCreate: fetching ' + newURL);
 		const resp = await postData(newURL, projectData);
 		const j = await resp.json();
-
-		//GOAL: Find a way to display the json response on a DIFFERENT PAGE, namely project_description.html.
-		//This create_project --> project_description may be more straightforward since it is the same exact content, but eventually
-		//we'll need to get new content to diplay on the project_desciption page (when we click on the link to a project, for example)
-		console.log(resp);
+		let createProjectOutput = document.getElementById('createProjectOutput')
+		createProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
-			console.log(j['result']);
-			document.getElementById('output').innerHTML = 'works';
-			console.log('YAY!');
+			createProjectOutput.innerHTML = 'Project: ' + j['name'] + ' was created successfully';
 		} else {
-			document.getElementById('output').innerHTML = 'Does not work';
+			createProjectOutput.innerHTML = 'Error Occurred During Creation';
 		}
 	})();
 }

@@ -19,7 +19,7 @@ Breakdown of endpoints:
 Project endpoints:  
 create - Aryan    
 read - Ron  
-update - N/A  
+update - Ron   
 delete - Ron  
 Profile Endpoints:  
 create - N/A  

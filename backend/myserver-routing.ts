@@ -38,12 +38,10 @@ export class MyServer {
 		//Profile-related endpoints
 		// this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
 		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-		this.router.post('/users/:userId/updateProfile', [
-			this.errorHandler.bind(this),
-			this.updateProfileHandler.bind(this)
-		]);
+		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
 		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
+		//Other endpoints
 		this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
 
 		// Set a fall-through handler if nothing matches.
@@ -140,8 +138,7 @@ export class MyServer {
 		response.write(
 			JSON.stringify({
 				result: 'created',
-				name: projectName,
-				value: 0
+				name: projectName
 			})
 		);
 		response.end();
