@@ -277,37 +277,37 @@ function profileDelete() {
 
 // incomplete
 function findAllProjects() {
+	console.log("finding all projects");
 	(async () => {
-		let counterName = document.getElementById('countername').value;
-		let userName = document.getElementById('username').value;
-
-		const data = { name: counterName };
-		const newURL = url + '/users/' + userName + '/allProjects';
+		
+		// do we need to add anything to data?
+		const data = {};
+		const newURL = url + '/users/' + 'omega' + '/allProjects';
 		const resp = await postData(newURL, data);
-
+		// doesn't work
 		const j = await resp.json();
+		console.log(resp);
+		
 		// we need to loop over all projects, set to do nothing FOR NOW
-		for (let i = 0; i <= 0; i++) {
-			let projectName = j['projectName'];
-			let projectDescription = j['projectDescription'];
-			let projectWorkers = j['projectWorkers'];
-			let projectProgress = j['projectProgress'];
-			let projectLinks = j['projectLinks'];
-			let projectNumWorkers = j['projectNumWorkers'];
-			if (j['result'] !== 'error') {
-				// change html for all projects
-				// dynamically add projects here?
-				document.getElementById('output').innerHTML =
-					'201: <b>' + userName + ', ' + counterName + ' value = ' + j['value'] + '</b>';
-			}
-		}
+		// for (let i = 0; i <= 0; i++) {
+		// 	let projectName = j['projectName'];
+		// 	let projectDescription = j['projectDescription'];
+		// 	let projectWorkers = j['projectWorkers'];
+		// 	let projectProgress = j['projectProgress'];
+		// 	let projectLinks = j['projectLinks'];
+		// 	let projectNumWorkers = j['projectNumWorkers'];
+		// 	if (j['result'] !== 'error') {
+		// 		// change html for all projects
+		// 		// dynamically add projects here?
+		// 		document.getElementById('output').innerHTML =
+		// 			'201: <b>' + userName + ', ' + counterName + ' value = ' + j['value'] + '</b>';
+		// 	}
+		// }
 
 		if (j['result'] !== 'error') {
-			// change the html here
-			document.getElementById('output').innerHTML =
-				'201: <b>' + userName + ', ' + counterName + ' value = ' + j['value'] + '</b>';
+			document.getElementById('output').innerHTML = 'works';
 		} else {
-			document.getElementById('output').innerHTML = '200: ' + userName + ', ' + counterName + ' not found.</b>';
+			document.getElementById('output').innerHTML = 'does not work';
 		}
 	})();
 }

@@ -222,11 +222,12 @@ export class MyServer {
 	}
 
 	public async findAllProjects(response): Promise<void> {
-		await this.theDatabase.find();
+		let a = await this.theDatabase.find();
+		console.log("db.find()", a);
 		response.write(
 			JSON.stringify({
 				result: 'find',
-				name: name
+				name: "Something"
 			})
 		);
 		response.end();

@@ -40,8 +40,8 @@ var Database = /** @class */ (function () {
     function Database(collectionName) {
         var _this = this;
         this.MongoClient = require('mongodb').MongoClient;
-        this.uri = "mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority";
-        this.dbName = "emery";
+        this.uri = 'mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority';
+        this.dbName = 'emery';
         this.collectionName = collectionName;
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
         // Open up a connection to the client.
@@ -65,7 +65,9 @@ var Database = /** @class */ (function () {
         (function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.client.connect()["catch"](function (err) { console.log(err); })];
+                    case 0: return [4 /*yield*/, this.client.connect()["catch"](function (err) {
+                            console.log(err);
+                        })];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -82,17 +84,17 @@ var Database = /** @class */ (function () {
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
                         return [4 /*yield*/, collection.insertOne({
-                                'projectName': projectName,
-                                'projectDecription': projectDescription,
-                                'projectWorkers': projectWorkers,
-                                'projectProgress': projectProgress,
-                                'projectLinks': projectLinks,
-                                'projectNumWorkers': projectNumWorkers
+                                projectName: projectName,
+                                projectDecription: projectDescription,
+                                projectWorkers: projectWorkers,
+                                projectProgress: projectProgress,
+                                projectLinks: projectLinks,
+                                projectNumWorkers: projectNumWorkers
                             })];
                     case 1:
                         result = _a.sent();
                         // let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
-                        console.log("result = " + result);
+                        console.log('result = ' + result);
                         return [2 /*return*/];
                 }
             });
@@ -106,11 +108,11 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        console.log("get: key = " + key);
-                        return [4 /*yield*/, collection.findOne({ 'name': key })];
+                        console.log('get: key = ' + key);
+                        return [4 /*yield*/, collection.findOne({ name: key })];
                     case 1:
                         result = _a.sent();
-                        console.log("get: returned " + JSON.stringify(result));
+                        console.log('get: returned ' + JSON.stringify(result));
                         if (result) {
                             return [2 /*return*/, result.value];
                         }
@@ -133,7 +135,7 @@ var Database = /** @class */ (function () {
                         return [4 /*yield*/, collection.find()];
                     case 1:
                         result = _a.sent();
-                        console.log("projects" + JSON.stringify(result));
+                        console.log("RESULT...." + result);
                         if (result) {
                             return [2 /*return*/, result.value];
                         }
@@ -159,11 +161,11 @@ var Database = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log("isFound: key = " + key);
+                        console.log('isFound: key = ' + key);
                         return [4 /*yield*/, this.get(key)];
                     case 1:
                         v = _a.sent();
-                        console.log("is found result = " + v);
+                        console.log('is found result = ' + v);
                         if (v === null) {
                             return [2 /*return*/, false];
                         }

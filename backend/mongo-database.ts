@@ -76,10 +76,10 @@ export class Database {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
 
-		// returns everything
+		// returns all projects
 		let result = await collection.find();
-
-		console.log('projects' + JSON.stringify(result));
+		
+		console.log("RESULT...." + result);
 		if (result) {
 			return result.value;
 		} else {

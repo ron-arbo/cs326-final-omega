@@ -249,14 +249,16 @@ var MyServer = /** @class */ (function () {
     };
     MyServer.prototype.findAllProjects = function (response) {
         return __awaiter(this, void 0, void 0, function () {
+            var a;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.theDatabase.find()];
                     case 1:
-                        _a.sent();
+                        a = _a.sent();
+                        console.log(a);
                         response.write(JSON.stringify({
                             result: 'find',
-                            name: name
+                            name: "Something"
                         }));
                         response.end();
                         return [2 /*return*/];
