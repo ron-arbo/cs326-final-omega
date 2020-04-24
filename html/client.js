@@ -24,13 +24,24 @@ function projectCreate() {
 		let projectLinks = document.getElementById('projectLinks').value;
 		//HOW TO INCORPORATE BUTTONS??
 		let projectNumWorkers = document.getElementById('projectNumWorkers').value;
+		let projectButtons = [];
+		let checkboxes = document.querySelectorAll('input[type=checkbox]:checked'); //trying to get all of the checked buttons
 
+		for (var i = 0; i < checkboxes.length; i++) {
+			projectButtons.push(checkboxes[i].value);
+		}
+		console.log(projectButtons);
+		let projectNumWorkers = 1;
+
+		//Then create JSON to return
 		const projectData = {
 			projectName       : projectName,
 			projectDecription : projectDescription,
 			projectWorkers    : projectWorkers,
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
+			//Buttons
+			// projectButtons    : projectButtons,
 			projectNumWorkers : projectNumWorkers
 		};
 
@@ -71,8 +82,6 @@ function projectRead() {
 		let projectProgress = 'sampleProgress';
 		let projectLinks = 'sampleLinks';
 		//Buttons
-		let projectNumWorkers = 1;
-
 		//Then create JSON to return
 		const projectData = {
 			projectName       : projectName,
