@@ -68,14 +68,17 @@ var MyServer = /** @class */ (function () {
         this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         //Profile-related endpoints
         // this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
-        // this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-        this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
-        // this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+        this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+        this.router.post('/users/:userId/updateProfile', [
+            this.errorHandler.bind(this),
+            this.updateProfileHandler.bind(this)
+        ]);
+        this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
         // Set a fall-through handler if nothing matches.
         this.router.post('*', function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                response.send(JSON.stringify({ "result": "command-not-found" }));
+                response.send(JSON.stringify({ result: 'command-not-found' }));
                 return [2 /*return*/];
             });
         }); });
@@ -89,7 +92,7 @@ var MyServer = /** @class */ (function () {
                 //	console.log("result from database.isFound: " + JSON.stringify(value));
                 //For now, since DB is not implemented, just go to correct handler
                 if (false) {
-                    response.write(JSON.stringify({ 'result': 'error' }));
+                    response.write(JSON.stringify({ result: 'error' }));
                     response.end();
                 }
                 else {
@@ -103,7 +106,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProject(request.params['userId'] + "-" + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 0: return [4 /*yield*/, this.createProject(request.params['userId'] + '-' + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -115,7 +118,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.readProject(request.params['userId'] + "-" + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 0: return [4 /*yield*/, this.readProject(request.params['userId'] + '-' + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -127,7 +130,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProject(request.params['userId'] + "-" + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 0: return [4 /*yield*/, this.createProject(request.params['userId'] + '-' + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -139,7 +142,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProfile(request.params['userId'] + "-" + request.body.profileName, request.body.value, response)];
+                    case 0: return [4 /*yield*/, this.updateProfile(request.params['userId'] + '-' + request.body.profileName, request.body.value, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -151,7 +154,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteProject(request.params['userId'] + "-" + request.body.name, response)];
+                    case 0: return [4 /*yield*/, this.deleteProject(request.params['userId'] + '-' + request.body.name, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -173,9 +176,9 @@ var MyServer = /** @class */ (function () {
                         // console.log("creating project named '" + name + "'");
                         _a.sent();
                         response.write(JSON.stringify({
-                            'result': 'created',
-                            'name': projectName,
-                            'value': 0
+                            result: 'created',
+                            name: projectName,
+                            value: 0
                         }));
                         response.end();
                         return [2 /*return*/];
@@ -192,8 +195,8 @@ var MyServer = /** @class */ (function () {
             return __generator(this, function (_a) {
                 //let value = await this.theDatabase.get(name);
                 response.write(JSON.stringify({
-                    'result': 'read',
-                    'name': projectName
+                    result: 'read',
+                    name: projectName
                 }));
                 response.end();
                 return [2 /*return*/];
@@ -208,8 +211,8 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({
-                            'result': 'updated',
-                            'name': projectName
+                            result: 'updated',
+                            name: projectName
                         }));
                         response.end();
                         return [2 /*return*/];
@@ -222,9 +225,9 @@ var MyServer = /** @class */ (function () {
             return __generator(this, function (_a) {
                 //await this.theDatabase.put(name, value);
                 response.write(JSON.stringify({
-                    'result': 'updated',
-                    'name': name,
-                    'value': value
+                    result: 'updated',
+                    name: name,
+                    value: value
                 }));
                 response.end();
                 return [2 /*return*/];
@@ -236,8 +239,8 @@ var MyServer = /** @class */ (function () {
             return __generator(this, function (_a) {
                 //await this.theDatabase.del(name);
                 response.write(JSON.stringify({
-                    'result': 'deleted',
-                    'name': name
+                    result: 'deleted',
+                    name: name
                 }));
                 response.end();
                 return [2 /*return*/];
@@ -252,8 +255,8 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({
-                            'result': 'find',
-                            'name': name
+                            result: 'find',
+                            name: name
                         }));
                         response.end();
                         return [2 /*return*/];

@@ -3,7 +3,6 @@ let url = require('url');
 let express = require('express');
 
 export class MyServer {
-
 	private theDatabase;
 
 	// Server stuff: use express instead of http.createServer
@@ -38,15 +37,18 @@ export class MyServer {
 
 		//Profile-related endpoints
 		// this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
-		// this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
-		// this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+		this.router.post('/users/:userId/updateProfile', [
+			this.errorHandler.bind(this),
+			this.updateProfileHandler.bind(this)
+		]);
+		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
 		this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
 
 		// Set a fall-through handler if nothing matches.
 		this.router.post('*', async (request, response) => {
-			response.send(JSON.stringify({ "result": "command-not-found" }));
+			response.send(JSON.stringify({ result: 'command-not-found' }));
 		});
 		// Start up the counter endpoint at '/counter'.
 		this.server.use('/counter', this.router);
@@ -55,10 +57,10 @@ export class MyServer {
 	private async errorHandler(request, response, next): Promise<void> {
 		//let value: boolean = await this.theDatabase.isFound(request.params['userId'] + "-" + request.body.name);
 		//	console.log("result from database.isFound: " + JSON.stringify(value));
-		
+
 		//For now, since DB is not implemented, just go to correct handler
 		if (false) {
-			response.write(JSON.stringify({ 'result': 'error' }));
+			response.write(JSON.stringify({ result: 'error' }));
 			response.end();
 		} else {
 			next();
@@ -67,57 +69,81 @@ export class MyServer {
 
 	private async createHandler(request, response): Promise<void> {
 		await this.createProject(
-			request.params['userId'] + "-" + request.body.projectName, 
-			request.body.projectDescription, 
-			request.body.projectWorkers, 
-			request.body.projectProgress, 
-			request.body.projectLinks, 
-			request.body.projectNumWorkers, 
-			response);
+			request.params['userId'] + '-' + request.body.projectName,
+			request.body.projectDescription,
+			request.body.projectWorkers,
+			request.body.projectProgress,
+			request.body.projectLinks,
+			request.body.projectNumWorkers,
+			response
+		);
 	}
 
 	private async readHandler(request, response): Promise<void> {
 		await this.readProject(
-			request.params['userId'] + "-" + request.body.projectName, 
-			request.body.projectDescription, 
-			request.body.projectWorkers, 
-			request.body.projectProgress, 
-			request.body.projectLinks, 
-			request.body.projectNumWorkers, 
-			response);
+			request.params['userId'] + '-' + request.body.projectName,
+			request.body.projectDescription,
+			request.body.projectWorkers,
+			request.body.projectProgress,
+			request.body.projectLinks,
+			request.body.projectNumWorkers,
+			response
+		);
 	}
 
 	private async updateHandler(request, response): Promise<void> {
 		await this.createProject(
-			request.params['userId'] + "-" + request.body.projectName, 
-			request.body.projectDescription, 
-			request.body.projectWorkers, 
-			request.body.projectProgress, 
-			request.body.projectLinks, 
-			request.body.projectNumWorkers, 
-			response);
+			request.params['userId'] + '-' + request.body.projectName,
+			request.body.projectDescription,
+			request.body.projectWorkers,
+			request.body.projectProgress,
+			request.body.projectLinks,
+			request.body.projectNumWorkers,
+			response
+		);
 	}
 
 	private async updateProfileHandler(request, response): Promise<void> {
-		await this.updateProfile(request.params['userId'] + "-" + request.body.profileName, request.body.value, response);
+		await this.updateProfile(
+			request.params['userId'] + '-' + request.body.profileName,
+			request.body.value,
+			response
+		);
 	}
 
 	private async deleteHandler(request, response): Promise<void> {
-		await this.deleteProject(request.params['userId'] + "-" + request.body.name, response);
+		await this.deleteProject(request.params['userId'] + '-' + request.body.name, response);
 	}
 
 	public listen(port): void {
 		this.server.listen(port);
 	}
 
-	public async createProject(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers: string, response): Promise<void> {
+	public async createProject(
+		projectName: string,
+		projectDescription: string,
+		projectWorkers: string,
+		projectProgress: string,
+		projectLinks: string,
+		projectNumWorkers: string,
+		response
+	): Promise<void> {
 		// console.log("creating project named '" + name + "'");
-		await this.theDatabase.put(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers);
-		response.write(JSON.stringify({
-			'result': 'created',
-			'name': projectName,
-			'value': 0
-		}));
+		await this.theDatabase.put(
+			projectName,
+			projectDescription,
+			projectWorkers,
+			projectProgress,
+			projectLinks,
+			projectNumWorkers
+		);
+		response.write(
+			JSON.stringify({
+				result: 'created',
+				name: projectName,
+				value: 0
+			})
+		);
 		response.end();
 	}
 
@@ -126,50 +152,83 @@ export class MyServer {
 	// 	response.end();
 	// }
 
-	public async readProject(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers: string, response): Promise<void> {
+	public async readProject(
+		projectName: string,
+		projectDescription: string,
+		projectWorkers: string,
+		projectProgress: string,
+		projectLinks: string,
+		projectNumWorkers: string,
+		response
+	): Promise<void> {
 		//let value = await this.theDatabase.get(name);
-		
-		response.write(JSON.stringify({
-			'result': 'read',
-			'name': projectName
-		}));
+
+		response.write(
+			JSON.stringify({
+				result: 'read',
+				name: projectName
+			})
+		);
 		response.end();
 	}
 
-	public async updateProject(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers: string, response): Promise<void> {
-		await this.theDatabase.put(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers);
-		response.write(JSON.stringify({
-			'result': 'updated',
-			'name': projectName
-		}));
+	public async updateProject(
+		projectName: string,
+		projectDescription: string,
+		projectWorkers: string,
+		projectProgress: string,
+		projectLinks: string,
+		projectNumWorkers: string,
+		response
+	): Promise<void> {
+		await this.theDatabase.put(
+			projectName,
+			projectDescription,
+			projectWorkers,
+			projectProgress,
+			projectLinks,
+			projectNumWorkers
+		);
+		response.write(
+			JSON.stringify({
+				result: 'updated',
+				name: projectName
+			})
+		);
 		response.end();
 	}
 
 	public async updateProfile(name: string, value: number, response): Promise<void> {
 		//await this.theDatabase.put(name, value);
-		response.write(JSON.stringify({
-			'result': 'updated',
-			'name': name,
-			'value': value
-		}));
+		response.write(
+			JSON.stringify({
+				result: 'updated',
+				name: name,
+				value: value
+			})
+		);
 		response.end();
 	}
 
 	public async deleteProject(name: string, response): Promise<void> {
 		//await this.theDatabase.del(name);
-		response.write(JSON.stringify({
-			'result': 'deleted',
-			'name': name
-		}));
+		response.write(
+			JSON.stringify({
+				result: 'deleted',
+				name: name
+			})
+		);
 		response.end();
 	}
 
-	public async findAllProjects(response): Promise<void>{
+	public async findAllProjects(response): Promise<void> {
 		await this.theDatabase.find();
-		response.write(JSON.stringify({
-			'result': 'find',
-			'name': name
-		}));
+		response.write(
+			JSON.stringify({
+				result: 'find',
+				name: name
+			})
+		);
 		response.end();
 	}
 }

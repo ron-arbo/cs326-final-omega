@@ -1,10 +1,9 @@
 export class Database {
-
 	private MongoClient = require('mongodb').MongoClient;
-	private uri = "mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority";
+	private uri = 'mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority';
 	private client;
 	private collectionName: string;
-	private dbName: string = "emery";
+	private dbName: string = 'emery';
 
 	constructor(collectionName) {
 		this.collectionName = collectionName;
@@ -29,34 +28,43 @@ export class Database {
 	
 		*/
 		(async () => {
-			await this.client.connect().catch(err => { console.log(err); });
+			await this.client.connect().catch((err) => {
+				console.log(err);
+			});
 		})();
 	}
 
-	public async put(projectName: string, projectDescription: string, projectWorkers: string, projectProgress: string, projectLinks: string, projectNumWorkers: string): Promise<void> {
+	public async put(
+		projectName: string,
+		projectDescription: string,
+		projectWorkers: string,
+		projectProgress: string,
+		projectLinks: string,
+		projectNumWorkers: string
+	): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
 
 		// console.log("put: key = " + projectName + ", value = " + value);
 		// insert one PROJECT into the database
 		let result = await collection.insertOne({
-			'projectName': projectName,
-			'projectDecription': projectDescription,
-			'projectWorkers': projectWorkers,
-			'projectProgress': projectProgress,
-			'projectLinks': projectLinks,
-			'projectNumWorkers': projectNumWorkers
+			projectName: projectName,
+			projectDecription: projectDescription,
+			projectWorkers: projectWorkers,
+			projectProgress: projectProgress,
+			projectLinks: projectLinks,
+			projectNumWorkers: projectNumWorkers
 		});
 		// let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
-		console.log("result = " + result);
+		console.log('result = ' + result);
 	}
 
 	public async get(key: string): Promise<string> {
 		let db = this.client.db(this.dbName); // this.level(this.dbFile);
 		let collection = db.collection(this.collectionName);
-		console.log("get: key = " + key);
-		let result = await collection.findOne({ 'name': key });
-		console.log("get: returned " + JSON.stringify(result));
+		console.log('get: key = ' + key);
+		let result = await collection.findOne({ name: key });
+		console.log('get: returned ' + JSON.stringify(result));
 		if (result) {
 			return result.value;
 		} else {
@@ -64,15 +72,14 @@ export class Database {
 		}
 	}
 
-	public async find(): Promise<string>{
-
+	public async find(): Promise<string> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
 
 		// returns everything
 		let result = await collection.find();
 
-		console.log("projects" + JSON.stringify(result));
+		console.log('projects' + JSON.stringify(result));
 		if (result) {
 			return result.value;
 		} else {
@@ -90,9 +97,9 @@ export class Database {
 	// }
 
 	public async isFound(key: string): Promise<boolean> {
-		console.log("isFound: key = " + key);
+		console.log('isFound: key = ' + key);
 		let v = await this.get(key);
-		console.log("is found result = " + v);
+		console.log('is found result = ' + v);
 		if (v === null) {
 			return false;
 		} else {

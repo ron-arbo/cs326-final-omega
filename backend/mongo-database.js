@@ -122,6 +122,29 @@ var Database = /** @class */ (function () {
             });
         });
     };
+    Database.prototype.find = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        return [4 /*yield*/, collection.find()];
+                    case 1:
+                        result = _a.sent();
+                        console.log("projects" + JSON.stringify(result));
+                        if (result) {
+                            return [2 /*return*/, result.value];
+                        }
+                        else {
+                            return [2 /*return*/, null];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     // public async del(key: string): Promise<void> {
     // 	let db = this.client.db(this.dbName);
     // 	let collection = db.collection(this.collectionName);
