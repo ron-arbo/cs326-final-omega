@@ -36,7 +36,7 @@ function projectCreate() {
 		};
 
 		//For now, userName will be omega
-		const newURL = url + "/users/" + "omega" + "/create";
+		const newURL = url + "/users/" + "omega" + "/createProject";
 		console.log("projectCreate: fetching " + newURL);
 		const resp = await postData(newURL, projectData);
 		const j = await resp.json();
@@ -87,7 +87,7 @@ function projectRead() {
 
 		let userName = 'omega'
 
-		const newURL = url + "/users/" + userName + "/read";
+		const newURL = url + "/users/" + userName + "/readProject";
 		console.log("counterRead: fetching " + newURL);
 		const resp = await postData(newURL, projectData);
 		console.log(resp);
@@ -100,46 +100,26 @@ function projectRead() {
 	})();
 }
 
-// function counterCreate() {
-// 	(async () => {
-// 		// let counterName = document.getElementById("countername").value;
-// 		// let userName = document.getElementById("username").value;
-// 		let counterName = "counter1";
-// 		let userName = "omega";
+function projectDelete() {
+    (async () => {
+	let projectName = document.getElementById("projectName").innerHTML;
+	//Then, delete in database using projectName
+	let userName = 'omega'
 
-// 		const data = { 'name': counterName };
+	const data = {'name' : projectName};
 
-// 		const newURL = url + "/users/" + userName + "/create";
-// 		console.log("counterCreate: fetching " + newURL);
-// 		const resp = await postData(newURL, data);
-// 		console.log(resp);
-// 		const j = await resp.json();
-// 		if (j['result'] !== 'error') {
-// 			console.log(j['result']);
-// 		} else {
-// 			console.log('error');
-// 		}
-// 	})();
-// }
-
-// function counterRead() {
-// 	(async () => {
-// 		let userName = 'omega'
-// 		let counterName = 'counter1'
-
-// 		const data = { 'name': counterName };
-
-// 		const newURL = url + "/users/" + userName + "/read";
-// 		console.log("counterRead: fetching " + newURL);
-// 		const resp = await postData(newURL, data);
-// 		console.log(resp);
-// 		const j = await resp.json();
-// 		if (j['result'] !== 'error') {
-// 			console.log('connected, and received some valid JSON data');
-// 		} else {
-// 			console.log('error');
-// 		}
-// 	})();
-// }
+	const newURL = url + "/users/" + userName + "/deleteProject";
+	console.log("counterDelete: fetching " + newURL);
+	const resp = await postData(newURL, data);
+	const j = await resp.json();
+	if (j['result'] !== 'error') {
+		let deleteOutput = document.getElementById('deleteOutput');
+		deleteOutput.style.visibility = 'visible';
+	    deleteOutput.innerHTML = "Project: " + projectName + ' has been deleted';
+	} else {
+	    document.getElementById("deleteOutput").innerHTML = "Error Occurred during deletion";
+	}	    
+    })();
+}
 
 // tsc backend/mongo-database.ts; tsc backend/myserver-routing.ts; tsc backend/server-main.ts;

@@ -62,11 +62,11 @@ var MyServer = /** @class */ (function () {
         //handle POST in JSON format
         this.server.use(express.json());
         // Set a single handler for a route.
-        this.router.post('/users/:userId/create', this.createHandler.bind(this));
+        this.router.post('/users/:userId/createProject', this.createHandler.bind(this));
         // Set multiple handlers for a route, in sequence.
-        // this.router.post('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+        this.router.post('/users/:userId/readProject', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
         // this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
-        // this.router.post('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+        this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         // Set a fall-through handler if nothing matches.
         this.router.post('*', function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -79,22 +79,18 @@ var MyServer = /** @class */ (function () {
     }
     MyServer.prototype.errorHandler = function (request, response, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var value;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.params['userId'] + "-" + request.body.name)];
-                    case 1:
-                        value = _a.sent();
-                        //	console.log("result from database.isFound: " + JSON.stringify(value));
-                        if (!value) {
-                            response.write(JSON.stringify({ 'result': 'error' }));
-                            response.end();
-                        }
-                        else {
-                            next();
-                        }
-                        return [2 /*return*/];
+                //let value: boolean = await this.theDatabase.isFound(request.params['userId'] + "-" + request.body.name);
+                //	console.log("result from database.isFound: " + JSON.stringify(value));
+                //For now, since DB is not implemented, just go to correct handler
+                if (false) {
+                    response.write(JSON.stringify({ 'result': 'error' }));
+                    response.end();
                 }
+                else {
+                    next();
+                }
+                return [2 /*return*/];
             });
         });
     };
@@ -110,16 +106,33 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    // private async readHandler(request, response): Promise<void> {
-    // 	console.log(request.params['userId']);
-    // 	await this.readCounter(request.params['userId'] + "-" + request.body.name, response);
-    // }
+    MyServer.prototype.readHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createProject(request.params['userId'] + "-" + request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     // private async updateHandler(request, response): Promise<void> {
     // 	await this.updateCounter(request.params['userId'] + "-" + request.body.name, request.body.value, response);
     // }
-    // private async deleteHandler(request, response): Promise<void> {
-    // 	await this.deleteCounter(request.params['userId'] + "-" + request.body.name, response);
-    // }
+    MyServer.prototype.deleteHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.deleteProject(request.params['userId'] + "-" + request.body.name, response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     MyServer.prototype.listen = function (port) {
         this.server.listen(port);
     };
@@ -141,6 +154,56 @@ var MyServer = /** @class */ (function () {
                         response.end();
                         return [2 /*return*/];
                 }
+            });
+        });
+    };
+    // public async createCounter(name: string, response): Promise<void> {
+    // 	console.log("creating counter named '" + name + "'");
+    // 	//await this.theDatabase.put(name, 0);
+    // 	response.write(JSON.stringify({
+    // 		'result': 'created',
+    // 		'name': name,
+    // 		'value': 0
+    // 	}));
+    // 	response.end();
+    // }
+    // public async errorCounter(name: string, response): Promise<void> {
+    // 	response.write(JSON.stringify({ 'result': 'error' }));
+    // 	response.end();
+    // }
+    MyServer.prototype.readProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                //let value = await this.theDatabase.get(name);
+                response.write(JSON.stringify({
+                    'result': 'read',
+                    'name': projectName
+                }));
+                response.end();
+                return [2 /*return*/];
+            });
+        });
+    };
+    // public async updateCounter(name: string, value: number, response): Promise<void> {
+    // 	await this.theDatabase.put(name, value);
+    // 	response.write(JSON.stringify({
+    // 		'result': 'updated',
+    // 		'name': name,
+    // 		'value': value
+    // 	}));
+    // 	response.end();
+    // }
+    MyServer.prototype.deleteProject = function (name, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                //await this.theDatabase.del(name);
+                console.log(name + ' was deleted from the database');
+                response.write(JSON.stringify({
+                    'result': 'deleted',
+                    'name': name
+                }));
+                response.end();
+                return [2 /*return*/];
             });
         });
     };

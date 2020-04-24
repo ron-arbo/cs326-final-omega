@@ -32,6 +32,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src='../client.js'></script>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -106,7 +107,7 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
         <div class="container">
-            <h1 class="mt-5">Project Description</h1>
+            <h1 id='projectName' class="mt-5">Project Name</h1>
 
             <form style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group row">
@@ -192,10 +193,10 @@
                 </div>
 
                 <button type="button" class="btn btn-success btn-lg btn-block">Apply</button>
-
-                
-
-
+                <br>
+                <button onclick='projectDelete()' type="button" class="btn btn-danger btn-lg btn-block">Delete Project (Should only be available to creator)</button>
+                <br>
+                <div id='deleteOutput' class="alert alert-danger" role="alert" style="visibility: hidden;"></div>
             </form>
 
 
