@@ -1,5 +1,5 @@
-const url = 'http://localhost:8080/codetogether'; //Local host
-// const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+// const url = 'http://localhost:8080/codetogether'; //Local host
+const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 
 async function postData(url, data) {
 	const resp = await fetch(url, {
@@ -99,7 +99,7 @@ function projectRead() {
 		let readProjectOutput = document.getElementById('readProjectOutput');
 		readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
-			readProjectOutput.innerHTML = "Read the output of project: " + j['name'];
+			readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
 		} else {
 			readProjectOutput.innerHTML = 'Does not work';
 		}
