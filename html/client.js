@@ -95,12 +95,13 @@ function projectRead() {
 		const newURL = url + '/users/' + userName + '/readProject';
 		console.log('counterRead: fetching ' + newURL);
 		const resp = await postData(newURL, projectData);
-		console.log(resp);
 		const j = await resp.json();
+		let readProjectOutput = document.getElementById('readProjectOutput');
+		readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
-			document.getElementById('readOutput').innerHTML = 'works';
+			readProjectOutput.innerHTML = "Read the output of project: " + j['name'];
 		} else {
-			document.getElementById('readOutput').innerHTML = 'Does not work';
+			readProjectOutput.innerHTML = 'Does not work';
 		}
 	})();
 }
