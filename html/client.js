@@ -1,4 +1,6 @@
-const url = 'http://localhost:8080/counter'; // NOTE NEW URL
+//const url = 'http://localhost:8080/counter'; //Local host
+const url = 'https://cs-326-final-omega.herokuapp.com/counter'
+
 async function postData(url, data) {
 	const resp = await fetch(url, {
 		method      : 'POST',
