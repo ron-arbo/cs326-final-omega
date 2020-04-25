@@ -36,9 +36,12 @@ export class MyServer {
 		this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
 		//Profile-related endpoints
-		// this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
+		this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
 		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/updateProfile', [
+			this.errorHandler.bind(this),
+			this.updateProfileHandler.bind(this)
+		]);
 		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
 		//Other endpoints
@@ -220,11 +223,11 @@ export class MyServer {
 
 	public async findAllProjects(response): Promise<void> {
 		let a = await this.theDatabase.find();
-		console.log("db.find()", a);
+		console.log('db.find()', a);
 		response.write(
 			JSON.stringify({
 				result: 'find',
-				name: "Something"
+				name: 'Something'
 			})
 		);
 		response.end();
