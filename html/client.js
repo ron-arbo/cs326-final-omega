@@ -161,6 +161,43 @@ function projectDelete() {
 
 // tsc backend/mongo-database.ts; tsc backend/myserver-routing.ts; tsc backend/server-main.ts;
 
+function profileCreate() {
+	(async () => {
+		let firstName = document.getElementById('firstName').value;
+		let lastName = document.getElementById('lastName').value;
+		let email = document.getElementById('inputEmail').value;
+		let inputPassword = document.getElementById('inputPassword').value;
+		let confirmPassword = document.getElementById('confirmPassword').value;
+
+		if (inputPassword !== confirmPassword) {
+			console.log('Passwords do not match!');
+		}
+		//Then create JSON to return
+		const profileData = {
+			firstName     : firstName,
+			lastName      : lastName,
+			email         : email,
+			inputPassword : inputPassword
+		};
+
+		//For now, userName will be omega
+		const newURL = url + '/users/' + 'omega' + '/createProfile';
+		console.log('projectCreate: fetching ' + newURL);
+		const resp = await postData(newURL, profileData);
+		const j = await resp.json();
+
+		//GOAL: Find a way to display the json response on a DIFFERENT PAGE, namely project_description.html.
+		//This create_project --> project_description may be more straightforward since it is the same exact content, but eventually
+		//we'll need to get new content to diplay on the project_desciption page (when we click on the link to a project, for example)
+		console.log(resp);
+		if (j['result'] !== 'error') {
+			console.log(j['result']);
+			document.getElementById('createProfOutput').innerHTML = 'works';
+		} else {
+			document.getElementById('createProfOutput').innerHTML = 'Does not work';
+		}
+	})();
+}
 function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page

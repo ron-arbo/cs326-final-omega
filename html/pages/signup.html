@@ -5,6 +5,7 @@
         <title>Sign Up - CodeTogether</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../../assets/loginStyle.css">
+        <script type="text/javascript" src="../client.js"></script>
 
     </head>
 
@@ -28,7 +29,7 @@
                     <div class="form-row">
                         <div class="col">
                             <div class="form-label-group">
-                              <input type="firstname" id="firstname" class="form-control" placeholder="First" required autofocus>
+                              <input type="firstname" id="firstName" class="form-control" placeholder="First" required autofocus>
                               <div class="invalid-feedback">
                                 Please Enter your First Name
                               </div>
@@ -37,7 +38,7 @@
 
                         <div class="col">
                             <div class="form-label-group">
-                                <input type="lastname" id="lastname" class="form-control" placeholder="Last" required>
+                                <input type="lastname" id="lastName" class="form-control" placeholder="Last" required>
                                 <div class="invalid-feedback">
                                   Please Enter your Last Name
                                 </div>
@@ -71,7 +72,8 @@
                       <label class="custom-control-label" for="customCheck1">Remember Me</label>
                     </div>
                     
-                    <button class="btn btn-lg btn-block text-uppercase btn-success" type="submit"><b>Sign Up</b></button>
+                    <button class="btn btn-lg btn-block text-uppercase btn-success" type="button" onclick="profileCreate()"><b>Sign Up</b></button>
+                    <div id='createProfOutput' class="alert alert-success" role="alert"></div> <!--to be removed later-->
                   </form>
                 </div>
               </div>
