@@ -70,7 +70,7 @@ export class MyServer {
 
 	private async createHandler(request, response): Promise<void> {
 		await this.createProject(
-			request.params['userId'] + '-' + request.body.projectName,
+			request.body.projectName,
 			request.body.projectDescription,
 			request.body.projectWorkers,
 			request.body.projectProgress,
@@ -82,7 +82,7 @@ export class MyServer {
 
 	private async readHandler(request, response): Promise<void> {
 		await this.readProject(
-			request.params['userId'] + '-' + request.body.projectName,
+			request.body.projectName,
 			request.body.projectDescription,
 			request.body.projectWorkers,
 			request.body.projectProgress,
@@ -94,7 +94,7 @@ export class MyServer {
 
 	private async updateHandler(request, response): Promise<void> {
 		await this.createProject(
-			request.params['userId'] + '-' + request.body.projectName,
+			request.body.projectName,
 			request.body.projectDescription,
 			request.body.projectWorkers,
 			request.body.projectProgress,
@@ -106,14 +106,14 @@ export class MyServer {
 
 	private async updateProfileHandler(request, response): Promise<void> {
 		await this.updateProfile(
-			request.params['userId'] + '-' + request.body.profileName,
+			request.body.profileName,
 			request.body.value,
 			response
 		);
 	}
 
 	private async deleteHandler(request, response): Promise<void> {
-		await this.deleteProject(request.params['userId'] + '-' + request.body.name, response);
+		await this.deleteProject(request.body.name, response);
 	}
 
 	public listen(port): void {
