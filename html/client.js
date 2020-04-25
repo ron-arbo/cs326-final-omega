@@ -1,5 +1,5 @@
-//const url = 'http://localhost:8080/counter'; //Local host
-const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+const url = 'http://localhost:8080/codetogether'; //Local host
+// const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 
 async function postData(url, data) {
 	const resp = await fetch(url, {
@@ -193,7 +193,8 @@ function profileCreate() {
 		console.log(resp);
 		if (j['result'] !== 'error') {
 			console.log(j['result']);
-			document.getElementById('createProfOutput').innerHTML = 'works';
+			document.getElementById('createProfOutput').innerHTML =
+				'User:' + firstName + ' ' + lastName + "'s profile has been created";
 		} else {
 			document.getElementById('createProfOutput').innerHTML = 'Does not work';
 		}
@@ -280,7 +281,7 @@ function profileRead() {
 		const j = await resp.json();
 		if (j['result'] !== 'error') {
 			console.log('Read works!');
-			document.getElementById('readOutput').innerHTML = 'works';
+			document.getElementById('readOutput').innerHTML = 'User:' + name + "'s profile has been read";
 		} else {
 			document.getElementById('readOutput').innerHTML = 'Does not work';
 		}
@@ -301,6 +302,7 @@ function profileDelete() {
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
 		if (j['result'] !== 'error') {
+			console.log(j['result']);
 			let deleteOutput = document.getElementById('deleteOutput');
 			deleteOutput.style.visibility = 'visible';
 			deleteOutput.innerHTML = 'Profile: ' + profileName + ' has been deleted';

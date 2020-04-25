@@ -36,13 +36,19 @@ export class MyServer {
 		this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
 
 		//Profile-related endpoints
-		this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
-		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+		this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
+		this.router.post('/users/:userId/readProfile', [
+			this.errorHandler.bind(this),
+			this.readProfileHandler.bind(this)
+		]);
 		this.router.post('/users/:userId/updateProfile', [
 			this.errorHandler.bind(this),
 			this.updateProfileHandler.bind(this)
 		]);
-		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+		this.router.post('/users/:userId/deleteProfile', [
+			this.errorHandler.bind(this),
+			this.deleteProfileHandler.bind(this)
+		]);
 
 		//Other endpoints
 		this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
@@ -79,6 +85,16 @@ export class MyServer {
 			response
 		);
 	}
+	private async createProfileHandler(request, response): Promise<void> {
+		await this.createProfile(
+			request.body.firstName,
+			request.body.lastName,
+			request.body.email,
+			request.body.inputPassword,
+			request.body.confirmPassword,
+			response
+		);
+	}
 
 	private async readHandler(request, response): Promise<void> {
 		await this.readProject(
@@ -108,8 +124,23 @@ export class MyServer {
 		await this.updateProfile(request.body.profileName, request.body.value, response);
 	}
 
+	private async readProfileHandler(request, response): Promise<void> {
+		await this.createProject(
+			request.params['userId'] + '-' + request.body.email,
+			request.body.password,
+			request.body.name,
+			request.body.bio,
+			request.body.projects,
+			request.body.links,
+			response
+		);
+	}
+
 	private async deleteHandler(request, response): Promise<void> {
 		await this.deleteProject(request.body.name, response);
+	}
+	private async deleteProfileHandler(request, response): Promise<void> {
+		await this.deleteProfile(request.body.name, response);
 	}
 
 	public listen(port): void {
@@ -168,32 +199,36 @@ export class MyServer {
 		response.end();
 	}
 
-	public async updateProject(
-		projectName: string,
-		projectDescription: string,
-		projectWorkers: string,
-		projectProgress: string,
-		projectLinks: string,
-		projectNumWorkers: string,
+	// public async updateCounter(name: string, value: number, response): Promise<void> {
+	// 	await this.theDatabase.put(name, value);
+	// 	response.write(JSON.stringify({
+	// 		'result': 'updated',
+	// 		'name': name,
+	// 		'value': value
+	// 	}));
+	// 	response.end();
+	// }
+	public async createProfile(
+		firstName: string,
+		lastName: string,
+		email: string,
+		inputPassword: string,
+		confirmPassword: string,
 		response
 	): Promise<void> {
-		await this.theDatabase.put(
-			projectName,
-			projectDescription,
-			projectWorkers,
-			projectProgress,
-			projectLinks,
-			projectNumWorkers
-		);
+		// console.log("creating project named '" + name + "'");
+		await this.theDatabase.put(firstName, lastName, email, inputPassword, confirmPassword);
 		response.write(
 			JSON.stringify({
-				result: 'updated',
-				name: projectName
+				result: 'created',
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: inputPassword
 			})
 		);
 		response.end();
 	}
-
 	public async updateProfile(name: string, value: number, response): Promise<void> {
 		//await this.theDatabase.put(name, value);
 		response.write(
@@ -206,7 +241,38 @@ export class MyServer {
 		response.end();
 	}
 
+	public async readProfile(
+		email: string,
+		password: string,
+		name: string,
+		bio: string,
+		about: string,
+		projects: [],
+		links: [],
+		response
+	): Promise<void> {
+		//let value = await this.theDatabase.get(name);
+
+		response.write(
+			JSON.stringify({
+				result: 'read',
+				name: name
+			})
+		);
+		response.end();
+	}
+
 	public async deleteProject(name: string, response): Promise<void> {
+		//await this.theDatabase.del(name);
+		response.write(
+			JSON.stringify({
+				result: 'deleted',
+				name: name
+			})
+		);
+		response.end();
+	}
+	public async deleteProfile(name: string, response): Promise<void> {
 		//await this.theDatabase.del(name);
 		response.write(
 			JSON.stringify({

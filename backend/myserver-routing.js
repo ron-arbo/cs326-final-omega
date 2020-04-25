@@ -67,13 +67,19 @@ var MyServer = /** @class */ (function () {
         this.router.post('/users/:userId/updateProject', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
         this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         //Profile-related endpoints
-        this.router.post('/users/:userId/createProfile', this.createHandler.bind(this));
-        this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
+        this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
+        this.router.post('/users/:userId/readProfile', [
+            this.errorHandler.bind(this),
+            this.readProfileHandler.bind(this)
+        ]);
         this.router.post('/users/:userId/updateProfile', [
             this.errorHandler.bind(this),
             this.updateProfileHandler.bind(this)
         ]);
-        this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
+        this.router.post('/users/:userId/deleteProfile', [
+            this.errorHandler.bind(this),
+            this.deleteProfileHandler.bind(this)
+        ]);
         //Other endpoints
         this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
         // Set a fall-through handler if nothing matches.
@@ -108,6 +114,18 @@ var MyServer = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.createProject(request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyServer.prototype.createProfileHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createProfile(request.body.firstName, request.body.lastName, request.body.email, request.body.inputPassword, request.body.confirmPassword, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -151,11 +169,35 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
+    MyServer.prototype.readProfileHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createProject(request.params['userId'] + '-' + request.body.email, request.body.password, request.body.name, request.body.bio, request.body.projects, request.body.links, response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     MyServer.prototype.deleteHandler = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.deleteProject(request.body.name, response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyServer.prototype.deleteProfileHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.deleteProfile(request.body.name, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -203,16 +245,31 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.updateProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, response) {
+    // public async updateCounter(name: string, value: number, response): Promise<void> {
+    // 	await this.theDatabase.put(name, value);
+    // 	response.write(JSON.stringify({
+    // 		'result': 'updated',
+    // 		'name': name,
+    // 		'value': value
+    // 	}));
+    // 	response.end();
+    // }
+    MyServer.prototype.createProfile = function (firstName, lastName, email, inputPassword, confirmPassword, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.put(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
+                    case 0: 
+                    // console.log("creating project named '" + name + "'");
+                    return [4 /*yield*/, this.theDatabase.put(firstName, lastName, email, inputPassword, confirmPassword)];
                     case 1:
+                        // console.log("creating project named '" + name + "'");
                         _a.sent();
                         response.write(JSON.stringify({
-                            result: 'updated',
-                            name: projectName
+                            result: 'created',
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: email,
+                            password: inputPassword
                         }));
                         response.end();
                         return [2 /*return*/];
@@ -234,7 +291,33 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
+    MyServer.prototype.readProfile = function (email, password, name, bio, about, projects, links, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                //let value = await this.theDatabase.get(name);
+                response.write(JSON.stringify({
+                    result: 'read',
+                    name: name
+                }));
+                response.end();
+                return [2 /*return*/];
+            });
+        });
+    };
     MyServer.prototype.deleteProject = function (name, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                //await this.theDatabase.del(name);
+                response.write(JSON.stringify({
+                    result: 'deleted',
+                    name: name
+                }));
+                response.end();
+                return [2 /*return*/];
+            });
+        });
+    };
+    MyServer.prototype.deleteProfile = function (name, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 //await this.theDatabase.del(name);
