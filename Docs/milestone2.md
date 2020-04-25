@@ -14,13 +14,15 @@ They all start with codetogether/, just as the in-class exercises started with c
 # Heroku URL
 https://cs-326-final-omega.herokuapp.com  
   
-# Client Interface Screenshots
+# Client Interface Screenshots  
+Please note that all screenshots are only the part of the screen with the button and output from the server. Input is found elsewhere on the page.  
 Here we'll see the before and after of the creation of a project. Before is the screen before clicking the create button. After, we receive and alert from the server, giving us the name of the project that the user created.  
 <img width="1137" alt="Screen Shot 2020-04-24 at 11 28 59 PM" src="https://user-images.githubusercontent.com/42826472/80270137-8f39f780-8683-11ea-8600-fdcbaa25d666.png">  
 <img width="1162" alt="Screen Shot 2020-04-24 at 11 28 17 PM" src="https://user-images.githubusercontent.com/42826472/80270161-ba244b80-8683-11ea-94a0-f5b00eaf558c.png">  
   
 Now, we see a similar interaction for reading a project:  
-
+<img width="1145" alt="Screen Shot 2020-04-25 at 12 04 06 AM" src="https://user-images.githubusercontent.com/42826472/80270697-649e6d80-8688-11ea-9c69-00b327049051.png">  
+<img width="1128" alt="Screen Shot 2020-04-25 at 12 04 26 AM" src="https://user-images.githubusercontent.com/42826472/80270701-6c5e1200-8688-11ea-9515-437b32e2eec3.png">  
   
 Interaction for updating a project:  
 <img width="1142" alt="Screen Shot 2020-04-24 at 11 33 51 PM" src="https://user-images.githubusercontent.com/42826472/80270233-49316380-8684-11ea-9323-03b46e5831d6.png">  
@@ -37,7 +39,7 @@ Connecting HTML to JS - TJ
 Connecting to Heroku Server - TJ and Ron  
 MongoDB Progress - Aryan  
 
-Breakdown of endpoints:  
+Breakdown of endpoints: (Each endpoint includes client function, server response, html output)  
 Project endpoints:  
 create - Aryan    
 read - Ron  
