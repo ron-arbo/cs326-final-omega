@@ -51,8 +51,8 @@ export class MyServer {
 		this.router.post('*', async (request, response) => {
 			response.send(JSON.stringify({ result: 'command-not-found' }));
 		});
-		// Start up the counter endpoint at '/counter'.
-		this.server.use('/counter', this.router);
+		// Start up the counter endpoint at '/codetogether'.
+		this.server.use('/codetogether', this.router);
 	}
 
 	private async errorHandler(request, response, next): Promise<void> {
@@ -105,11 +105,7 @@ export class MyServer {
 	}
 
 	private async updateProfileHandler(request, response): Promise<void> {
-		await this.updateProfile(
-			request.body.profileName,
-			request.body.value,
-			response
-		);
+		await this.updateProfile(request.body.profileName, request.body.value, response);
 	}
 
 	private async deleteHandler(request, response): Promise<void> {

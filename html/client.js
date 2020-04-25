@@ -1,5 +1,5 @@
 //const url = 'http://localhost:8080/counter'; //Local host
-const url = 'https://cs-326-final-omega.herokuapp.com/counter'
+const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 
 async function postData(url, data) {
 	const resp = await fetch(url, {

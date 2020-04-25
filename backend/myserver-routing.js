@@ -83,8 +83,8 @@ var MyServer = /** @class */ (function () {
                 return [2 /*return*/];
             });
         }); });
-        // Start up the counter endpoint at '/counter'.
-        this.server.use('/counter', this.router);
+        // Start up the counter endpoint at '/codetogether'.
+        this.server.use('/codetogether', this.router);
     }
     MyServer.prototype.errorHandler = function (request, response, next) {
         return __awaiter(this, void 0, void 0, function () {
