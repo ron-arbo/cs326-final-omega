@@ -125,11 +125,12 @@ export class MyServer {
 	}
 
 	private async readProfileHandler(request, response): Promise<void> {
-		await this.createProject(
+		await this.readProfile(
 			request.params['userId'] + '-' + request.body.email,
 			request.body.password,
 			request.body.name,
 			request.body.bio,
+			request.body.about,
 			request.body.projects,
 			request.body.links,
 			response
