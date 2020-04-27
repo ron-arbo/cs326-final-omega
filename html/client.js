@@ -160,8 +160,6 @@ function projectDelete() {
 	})();
 }
 
-// tsc backend/mongo-database.ts; tsc backend/myserver-routing.ts; tsc backend/server-main.ts;
-
 function profileCreate() {
 	(async () => {
 		let firstName = document.getElementById('firstName').value;

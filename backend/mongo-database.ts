@@ -9,7 +9,6 @@ export class Database {
 		this.collectionName = collectionName;
 		this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
 		// Open up a connection to the client.
-		// Open up a connection to the client.
 		// The connection is asynchronous, but we can't call await directly
 		// in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
 

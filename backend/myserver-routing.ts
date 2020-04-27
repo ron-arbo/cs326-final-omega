@@ -61,6 +61,7 @@ export class MyServer {
 		this.server.use('/codetogether', this.router);
 	}
 
+	//ERROR Handler
 	private async errorHandler(request, response, next): Promise<void> {
 		//let value: boolean = await this.theDatabase.isFound(request.params['userId'] + "-" + request.body.name);
 		//	console.log("result from database.isFound: " + JSON.stringify(value));
@@ -74,6 +75,8 @@ export class MyServer {
 		}
 	}
 
+
+	//CREATE Handlers
 	private async createHandler(request, response): Promise<void> {
 		await this.createProject(
 			request.body.projectName,
@@ -96,6 +99,8 @@ export class MyServer {
 		);
 	}
 
+
+	//READ Handlers
 	private async readHandler(request, response): Promise<void> {
 		await this.readProject(
 			request.body.projectName,
@@ -106,22 +111,6 @@ export class MyServer {
 			request.body.projectNumWorkers,
 			response
 		);
-	}
-
-	private async updateHandler(request, response): Promise<void> {
-		await this.createProject(
-			request.body.projectName,
-			request.body.projectDescription,
-			request.body.projectWorkers,
-			request.body.projectProgress,
-			request.body.projectLinks,
-			request.body.projectNumWorkers,
-			response
-		);
-	}
-
-	private async updateProfileHandler(request, response): Promise<void> {
-		await this.updateProfile(request.body.profileName, request.body.value, response);
 	}
 
 	private async readProfileHandler(request, response): Promise<void> {
@@ -137,17 +126,40 @@ export class MyServer {
 		);
 	}
 
+
+	//UPDATE Handlers
+	private async updateHandler(request, response): Promise<void> {
+		await this.updateProject(
+			request.body.projectName,
+			request.body.projectDescription,
+			request.body.projectWorkers,
+			request.body.projectProgress,
+			request.body.projectLinks,
+			request.body.projectNumWorkers,
+			response
+		);
+	}
+
+	private async updateProfileHandler(request, response): Promise<void> {
+		await this.updateProfile(request.body.profileName, request.body.value, response);
+	}
+
+	//DELETE Handlers
 	private async deleteHandler(request, response): Promise<void> {
 		await this.deleteProject(request.body.name, response);
 	}
+
 	private async deleteProfileHandler(request, response): Promise<void> {
 		await this.deleteProfile(request.body.name, response);
 	}
+
 
 	public listen(port): void {
 		this.server.listen(port);
 	}
 
+
+	//CREATE Functions
 	public async createProject(
 		projectName: string,
 		projectDescription: string,
@@ -175,11 +187,29 @@ export class MyServer {
 		response.end();
 	}
 
-	// public async errorCounter(name: string, response): Promise<void> {
-	// 	response.write(JSON.stringify({ 'result': 'error' }));
-	// 	response.end();
-	// }
+	public async createProfile(
+		firstName: string,
+		lastName: string,
+		email: string,
+		inputPassword: string,
+		confirmPassword: string,
+		response
+	): Promise<void> {
+		await this.theDatabase.put(firstName, lastName, email, inputPassword, confirmPassword);
+		response.write(
+			JSON.stringify({
+				result: 'created',
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: inputPassword
+			})
+		);
+		response.end();
+	}
 
+
+	//READ Functions	
 	public async readProject(
 		projectName: string,
 		projectDescription: string,
@@ -200,48 +230,6 @@ export class MyServer {
 		response.end();
 	}
 
-	// public async updateCounter(name: string, value: number, response): Promise<void> {
-	// 	await this.theDatabase.put(name, value);
-	// 	response.write(JSON.stringify({
-	// 		'result': 'updated',
-	// 		'name': name,
-	// 		'value': value
-	// 	}));
-	// 	response.end();
-	// }
-	public async createProfile(
-		firstName: string,
-		lastName: string,
-		email: string,
-		inputPassword: string,
-		confirmPassword: string,
-		response
-	): Promise<void> {
-		// console.log("creating project named '" + name + "'");
-		await this.theDatabase.put(firstName, lastName, email, inputPassword, confirmPassword);
-		response.write(
-			JSON.stringify({
-				result: 'created',
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				password: inputPassword
-			})
-		);
-		response.end();
-	}
-	public async updateProfile(name: string, value: number, response): Promise<void> {
-		//await this.theDatabase.put(name, value);
-		response.write(
-			JSON.stringify({
-				result: 'updated',
-				name: name,
-				value: value
-			})
-		);
-		response.end();
-	}
-
 	public async readProfile(
 		email: string,
 		password: string,
@@ -252,8 +240,7 @@ export class MyServer {
 		links: [],
 		response
 	): Promise<void> {
-		//let value = await this.theDatabase.get(name);
-
+		//This needs to be changed, need to display all parameters using database query
 		response.write(
 			JSON.stringify({
 				result: 'read',
@@ -263,6 +250,56 @@ export class MyServer {
 		response.end();
 	}
 
+
+	//UPDATE Functions
+	public async updateProject(
+		projectName: string,
+		projectDescription: string,
+		projectWorkers: string,
+		projectProgress: string,
+		projectLinks: string,
+		projectNumWorkers: string,
+		response
+	): Promise<void> {
+		// console.log("creating project named '" + name + "'");
+		await this.theDatabase.put(
+			projectName,
+			projectDescription,
+			projectWorkers,
+			projectProgress,
+			projectLinks,
+			projectNumWorkers
+		);
+		response.write(
+			JSON.stringify({
+				result: 'updated',
+				name: projectName
+			})
+		);
+		response.end();
+	}
+
+	public async updateProfile(
+		email: string,
+		password: string,
+		name: string,
+		bio: string,
+		about: string,
+		projects: [],
+		links: [],
+		response): Promise<void> {
+		//Put parameters in database
+		response.write(
+			JSON.stringify({
+				result: 'updated',
+				name: name
+			})
+		);
+		response.end();
+	}
+
+
+	//DELETE Functions
 	public async deleteProject(name: string, response): Promise<void> {
 		//await this.theDatabase.del(name);
 		response.write(
@@ -273,6 +310,7 @@ export class MyServer {
 		);
 		response.end();
 	}
+
 	public async deleteProfile(name: string, response): Promise<void> {
 		//await this.theDatabase.del(name);
 		response.write(
@@ -284,6 +322,8 @@ export class MyServer {
 		response.end();
 	}
 
+
+	//Other Functions
 	public async findAllProjects(response): Promise<void> {
 		let a = await this.theDatabase.find();
 		console.log('db.find()', a);
@@ -296,3 +336,8 @@ export class MyServer {
 		response.end();
 	}
 }
+
+// public async errorCounter(name: string, response): Promise<void> {
+	// 	response.write(JSON.stringify({ 'result': 'error' }));
+	// 	response.end();
+	// }
