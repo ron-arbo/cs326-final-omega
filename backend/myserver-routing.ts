@@ -1,3 +1,5 @@
+import { link } from "fs";
+
 let http = require('http');
 let url = require('url');
 let express = require('express');
@@ -37,18 +39,9 @@ export class MyServer {
 
 		//Profile-related endpoints
 		this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-		this.router.post('/users/:userId/readProfile', [
-			this.errorHandler.bind(this),
-			this.readProfileHandler.bind(this)
-		]);
-		this.router.post('/users/:userId/updateProfile', [
-			this.errorHandler.bind(this),
-			this.updateProfileHandler.bind(this)
-		]);
-		this.router.post('/users/:userId/deleteProfile', [
-			this.errorHandler.bind(this),
-			this.deleteProfileHandler.bind(this)
-		]);
+		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
 
 		//Other endpoints
 		this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
@@ -63,11 +56,12 @@ export class MyServer {
 
 	//ERROR Handler
 	private async errorHandler(request, response, next): Promise<void> {
-		//let value: boolean = await this.theDatabase.isFound(request.params['userId'] + "-" + request.body.name);
+		//May need to change this, not sure if it's correct
+		let value: boolean = await this.theDatabase.isFound(request.body.name);
 		//	console.log("result from database.isFound: " + JSON.stringify(value));
-
-		//For now, since DB is not implemented, just go to correct handler
-		if (false) {
+		
+		//Check that value is found, if not respond to client with error, if so, continue to next handler
+		if (!value) {
 			response.write(JSON.stringify({ result: 'error' }));
 			response.end();
 		} else {
@@ -90,11 +84,10 @@ export class MyServer {
 	}
 	private async createProfileHandler(request, response): Promise<void> {
 		await this.createProfile(
+			request.body.email,
+			request.body.password,
 			request.body.firstName,
 			request.body.lastName,
-			request.body.email,
-			request.body.inputPassword,
-			request.body.confirmPassword,
 			response
 		);
 	}
@@ -112,12 +105,12 @@ export class MyServer {
 			response
 		);
 	}
-
 	private async readProfileHandler(request, response): Promise<void> {
 		await this.readProfile(
-			request.params['userId'] + '-' + request.body.email,
+			request.body.email,
 			request.body.password,
-			request.body.name,
+			request.body.firstName,
+			request.body.lastName,
 			request.body.bio,
 			request.body.about,
 			request.body.projects,
@@ -139,10 +132,20 @@ export class MyServer {
 			response
 		);
 	}
-
 	private async updateProfileHandler(request, response): Promise<void> {
-		await this.updateProfile(request.body.profileName, request.body.value, response);
+		await this.updateProfile(
+			request.body.email,
+			request.body.password,
+			request.body.firstName,
+			request.body.lastName,
+			request.body.bio,
+			request.body.about,
+			request.body.projects,
+			request.body.links,
+			response
+		);
 	}
+
 
 	//DELETE Handlers
 	private async deleteHandler(request, response): Promise<void> {
@@ -154,6 +157,7 @@ export class MyServer {
 	}
 
 
+	//Listener
 	public listen(port): void {
 		this.server.listen(port);
 	}
@@ -169,7 +173,7 @@ export class MyServer {
 		projectNumWorkers: string,
 		response
 	): Promise<void> {
-		// console.log("creating project named '" + name + "'");
+		//Put new project in database
 		await this.theDatabase.put(
 			projectName,
 			projectDescription,
@@ -178,6 +182,7 @@ export class MyServer {
 			projectLinks,
 			projectNumWorkers
 		);
+		//Respond to client
 		response.write(
 			JSON.stringify({
 				result: 'created',
@@ -186,23 +191,34 @@ export class MyServer {
 		);
 		response.end();
 	}
-
 	public async createProfile(
+		email: string,
+		password: string,
 		firstName: string,
 		lastName: string,
-		email: string,
-		inputPassword: string,
-		confirmPassword: string,
 		response
 	): Promise<void> {
-		await this.theDatabase.put(firstName, lastName, email, inputPassword, confirmPassword);
+		//Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
+		let bio: string = '';
+		let about: string = '';
+		let project: string = '';
+		let links: string = '';
+		//Put new user in database
+		await this.theDatabase.put(
+			email, 
+			password, 
+			firstName, 
+			lastName, 
+			bio, 
+			about, 
+			project, 
+			links);
+		//Respond to client
 		response.write(
 			JSON.stringify({
 				result: 'created',
 				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				password: inputPassword
+				lastName: lastName
 			})
 		);
 		response.end();
@@ -229,18 +245,21 @@ export class MyServer {
 		);
 		response.end();
 	}
-
 	public async readProfile(
 		email: string,
 		password: string,
-		name: string,
+		firstName: string,
+		lastName: string,
 		bio: string,
 		about: string,
-		projects: [],
-		links: [],
+		projects: string,
+		links: string,
 		response
 	): Promise<void> {
-		//This needs to be changed, need to display all parameters using database query
+		//This method is different. The profile attributes shouldn't be what we're returning, because we already have those.
+		//We need to click a link that comes here, then we return the attributes by looking in the DB
+		
+		//Respond to client that profile was read
 		response.write(
 			JSON.stringify({
 				result: 'read',
@@ -261,7 +280,8 @@ export class MyServer {
 		projectNumWorkers: string,
 		response
 	): Promise<void> {
-		// console.log("creating project named '" + name + "'");
+
+		//Update Project in database
 		await this.theDatabase.put(
 			projectName,
 			projectDescription,
@@ -270,6 +290,7 @@ export class MyServer {
 			projectLinks,
 			projectNumWorkers
 		);
+		//Respond to client that project was updated
 		response.write(
 			JSON.stringify({
 				result: 'updated',
@@ -278,21 +299,33 @@ export class MyServer {
 		);
 		response.end();
 	}
-
 	public async updateProfile(
 		email: string,
 		password: string,
-		name: string,
+		firstName: string,
+		lastName: string,
 		bio: string,
 		about: string,
-		projects: [],
-		links: [],
+		project: string,
+		links: string,
 		response): Promise<void> {
-		//Put parameters in database
+
+		//Update Profile in Database
+		await this.theDatabase.put(
+			email,
+			password,
+			firstName,
+			lastName,
+			bio,
+			about,
+			project,
+			links
+		)
+		//Respond to client about update
 		response.write(
 			JSON.stringify({
 				result: 'updated',
-				name: name
+				name: firstName + " " + lastName
 			})
 		);
 		response.end();
@@ -301,7 +334,7 @@ export class MyServer {
 
 	//DELETE Functions
 	public async deleteProject(name: string, response): Promise<void> {
-		//await this.theDatabase.del(name);
+		await this.theDatabase.del(name);
 		response.write(
 			JSON.stringify({
 				result: 'deleted',
@@ -310,9 +343,9 @@ export class MyServer {
 		);
 		response.end();
 	}
-
 	public async deleteProfile(name: string, response): Promise<void> {
-		//await this.theDatabase.del(name);
+		//Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
+		await this.theDatabase.del(name);
 		response.write(
 			JSON.stringify({
 				result: 'deleted',

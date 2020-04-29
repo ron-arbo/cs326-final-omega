@@ -16,6 +16,7 @@ async function postData(url, data) {
 	return resp;
 }
 
+//CREATE functions
 function projectCreate() {
 	(async () => {
 		let projectName = document.getElementById('projectName').value;
@@ -23,7 +24,7 @@ function projectCreate() {
 		let projectWorkers = document.getElementById('projectWorkers').value;
 		let projectProgress = document.getElementById('projectProgress').value;
 		let projectLinks = document.getElementById('projectLinks').value;
-		//HOW TO INCORPORATE BUTTONS??
+		//buttons
 		let projectNumWorkers = document.getElementById('projectNumWorkers').value;
 		// let projectButtons = [];
 		// let checkboxes = document.querySelectorAll('input[type=checkbox]:checked'); //trying to get all of the checked buttons
@@ -60,18 +61,41 @@ function projectCreate() {
 	})();
 }
 
+function profileCreate() {
+	(async () => {
+		//Only need the elements on the sign up page
+		let firstName = document.getElementById('firstName').value;
+		let lastName = document.getElementById('lastName').value;
+		let email = document.getElementById('inputEmail').value;
+		let password = document.getElementById('inputPassword').value;
+		
+		const profileData = {
+			email           : email,
+			password        : password,
+			firstName       : firstName,
+			lastName        : lastName
+		};
+
+		//For now, userName will be omega
+		const newURL = url + '/users/' + 'omega' + '/createProfile';
+		console.log('projectCreate: fetching ' + newURL);
+		const resp = await postData(newURL, profileData);
+		const j = await resp.json();
+		if (j['result'] !== 'error') {
+			console.log(j['result']);
+			document.getElementById('createProfOutput').innerHTML =
+				'User:' + firstName + ' ' + lastName + "'s profile has been created";
+		} else {
+			document.getElementById('createProfOutput').innerHTML = 'Error Occurred During Profile Creation';
+		}
+	})();
+}
+
+
+//READ Functions
 function projectRead() {
 	(async () => {
-		//Get these elements from Database vvvv
-		// let projectName = document.getElementById("projectName").value;
-		// let projectDescription = document.getElementById("projectDescription").value;
-		// let projectWorkers = document.getElementById("projectWorkers").value;
-		// let projectProgress = document.getElementById("projectProgress").value;
-		// let projectLinks = document.getElementById("projectLinks").value;
-		// //HOW TO INCORPORATE BUTTONS??
-		// let projectNumWorkers = document.getElementById("projectNumWorkers").value;
-
-		//For now, fill these variables with fake data
+		//Get the following elements from DB
 		let projectName = 'sampleName';
 		let projectDescription = 'sampleDescription';
 		let projectWorkers = 'sampleWorkers';
@@ -106,6 +130,47 @@ function projectRead() {
 	})();
 }
 
+function profileRead() {
+	(async () => {
+		//Get the following elements from DB
+		let email = 'example@gmail.com';
+		let password = 'myPassword';
+		let name = 'sampleName';
+		let bio = 'sampleBio';
+		let about = 'sampleAbout';
+		let projects = [];
+		let links = [];
+		//Buttons
+		//Then create JSON to return
+		const profileData = {
+			email           : email,
+			password        : password,
+			profileName     : name,
+			profileBio      : bio,
+			profileAbout    : about,
+			profileProjects : projects,
+			profileLinks    : links
+			//BUTTONS
+		};
+
+		let userName = 'omega';
+
+		const newURL = url + '/users/' + userName + '/readProfile';
+		console.log('counterRead: fetching ' + newURL);
+		const resp = await postData(newURL, profileData);
+		console.log(resp);
+		const j = await resp.json();
+		if (j['result'] !== 'error') {
+			console.log('Read works!');
+			document.getElementById('readOutput').innerHTML = 'User:' + name + "'s profile has been read";
+		} else {
+			document.getElementById('readOutput').innerHTML = 'Does not work';
+		}
+	})();
+}
+
+
+//UPDATE Functions
 function projectUpdate() {
 	(async () => {
 		let projectName = 'sampleName';
@@ -138,66 +203,6 @@ function projectUpdate() {
 	})();
 }
 
-function projectDelete() {
-	(async () => {
-		let projectName = document.getElementById('projectName').innerHTML;
-		//Then, delete in database using projectName
-		let userName = 'omega';
-
-		const data = { name: projectName };
-
-		const newURL = url + '/users/' + userName + '/deleteProject';
-		console.log('counterDelete: fetching ' + newURL);
-		const resp = await postData(newURL, data);
-		const j = await resp.json();
-		if (j['result'] !== 'error') {
-			let deleteOutput = document.getElementById('deleteOutput');
-			deleteOutput.style.visibility = 'visible';
-			deleteOutput.innerHTML = 'Project: ' + projectName + ' has been deleted';
-		} else {
-			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
-		}
-	})();
-}
-
-function profileCreate() {
-	(async () => {
-		let firstName = document.getElementById('firstName').value;
-		let lastName = document.getElementById('lastName').value;
-		let email = document.getElementById('inputEmail').value;
-		let inputPassword = document.getElementById('inputPassword').value;
-		let confirmPassword = document.getElementById('confirmPassword').value;
-
-		if (inputPassword !== confirmPassword) {
-			console.log('Passwords do not match!');
-		}
-		//Then create JSON to return
-		const profileData = {
-			firstName     : firstName,
-			lastName      : lastName,
-			email         : email,
-			inputPassword : inputPassword
-		};
-
-		//For now, userName will be omega
-		const newURL = url + '/users/' + 'omega' + '/createProfile';
-		console.log('projectCreate: fetching ' + newURL);
-		const resp = await postData(newURL, profileData);
-		const j = await resp.json();
-
-		//GOAL: Find a way to display the json response on a DIFFERENT PAGE, namely project_description.html.
-		//This create_project --> project_description may be more straightforward since it is the same exact content, but eventually
-		//we'll need to get new content to diplay on the project_desciption page (when we click on the link to a project, for example)
-		console.log(resp);
-		if (j['result'] !== 'error') {
-			console.log(j['result']);
-			document.getElementById('createProfOutput').innerHTML =
-				'User:' + firstName + ' ' + lastName + "'s profile has been created";
-		} else {
-			document.getElementById('createProfOutput').innerHTML = 'Does not work';
-		}
-	})();
-}
 function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page
@@ -238,50 +243,27 @@ function profileUpdate() {
 		}
 	})();
 }
-function profileRead() {
+
+
+//DELETE Functions
+function projectDelete() {
 	(async () => {
-		//Get these elements from Database vvvv
-		// let projectName = document.getElementById("projectName").value;
-		// let projectDescription = document.getElementById("projectDescription").value;
-		// let projectWorkers = document.getElementById("projectWorkers").value;
-		// let projectProgress = document.getElementById("projectProgress").value;
-		// let projectLinks = document.getElementById("projectLinks").value;
-		// //HOW TO INCORPORATE BUTTONS??
-		// let projectNumWorkers = document.getElementById("projectNumWorkers").value;
-
-		//For now, fill these variables with fake data
-		let email = 'example@gmail.com';
-		let password = 'myPassword';
-		let name = 'sampleName';
-		let bio = 'sampleBio';
-		let about = 'sampleAbout';
-		let projects = [];
-		let links = [];
-		//Buttons
-		//Then create JSON to return
-		const profileData = {
-			email           : email,
-			password        : password,
-			profileName     : name,
-			profileBio      : bio,
-			profileAbout    : about,
-			profileProjects : projects,
-			profileLinks    : links
-			//BUTTONS
-		};
-
+		let projectName = document.getElementById('projectName').innerHTML;
+		//Then, delete in database using projectName
 		let userName = 'omega';
 
-		const newURL = url + '/users/' + userName + '/readProfile';
-		console.log('counterRead: fetching ' + newURL);
-		const resp = await postData(newURL, profileData);
-		console.log(resp);
+		const data = { name: projectName };
+
+		const newURL = url + '/users/' + userName + '/deleteProject';
+		console.log('counterDelete: fetching ' + newURL);
+		const resp = await postData(newURL, data);
 		const j = await resp.json();
 		if (j['result'] !== 'error') {
-			console.log('Read works!');
-			document.getElementById('readOutput').innerHTML = 'User:' + name + "'s profile has been read";
+			let deleteOutput = document.getElementById('deleteOutput');
+			deleteOutput.style.visibility = 'visible';
+			deleteOutput.innerHTML = 'Project: ' + projectName + ' has been deleted';
 		} else {
-			document.getElementById('readOutput').innerHTML = 'Does not work';
+			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
 		}
 	})();
 }
@@ -309,6 +291,7 @@ function profileDelete() {
 		}
 	})();
 }
+
 
 // incomplete
 function findAllProjects() {
