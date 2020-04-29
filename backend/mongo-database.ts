@@ -78,7 +78,7 @@ export class Database {
 		// returns all projects
 		let result = await collection.find();
 		
-		console.log("RESULT...." + result);
+		console.log("RESULT...." + result.value);
 		if (result) {
 			return result.value;
 		} else {

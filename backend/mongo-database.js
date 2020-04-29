@@ -45,7 +45,6 @@ var Database = /** @class */ (function () {
         this.collectionName = collectionName;
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
         // Open up a connection to the client.
-        // Open up a connection to the client.
         // The connection is asynchronous, but we can't call await directly
         // in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
         /* from https://anthonychu.ca/post/async-await-typescript-nodejs/
@@ -135,7 +134,7 @@ var Database = /** @class */ (function () {
                         return [4 /*yield*/, collection.find()];
                     case 1:
                         result = _a.sent();
-                        console.log("RESULT...." + result);
+                        console.log("RESULT...." + result.value);
                         if (result) {
                             return [2 /*return*/, result.value];
                         }

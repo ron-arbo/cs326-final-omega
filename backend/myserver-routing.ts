@@ -44,7 +44,7 @@ export class MyServer {
 		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
 
 		//Other endpoints
-		this.router.post('/users/:userId/allProjects', [this.errorHandler.bind(this), this.findAllProjects.bind(this)]);
+		this.router.post('/users/:userId/allProjects', [this.findAllProjects.bind(this)]);
 
 		// Set a fall-through handler if nothing matches.
 		this.router.post('*', async (request, response) => {
@@ -358,15 +358,14 @@ export class MyServer {
 
 	//Other Functions
 	public async findAllProjects(response): Promise<void> {
-		let a = await this.theDatabase.find();
-		console.log('db.find()', a);
-		response.write(
-			JSON.stringify({
-				result: 'find',
-				name: 'Something'
-			})
-		);
-		response.end();
+		await this.theDatabase.find();
+		// response.write(
+		// 	JSON.stringify({
+		// 		result: 'find',
+		// 		name: 'something'
+		// 	})
+		// );
+		// response.end();
 	}
 }
 
