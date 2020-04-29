@@ -1,5 +1,5 @@
-// const url = 'http://localhost:8080/codetogether'; //Local host
-const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+const url = 'http://localhost:8080/codetogether'; //Local host
+// const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 
 async function postData(url, data) {
 	const resp = await fetch(url, {
@@ -305,21 +305,23 @@ function findAllProjects() {
 		const j = await resp.json();
 		console.log(resp);
 
+		let div = document.findElemenById('container');
+		let numProjects = 0;
 		// we need to loop over all projects, set to do nothing FOR NOW
-		// for (let i = 0; i <= 0; i++) {
-		// 	let projectName = j['projectName'];
-		// 	let projectDescription = j['projectDescription'];
-		// 	let projectWorkers = j['projectWorkers'];
-		// 	let projectProgress = j['projectProgress'];
-		// 	let projectLinks = j['projectLinks'];
-		// 	let projectNumWorkers = j['projectNumWorkers'];
-		// 	if (j['result'] !== 'error') {
-		// 		// change html for all projects
-		// 		// dynamically add projects here?
-		// 		document.getElementById('output').innerHTML =
-		// 			'201: <b>' + userName + ', ' + counterName + ' value = ' + j['value'] + '</b>';
-		// 	}
-		// }
+		for (let i = 0; i <= 0; i++) {
+			let projectName = j['projectName'];
+			let projectDescription = j['projectDescription'];
+			let projectWorkers = j['projectWorkers'];
+			let projectProgress = j['projectProgress'];
+			let projectLinks = j['projectLinks'];
+			let projectNumWorkers = j['projectNumWorkers'];
+			if (j['result'] !== 'error') {
+				// change html for all projects
+				// dynamically add projects here?
+				document.getElementById('output').innerHTML =
+					'201: <b>' + userName + ', ' + counterName + ' value = ' + j['value'] + '</b>';
+			}
+		}
 
 		if (j['result'] !== 'error') {
 			document.getElementById('output').innerHTML = 'works';
@@ -327,4 +329,70 @@ function findAllProjects() {
 			document.getElementById('output').innerHTML = 'does not work';
 		}
 	})();
+}
+
+function addProject(){
+	let div = document.findElemenById('div');
+	div.classList.add("container");
+
+	// change this into dynamic
+	// 	<div class="card mt-4">
+		// 	<div class="card-body">
+		// 		<a class="card-title" style="color: green;font-size: 24px;" href="./pages/project_description.html">Covid Pandemic</a>
+		// 		<p class="card-text">'Face pandemic' is a non-profit and community-driven effort to utilized
+		// 			specialized technologies to identify, analyze and take preventive measures for outbreaks of
+		// 			infectious diseases like COVID-19. Unfortunately, most governments were not prepared to handle
+		// 			this pandemic. As a result, we the citizens have to take control and use our skills and efforts
+		// 			to keep everyone in communities safe globally. We have developed an application that anonymously
+		// 			acquires health and location information form participants and performs real-time analytics to
+		// 			predict the spread of the virus, alert everyone about the hot zones and identify preventive
+		// 			measures. Predictive analytics capability can help health professionals and emergency response
+		// 			teams to prepare in advance. THIS IS NOT A CONTACT TRACING APP. Our focus is to create a
+		// 			complete system that can help to identify infectious diseases in the early stages, start
+		// 			preventive measures and operation planning for the doctors/hospitals. Scale and reach to the
+		// 			maximum number of population is the key and it should work online - offline. We can't ever again
+		// 			in this situation yet and need to remember "Prevention is better than cure".</p>
+		// 		<div class="row mb-2 ml-0 ">
+		// 			<button type="button" class="btn btn-success">HTML</button>
+		// 			<button type="button" class="btn btn-success ml-2">Javascript</button>
+		// 			<button type="button" class="btn btn-success ml-2">CSS</button>
+		// 			<button type="button" class="btn btn-success ml-2">Node JS</button>
+		// 			<button type="button" class="btn btn-success ml-2">Mongo DB</button>
+		// 		</div>
+		// 	</div>
+	// </div>
+
+	// card div
+	let cardDiv = document.createElement("div");
+	cardDiv.classList.add("card mt-4");
+
+	// card body 
+	let cardBodyDiv = document.createElement("div");
+	cardBodyDiv.classList.add("card-body");
+
+	let a = document.createElement('a'); 
+	a.href = "./pages/project_description.html";
+	a.textContent = "Project title";
+	a.classList.add("card-title");
+
+	let text = document.createElement("p");
+	text.textContent = " Face pandemic is a non-profit and";
+
+	let rowDiv = document.createElement("div");
+	rowDiv.classList.add("row mb-2 ml-0");
+	let skills = ['HTML', 'CSS', 'JS', 'Node Js']
+	for(let i=0;i<4;i++){
+		var a = document.createElement("button");
+		a.classList.add("btn btn-success ml-2");
+		a.textContent = skills[i];
+		rowDiv.appendChild(a);
+	}
+
+	cardBodyDiv.appendChild(a);
+	cardBodyDiv.appendChild(text);
+	cardBodyDiv.appendChild(rowDiv);
+
+	cardDiv.appendChild(cardBodyDiv);
+	div.appendChild(cardDiv);
+
 }
