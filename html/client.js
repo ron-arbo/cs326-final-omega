@@ -332,8 +332,7 @@ function findAllProjects() {
 }
 
 function addProject(){
-	let div = document.findElemenById('div');
-	div.classList.add("container");
+	let mainDiv = document.getElementById('container');
 
 	// change this into dynamic
 	// 	<div class="card mt-4">
@@ -364,7 +363,8 @@ function addProject(){
 
 	// card div
 	let cardDiv = document.createElement("div");
-	cardDiv.classList.add("card mt-4");
+	
+	cardDiv.classList.add("card\/mt-4");
 
 	// card body 
 	let cardBodyDiv = document.createElement("div");
@@ -379,13 +379,13 @@ function addProject(){
 	text.textContent = " Face pandemic is a non-profit and";
 
 	let rowDiv = document.createElement("div");
-	rowDiv.classList.add("row mb-2 ml-0");
+	rowDiv.classList.add("row\/mb-2\/ml-0");
 	let skills = ['HTML', 'CSS', 'JS', 'Node Js']
 	for(let i=0;i<4;i++){
-		var a = document.createElement("button");
-		a.classList.add("btn btn-success ml-2");
-		a.textContent = skills[i];
-		rowDiv.appendChild(a);
+		var button = document.createElement("button");
+		button.classList.add("btn\/btn-success\/ml-2");
+		button.textContent = skills[i];
+		rowDiv.appendChild(button);
 	}
 
 	cardBodyDiv.appendChild(a);
@@ -393,6 +393,6 @@ function addProject(){
 	cardBodyDiv.appendChild(rowDiv);
 
 	cardDiv.appendChild(cardBodyDiv);
-	div.appendChild(cardDiv);
+	mainDiv.appendChild(cardDiv);
 
 }
