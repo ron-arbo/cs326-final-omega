@@ -364,7 +364,9 @@ function addProject(){
 	// card div
 	let cardDiv = document.createElement("div");
 	
-	cardDiv.classList.add("card\/mt-4");
+	cardDiv.classList.add("card");
+	cardDiv.classList.add("mt-4");
+	// cardmt-4
 
 	// card body 
 	let cardBodyDiv = document.createElement("div");
@@ -374,16 +376,24 @@ function addProject(){
 	a.href = "./pages/project_description.html";
 	a.textContent = "Project title";
 	a.classList.add("card-title");
+	a.style = "color: green;font-size: 24px;";
 
 	let text = document.createElement("p");
 	text.textContent = " Face pandemic is a non-profit and";
 
 	let rowDiv = document.createElement("div");
-	rowDiv.classList.add("row\/mb-2\/ml-0");
+	rowDiv.classList.add("row");
+	rowDiv.classList.add("mb-2");
+	rowDiv.classList.add("ml-0");
+
 	let skills = ['HTML', 'CSS', 'JS', 'Node Js']
 	for(let i=0;i<4;i++){
 		var button = document.createElement("button");
-		button.classList.add("btn\/btn-success\/ml-2");
+		button.classList.add("btn");
+		button.classList.add("btn-success");
+		if(i!=0){
+			button.classList.add("ml-2");
+		}
 		button.textContent = skills[i];
 		rowDiv.appendChild(button);
 	}
@@ -394,5 +404,6 @@ function addProject(){
 
 	cardDiv.appendChild(cardBodyDiv);
 	mainDiv.appendChild(cardDiv);
+	
 
 }
