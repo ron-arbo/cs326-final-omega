@@ -43,7 +43,7 @@ var Database = /** @class */ (function () {
         this.uri = "mongodb+srv://omega:33raCN4egKXDA5hy@cluster0-yzcet.mongodb.net/test?retryWrites=true&w=majority";
         this.dbName = 'omega';
         this.collectionName = collectionName;
-        this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
+        this.client = new this.MongoClient(this.uri, { useUnifiedTopology: true }, { useNewUrlParser: true });
         // Open up a connection to the client.
         // The connection is asynchronous, but we can't call await directly
         // in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
