@@ -24,15 +24,10 @@ function projectCreate() {
 		let projectWorkers = document.getElementById('projectWorkers').value;
 		let projectProgress = document.getElementById('projectProgress').value;
 		let projectLinks = document.getElementById('projectLinks').value;
-		//buttons
 		let projectNumWorkers = document.getElementById('projectNumWorkers').value;
-		// let projectButtons = [];
-		// let checkboxes = document.querySelectorAll('input[type=checkbox]:checked'); //trying to get all of the checked buttons
-
-		// for (var i = 0; i < checkboxes.length; i++) {
-		// 	projectButtons.push(checkboxes[i].value);
-		// }
-		// console.log(projectButtons);
+		let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
+			return e.value;
+		});
 
 		//Then create JSON to return
 		const projectData = {
@@ -41,8 +36,7 @@ function projectCreate() {
 			projectWorkers    : projectWorkers,
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
-			//Buttons
-			// projectButtons    : projectButtons,
+			projectButtons    : projectButtons,
 			projectNumWorkers : projectNumWorkers
 		};
 
@@ -64,18 +58,18 @@ function projectCreate() {
 function profileCreate() {
 	(async () => {
 		//Only need the elements on the sign up page
-		let profileID = Math.floor(Math.random() * 100000)
+		let profileID = Math.floor(Math.random() * 100000);
 		let firstName = document.getElementById('firstName').value;
 		let lastName = document.getElementById('lastName').value;
 		let email = document.getElementById('inputEmail').value;
 		let password = document.getElementById('inputPassword').value;
-		
+
 		const profileData = {
-			profileID       : profileID,
-			email           : email,
-			password        : password,
-			firstName       : firstName,
-			lastName        : lastName
+			profileID : profileID,
+			email     : email,
+			password  : password,
+			firstName : firstName,
+			lastName  : lastName
 		};
 
 		//For now, userName will be omega
@@ -93,7 +87,6 @@ function profileCreate() {
 	})();
 }
 
-
 //READ Functions
 function projectRead() {
 	(async () => {
@@ -104,7 +97,12 @@ function projectRead() {
 		let projectProgress = 'sampleProgress';
 		let projectLinks = 'sampleLinks';
 		let projectNumWorkers = 1;
+
 		//Buttons
+		let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
+			return e.value;
+		});
+
 		//Then create JSON to return
 		const projectData = {
 			projectName       : projectName,
@@ -113,6 +111,7 @@ function projectRead() {
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
 			//Buttons
+			projectButtons    : projectButtons,
 			projectNumWorkers : projectNumWorkers
 		};
 
@@ -171,7 +170,6 @@ function profileRead() {
 	})();
 }
 
-
 //UPDATE Functions
 function projectUpdate() {
 	(async () => {
@@ -180,6 +178,9 @@ function projectUpdate() {
 		let projectWorkers = 'sampleWorkers';
 		let projectProgress = 'sampleProgress';
 		let projectLinks = 'sampleLinks';
+		let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
+			return e.value;
+		});
 		const projectData = {
 			projectName       : projectName,
 			projectDecription : projectDescription,
@@ -187,6 +188,7 @@ function projectUpdate() {
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
 			//Buttons
+			projectButtons    : projectButtons,
 			projectNumWorkers : projectNumWorkers
 		};
 
@@ -248,7 +250,6 @@ function profileUpdate() {
 	})();
 }
 
-
 //DELETE Functions
 function projectDelete() {
 	(async () => {
@@ -296,68 +297,66 @@ function profileDelete() {
 	})();
 }
 
-
 // get all projects from the database
 function findAllProjects() {
 	console.log('finding all projects');
 	(async () => {
 		// do we need to add anything to data?
-		// 
+		//
 		const data = {};
 		const newURL = url + '/users/' + 'omega' + '/allProjects';
 		const resp = await postData(newURL, data);
-		
+
 		console.log('getting response');
 		const j = await resp.json();
 		console.log('printing response:-- ');
 		console.log(resp);
 
 		let projects = j['projects'];
-		
-		for(let i=0;i<projects.length;i++){
+
+		for (let i = 0; i < projects.length; i++) {
 			let projectName = projects[i]['projectName'];
 			let projectDescription = projects[i]['projectDescription'];
 			addProject(projectName, projectDescription);
 		}
-
 	})();
 }
 
-function addProject(projectName, projectDecription){
+function addProject(projectName, projectDecription) {
 	let mainDiv = document.getElementById('container');
 
 	// card div
-	let cardDiv = document.createElement("div");
-	
-	cardDiv.classList.add("card");
-	cardDiv.classList.add("mt-4");
+	let cardDiv = document.createElement('div');
+
+	cardDiv.classList.add('card');
+	cardDiv.classList.add('mt-4');
 	// cardmt-4
 
-	// card body 
-	let cardBodyDiv = document.createElement("div");
-	cardBodyDiv.classList.add("card-body");
+	// card body
+	let cardBodyDiv = document.createElement('div');
+	cardBodyDiv.classList.add('card-body');
 
-	let a = document.createElement('a'); 
-	a.href = "./pages/project_description.html";
+	let a = document.createElement('a');
+	a.href = './pages/project_description.html';
 	a.textContent = projectName;
-	a.classList.add("card-title");
-	a.style = "color: green;font-size: 24px;";
+	a.classList.add('card-title');
+	a.style = 'color: green;font-size: 24px;';
 
-	let text = document.createElement("p");
+	let text = document.createElement('p');
 	text.textContent = projectDecription;
 
-	let rowDiv = document.createElement("div");
-	rowDiv.classList.add("row");
-	rowDiv.classList.add("mb-2");
-	rowDiv.classList.add("ml-0");
+	let rowDiv = document.createElement('div');
+	rowDiv.classList.add('row');
+	rowDiv.classList.add('mb-2');
+	rowDiv.classList.add('ml-0');
 
-	let skills = ['HTML', 'CSS', 'JS', 'Node Js']
-	for(let i=0;i<4;i++){
-		var button = document.createElement("button");
-		button.classList.add("btn");
-		button.classList.add("btn-success");
-		if(i!=0){
-			button.classList.add("ml-2");
+	let skills = ['HTML', 'CSS', 'JS', 'Node Js'];
+	for (let i = 0; i < 4; i++) {
+		var button = document.createElement('button');
+		button.classList.add('btn');
+		button.classList.add('btn-success');
+		if (i != 0) {
+			button.classList.add('ml-2');
 		}
 		button.textContent = skills[i];
 		rowDiv.appendChild(button);
@@ -369,6 +368,4 @@ function addProject(projectName, projectDecription){
 
 	cardDiv.appendChild(cardBodyDiv);
 	mainDiv.appendChild(cardDiv);
-	
-
 }
