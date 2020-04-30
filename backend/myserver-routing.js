@@ -123,7 +123,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProfile(request.body.email, request.body.password, request.body.firstName, request.body.lastName, response)];
+                    case 0: return [4 /*yield*/, this.createProfile(request.body.profileID, request.body.email, request.body.password, request.body.firstName, request.body.lastName, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -148,7 +148,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.readProfile(request.body.email, request.body.password, request.body.firstName, request.body.lastName, request.body.bio, request.body.about, request.body.projects, request.body.links, response)];
+                    case 0: return [4 /*yield*/, this.readProfile(request.body.profileID, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -173,7 +173,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProfile(request.body.email, request.body.password, request.body.firstName, request.body.lastName, request.body.bio, request.body.about, request.body.projects, request.body.links, response)];
+                    case 0: return [4 /*yield*/, this.updateProfile(request.body.profileID, request.body.email, request.body.password, request.body.firstName, request.body.lastName, request.body.bio, request.body.about, request.body.projects, request.body.links, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -232,7 +232,7 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.createProfile = function (email, password, firstName, lastName, response) {
+    MyServer.prototype.createProfile = function (profileID, email, password, firstName, lastName, response) {
         return __awaiter(this, void 0, void 0, function () {
             var bio, about, project, links;
             return __generator(this, function (_a) {
@@ -243,7 +243,7 @@ var MyServer = /** @class */ (function () {
                         project = '';
                         links = '';
                         //Put new user in database
-                        return [4 /*yield*/, this.theDatabase.put(email, password, firstName, lastName, bio, about, project, links)];
+                        return [4 /*yield*/, this.theDatabase.put(profileID, email, password, firstName, lastName, bio, about, project, links)];
                     case 1:
                         //Put new user in database
                         _a.sent();
@@ -273,15 +273,23 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.readProfile = function (email, password, firstName, lastName, bio, about, projects, links, response) {
+    MyServer.prototype.readProfile = function (profileID, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                //This method is different. The profile attributes shouldn't be what we're returning, because we already have those.
-                //We need to click a link that comes here, then we return the attributes by looking in the DB
+                //Get the following attributes from db, using the profileId parameter:
+                // profileID: number,
+                // email: string,
+                // password: string,
+                // firstName: string,
+                // lastName: string,
+                // bio: string,
+                // about: string,
+                // projects: string,
+                // links: string,
                 //Respond to client that profile was read
                 response.write(JSON.stringify({
                     result: 'read',
-                    name: name
+                    name: profileID
                 }));
                 response.end();
                 return [2 /*return*/];
@@ -310,13 +318,13 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.updateProfile = function (email, password, firstName, lastName, bio, about, project, links, response) {
+    MyServer.prototype.updateProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Update Profile in Database
-                    return [4 /*yield*/, this.theDatabase.put(email, password, firstName, lastName, bio, about, project, links)
+                    return [4 /*yield*/, this.theDatabase.put(profileID, email, password, firstName, lastName, bio, about, project, links)
                         //Respond to client about update
                     ];
                     case 1:
@@ -351,19 +359,19 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.deleteProfile = function (name, response) {
+    MyServer.prototype.deleteProfile = function (profileID, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
-                    return [4 /*yield*/, this.theDatabase.del(name)];
+                    return [4 /*yield*/, this.theDatabase.del(profileID)];
                     case 1:
                         //Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
                         _a.sent();
                         response.write(JSON.stringify({
                             result: 'deleted',
-                            name: name
+                            profileID: profileID
                         }));
                         response.end();
                         return [2 /*return*/];
@@ -379,11 +387,6 @@ var MyServer = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.theDatabase.find()];
                     case 1:
                         _a.sent();
-                        response.write(JSON.stringify({
-                            result: 'find',
-                            name: 'something'
-                        }));
-                        response.end();
                         return [2 /*return*/];
                 }
             });

@@ -84,6 +84,7 @@ export class MyServer {
 	}
 	private async createProfileHandler(request, response): Promise<void> {
 		await this.createProfile(
+			request.body.profileID,
 			request.body.email,
 			request.body.password,
 			request.body.firstName,
@@ -107,14 +108,7 @@ export class MyServer {
 	}
 	private async readProfileHandler(request, response): Promise<void> {
 		await this.readProfile(
-			request.body.email,
-			request.body.password,
-			request.body.firstName,
-			request.body.lastName,
-			request.body.bio,
-			request.body.about,
-			request.body.projects,
-			request.body.links,
+			request.body.profileID,
 			response
 		);
 	}
@@ -134,6 +128,7 @@ export class MyServer {
 	}
 	private async updateProfileHandler(request, response): Promise<void> {
 		await this.updateProfile(
+			request.body.profileID,
 			request.body.email,
 			request.body.password,
 			request.body.firstName,
@@ -192,6 +187,7 @@ export class MyServer {
 		response.end();
 	}
 	public async createProfile(
+		profileID: number,
 		email: string,
 		password: string,
 		firstName: string,
@@ -205,6 +201,7 @@ export class MyServer {
 		let links: string = '';
 		//Put new user in database
 		await this.theDatabase.put(
+			profileID,
 			email, 
 			password, 
 			firstName, 
@@ -246,24 +243,25 @@ export class MyServer {
 		response.end();
 	}
 	public async readProfile(
-		email: string,
-		password: string,
-		firstName: string,
-		lastName: string,
-		bio: string,
-		about: string,
-		projects: string,
-		links: string,
+		profileID: number,
 		response
 	): Promise<void> {
-		//This method is different. The profile attributes shouldn't be what we're returning, because we already have those.
-		//We need to click a link that comes here, then we return the attributes by looking in the DB
+		//Get the following attributes from db, using the profileId parameter:
+		// profileID: number,
+		// email: string,
+		// password: string,
+		// firstName: string,
+		// lastName: string,
+		// bio: string,
+		// about: string,
+		// projects: string,
+		// links: string,
 		
 		//Respond to client that profile was read
 		response.write(
 			JSON.stringify({
 				result: 'read',
-				name: name
+				name: profileID
 			})
 		);
 		response.end();
@@ -300,6 +298,7 @@ export class MyServer {
 		response.end();
 	}
 	public async updateProfile(
+		profileID: number,
 		email: string,
 		password: string,
 		firstName: string,
@@ -312,6 +311,7 @@ export class MyServer {
 
 		//Update Profile in Database
 		await this.theDatabase.put(
+			profileID,
 			email,
 			password,
 			firstName,
@@ -343,13 +343,13 @@ export class MyServer {
 		);
 		response.end();
 	}
-	public async deleteProfile(name: string, response): Promise<void> {
+	public async deleteProfile(profileID: number, response): Promise<void> {
 		//Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
-		await this.theDatabase.del(name);
+		await this.theDatabase.del(profileID);
 		response.write(
 			JSON.stringify({
 				result: 'deleted',
-				name: name
+				profileID: profileID
 			})
 		);
 		response.end();

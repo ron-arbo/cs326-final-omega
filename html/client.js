@@ -64,12 +64,14 @@ function projectCreate() {
 function profileCreate() {
 	(async () => {
 		//Only need the elements on the sign up page
+		let profileID = Math.floor(Math.random() * 100000)
 		let firstName = document.getElementById('firstName').value;
 		let lastName = document.getElementById('lastName').value;
 		let email = document.getElementById('inputEmail').value;
 		let password = document.getElementById('inputPassword').value;
 		
 		const profileData = {
+			profileID       : profileID,
 			email           : email,
 			password        : password,
 			firstName       : firstName,
@@ -206,7 +208,8 @@ function projectUpdate() {
 function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page
-		//NOTE: email and password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
+		//NOTE: id, email, password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
+		let profileID = 10;
 		let email = 'example@gmail.com';
 		let password = 'myPassword';
 		let name = document.getElementById('nameInput').value;
@@ -217,6 +220,7 @@ function profileUpdate() {
 		//BUTTONS, IDK
 
 		const profileData = {
+			profileID       : profileID,
 			email           : email,
 			password        : password,
 			profileName     : name,
