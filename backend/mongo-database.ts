@@ -7,7 +7,7 @@ export class Database {
 
 	constructor(collectionName) {
 		this.collectionName = collectionName;
-		this.client = new this.MongoClient(this.uri, {useUnifiedTopology: true}, { useNewUrlParser: true });
+		this.client = new this.MongoClient(this.uri, { useUnifiedTopology: true }, { useNewUrlParser: true });
 		// Open up a connection to the client.
 		// The connection is asynchronous, but we can't call await directly
 		// in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
@@ -75,11 +75,25 @@ export class Database {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
 
+		//  findOne works but not find
+		// let r = await db.collection(this.collectionName).findOne({projectName: 'Sample project'});
+		// console.log(r);
 		// returns all projects
-		let result = await collection.find();
+		let projects = await collection.find();
 		
-		console.log("RESULT...." + result.value);
+		let result = result
+			.toArray()
+			.then(items => {
+				console.log(`Successfully found ${items.length} documents.`);
+				console.log(items);
+				return items
+			});
+
+		// console.log(result.toArray()[0]);
+		console.log("RESULT...." + result);
+
 		if (result) {
+			console.log("result is not null")
 			return result.value;
 		} else {
 			return null;

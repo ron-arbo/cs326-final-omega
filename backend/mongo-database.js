@@ -131,10 +131,17 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.find()];
+                        return [4 /*yield*/, collection.find()
+                                .toArray()
+                                .then(function (items) {
+                                console.log("Successfully found " + items.length + " documents.");
+                                console.log(items);
+                                return items;
+                            })];
                     case 1:
                         result = _a.sent();
-                        console.log("RESULT...." + result.value);
+                        // console.log(result.toArray()[0]);
+                        console.log("RESULT...." + result);
                         if (result) {
                             return [2 /*return*/, result.value];
                         }

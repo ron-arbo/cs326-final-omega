@@ -382,11 +382,14 @@ var MyServer = /** @class */ (function () {
     //Other Functions
     MyServer.prototype.findAllProjects = function (response) {
         return __awaiter(this, void 0, void 0, function () {
+            var projects;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.theDatabase.find()];
                     case 1:
-                        _a.sent();
+                        projects = _a.sent();
+                        console.log("routing function");
+                        console.log(projects);
                         return [2 /*return*/];
                 }
             });

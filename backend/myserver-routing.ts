@@ -358,7 +358,9 @@ export class MyServer {
 
 	//Other Functions
 	public async findAllProjects(response): Promise<void> {
-		await this.theDatabase.find();
+		let projects = await this.theDatabase.find();
+		console.log("routing function");
+		console.log("projects", projects);
 		// response.write(
 		// 	JSON.stringify({
 		// 		result: 'find',

@@ -302,6 +302,7 @@ function findAllProjects() {
 	console.log('finding all projects');
 	(async () => {
 		// do we need to add anything to data?
+		// 
 		const data = {};
 		const newURL = url + '/users/' + 'omega' + '/allProjects';
 		const resp = await postData(newURL, data);
