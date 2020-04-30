@@ -1,6 +1,5 @@
 export class Database {
 	private MongoClient = require('mongodb').MongoClient;
-	private uri = "mongodb+srv://omega:33raCN4egKXDA5hy@cluster0-yzcet.mongodb.net/test?retryWrites=true&w=majority";
 	private client;
 	private collectionName: string;
 	private dbName: string = 'omega';
