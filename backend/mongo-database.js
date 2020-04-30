@@ -40,8 +40,8 @@ var Database = /** @class */ (function () {
     function Database(collectionName) {
         var _this = this;
         this.MongoClient = require('mongodb').MongoClient;
-        this.uri = 'mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority';
-        this.dbName = 'emery';
+        this.uri = "mongodb+srv://omega:33raCN4egKXDA5hy@cluster0-yzcet.mongodb.net/test?retryWrites=true&w=majority";
+        this.dbName = 'omega';
         this.collectionName = collectionName;
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
         // Open up a connection to the client.
