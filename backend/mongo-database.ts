@@ -6,21 +6,16 @@ export class Database {
 
 	constructor(collectionName) {
 		this.collectionName = collectionName;
-<<<<<<< HEAD
-		this.client = new this.MongoClient(this.uri, { useUnifiedTopology: true }, { useNewUrlParser: true });
-=======
 		let secrets;
 		let uri;
 		if (!process.env.URI) {
-			secrets = require('secrets.json');
+			secrets = require('../secrets.json');
 			uri = secrets.uri;
-		} 
-		else {
+		} else {
 			uri = process.env.URI;
 		}
 
-		this.client = new this.MongoClient(this.uri, {useUnifiedTopology: true}, { useNewUrlParser: true });
->>>>>>> 3ad74fc972a610ae9174af8b7a660f93a601ecf6
+		this.client = new this.MongoClient(uri, { useUnifiedTopology: true }, { useNewUrlParser: true });
 		// Open up a connection to the client.
 		// The connection is asynchronous, but we can't call await directly
 		// in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
@@ -93,20 +88,18 @@ export class Database {
 		// console.log(r);
 		// returns all projects
 		let projects = await collection.find();
-		
-		let result = result
-			.toArray()
-			.then(items => {
-				console.log(`Successfully found ${items.length} documents.`);
-				console.log(items);
-				return items
-			});
+
+		let result = result.toArray().then((items) => {
+			console.log(`Successfully found ${items.length} documents.`);
+			console.log(items);
+			return items;
+		});
 
 		// console.log(result.toArray()[0]);
-		console.log("RESULT...." + result);
+		console.log('RESULT....' + result);
 
 		if (result) {
-			console.log("result is not null")
+			console.log('result is not null');
 			return result.value;
 		} else {
 			return null;

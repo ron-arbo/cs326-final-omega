@@ -389,7 +389,7 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         projects = _a.sent();
                         console.log("routing function");
-                        console.log(projects);
+                        console.log("projects", projects);
                         return [2 /*return*/];
                 }
             });
