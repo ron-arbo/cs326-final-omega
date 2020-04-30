@@ -40,9 +40,16 @@ var Database = /** @class */ (function () {
     function Database(collectionName) {
         var _this = this;
         this.MongoClient = require('mongodb').MongoClient;
-        this.uri = "mongodb+srv://omega:33raCN4egKXDA5hy@cluster0-yzcet.mongodb.net/test?retryWrites=true&w=majority";
         this.dbName = 'omega';
         this.collectionName = collectionName;
+        var secrets;
+        if (!process.env.URI) {
+            secrets = require('../secrets.json');
+            this.uri = secrets.uri;
+        }
+        else {
+            this.uri = process.env.URI;
+        }
         this.client = new this.MongoClient(this.uri, { useUnifiedTopology: true }, { useNewUrlParser: true });
         // Open up a connection to the client.
         // The connection is asynchronous, but we can't call await directly
@@ -125,25 +132,29 @@ var Database = /** @class */ (function () {
     };
     Database.prototype.find = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var db, collection, result;
+            var db, collection, projects, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
+                        projects = [];
                         return [4 /*yield*/, collection.find()
                                 .toArray()
                                 .then(function (items) {
                                 console.log("Successfully found " + items.length + " documents.");
-                                console.log(items);
+                                // console.log(items);
+                                projects.push(items);
                                 return items;
                             })];
                     case 1:
                         result = _a.sent();
-                        // console.log(result.toArray()[0]);
-                        console.log("RESULT...." + result);
+                        // console.log()
+                        // console.log(projects[0]);
+                        // console.log("RESULT...." + );
                         if (result) {
-                            return [2 /*return*/, result.value];
+                            console.log("result is not null");
+                            return [2 /*return*/, projects[0]];
                         }
                         else {
                             return [2 /*return*/, null];
