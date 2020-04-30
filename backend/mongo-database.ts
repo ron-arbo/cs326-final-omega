@@ -87,20 +87,24 @@ export class Database {
 		// let r = await db.collection(this.collectionName).findOne({projectName: 'Sample project'});
 		// console.log(r);
 		// returns all projects
-		let projects = await collection.find();
+		let projects: Array<string> = [];
+		let result = await collection.find()
+			.toArray()
+			.then(items => {
+				console.log(`Successfully found ${items.length} documents.`);
+				// console.log(items);
+				projects.push(items);
+				return items
+			});
 
-		let result = result.toArray().then((items) => {
-			console.log(`Successfully found ${items.length} documents.`);
-			console.log(items);
-			return items;
-		});
-
-		// console.log(result.toArray()[0]);
-		console.log('RESULT....' + result);
+		// console.log()
+		// console.log(projects[0]);
+		
+		// console.log("RESULT...." + );
 
 		if (result) {
-			console.log('result is not null');
-			return result.value;
+			console.log("result is not null")
+			return projects[0];
 		} else {
 			return null;
 		}

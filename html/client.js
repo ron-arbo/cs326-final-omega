@@ -312,15 +312,14 @@ function findAllProjects() {
 		console.log('printing response:-- ');
 		console.log(resp);
 
-		let div = document.findElemenById('container');
-		let numProjects = 0;
-
-		// we need to loop over all projects, set to do nothing FOR NOW
-		for (let i = 0; i <= 2; i++) {
-			let projectName = j['projectName'];
-			let projectDescription = j['projectDescription'];
+		let projects = j['projects'];
+		
+		for(let i=0;i<projects.length;i++){
+			let projectName = projects[i]['projectName'];
+			let projectDescription = projects[i]['projectDescription'];
 			addProject(projectName, projectDescription);
 		}
+
 	})();
 }
 

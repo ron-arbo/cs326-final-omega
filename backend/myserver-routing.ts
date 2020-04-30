@@ -44,7 +44,7 @@ export class MyServer {
 		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
 
 		//Other endpoints
-		this.router.post('/users/:userId/allProjects', [this.findAllProjects.bind(this)]);
+		this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
 
 		// Set a fall-through handler if nothing matches.
 		this.router.post('*', async (request, response) => {
@@ -149,6 +149,10 @@ export class MyServer {
 
 	private async deleteProfileHandler(request, response): Promise<void> {
 		await this.deleteProfile(request.body.name, response);
+	}
+
+	private async findAllProjectsHandler(request, response): Promise<void>{
+		await this.findAllProjects(response);
 	}
 
 
@@ -359,15 +363,18 @@ export class MyServer {
 	//Other Functions
 	public async findAllProjects(response): Promise<void> {
 		let projects = await this.theDatabase.find();
+
 		console.log("routing function");
-		console.log("projects", projects);
-		// response.write(
-		// 	JSON.stringify({
-		// 		result: 'find',
-		// 		name: 'something'
-		// 	})
-		// );
-		// response.end();
+		console.log("----Projects----")
+		console.log(projects);
+		
+		response.write(
+			JSON.stringify({
+				result: 'find',
+				projects: projects
+			})
+		);
+		response.end();
 	}
 }
 

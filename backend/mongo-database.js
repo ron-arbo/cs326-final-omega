@@ -139,19 +139,23 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.find()];
+                        projects = [];
+                        return [4 /*yield*/, collection.find()
+                                .toArray()
+                                .then(function (items) {
+                                console.log("Successfully found " + items.length + " documents.");
+                                // console.log(items);
+                                projects.push(items);
+                                return items;
+                            })];
                     case 1:
-                        projects = _a.sent();
-                        result = result.toArray().then(function (items) {
-                            console.log("Successfully found " + items.length + " documents.");
-                            console.log(items);
-                            return items;
-                        });
-                        // console.log(result.toArray()[0]);
-                        console.log('RESULT....' + result);
+                        result = _a.sent();
+                        // console.log()
+                        // console.log(projects[0]);
+                        // console.log("RESULT...." + );
                         if (result) {
-                            console.log('result is not null');
-                            return [2 /*return*/, result.value];
+                            console.log("result is not null");
+                            return [2 /*return*/, projects[0]];
                         }
                         else {
                             return [2 /*return*/, null];
