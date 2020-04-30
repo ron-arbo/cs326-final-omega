@@ -1,13 +1,26 @@
 export class Database {
 	private MongoClient = require('mongodb').MongoClient;
-	private uri = "mongodb+srv://omega:33raCN4egKXDA5hy@cluster0-yzcet.mongodb.net/test?retryWrites=true&w=majority";
 	private client;
 	private collectionName: string;
 	private dbName: string = 'omega';
 
 	constructor(collectionName) {
 		this.collectionName = collectionName;
+<<<<<<< HEAD
 		this.client = new this.MongoClient(this.uri, { useUnifiedTopology: true }, { useNewUrlParser: true });
+=======
+		let secrets;
+		let uri;
+		if (!process.env.URI) {
+			secrets = require('secrets.json');
+			uri = secrets.uri;
+		} 
+		else {
+			uri = process.env.URI;
+		}
+
+		this.client = new this.MongoClient(this.uri, {useUnifiedTopology: true}, { useNewUrlParser: true });
+>>>>>>> 3ad74fc972a610ae9174af8b7a660f93a601ecf6
 		// Open up a connection to the client.
 		// The connection is asynchronous, but we can't call await directly
 		// in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
