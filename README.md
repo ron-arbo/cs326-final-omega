@@ -15,8 +15,11 @@
 - [ ] Create a list of all the most relevant languages and frameworks people use. Make sure to include the option to include any of    these in a project or user skills section. There may be so many we may need to resort to dropdown menus
 
 ## How to run
-* node backend/server-main.js
-* Go to http://localhost:8080/
+* Open terminal and go to the project directory
+* Run ``npm i @types/node`` 
+* Everytime you make a change in a typescript file - ``tsc backend/*.ts``
+* Run ``node backend/server-main.js``
+* Go to http://localhost:8080/ 
 * website: https://cs-326-final-omega.herokuapp.com/
 
 * Project - 

@@ -109,7 +109,9 @@
 
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
-        <div class="container">
+        <div class="container" id="container">
+
+
             <h1 class="mt-5">Welcome to CodeTogether!</h1>
 
             <button type="button" class="btn btn-success ml-2" style="font-size: 14px;" onclick="findAllProjects()">Show all projects</button>
@@ -132,7 +134,7 @@
                 <div class="card-body">
                     <h5 class="card-title mt-1">Filter projects by skills  
                         <button type="button" onclick='projectRead()' class="btn btn-success ml-2" style="font-size: 14px;">Filter (Read)</button>
-                        <p id="readOutput"></p>
+                        <div id='readProjectOutput' class="alert alert-success" role="alert" style="visibility: hidden;"></div>
                     </h5>
                     
                     <div class="row">
@@ -202,6 +204,10 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- sample button for trying dynamic addition of projects -->
+            <button type="button" class="btn btn-success m-4" style="font-size: 14px;" onclick="findAllProjects()">Add project - Sample</button>
 
 
         </div>
