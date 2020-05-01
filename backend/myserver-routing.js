@@ -287,24 +287,20 @@ var MyServer = /** @class */ (function () {
     };
     MyServer.prototype.readProfile = function (profileID, response) {
         return __awaiter(this, void 0, void 0, function () {
+            var profileAttributes;
             return __generator(this, function (_a) {
-                //Get the following attributes from db, using the profileId parameter:
-                // profileID: number,
-                // email: string,
-                // password: string,
-                // firstName: string,
-                // lastName: string,
-                // bio: string,
-                // about: string,
-                // projects: string,
-                // links: string,
-                //Respond to client that profile was read
-                response.write(JSON.stringify({
-                    result: 'read',
-                    name: profileID
-                }));
-                response.end();
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.theDatabase.get(profileID)];
+                    case 1:
+                        profileAttributes = _a.sent();
+                        //Respond to client that profile was read, return the JSON in the response
+                        response.write(JSON.stringify({
+                            result: 'read',
+                            profileAttributes: profileAttributes
+                        }));
+                        response.end();
+                        return [2 /*return*/];
+                }
             });
         });
     };

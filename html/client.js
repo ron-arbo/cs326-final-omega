@@ -138,7 +138,7 @@ function profileRead() {
 
 		let profileData = {
 			profileID = searchID
-		}
+		};
 
 		let userName = 'omega'
 

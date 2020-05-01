@@ -115,11 +115,10 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        console.log('get: key = ' + key);
-                        return [4 /*yield*/, collection.findOne({ name: key })];
+                        return [4 /*yield*/, collection.findOne({ profileID: key })];
                     case 1:
                         result = _a.sent();
-                        console.log('get: returned ' + JSON.stringify(result));
+                        //We want to return the whole JSON, not sure if that's what result.value is
                         if (result) {
                             return [2 /*return*/, result.value];
                         }
