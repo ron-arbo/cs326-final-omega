@@ -140,7 +140,7 @@ function profileRead() {
 			profileID = searchID
 		};
 
-		let userName = 'omega'
+		let userName = 'omega';
 
 		const newURL = url + '/users/' + userName + '/readProfile';
 		console.log('counterRead: fetching ' + newURL);
