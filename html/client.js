@@ -133,39 +133,42 @@ function projectRead() {
 
 function profileRead() {
 	(async () => {
-		//Get the following elements from DB
-		let email = 'example@gmail.com';
-		let password = 'myPassword';
-		let name = 'sampleName';
-		let bio = 'sampleBio';
-		let about = 'sampleAbout';
-		let projects = [];
-		let links = [];
-		//Buttons
-		//Then create JSON to return
-		const profileData = {
-			email           : email,
-			password        : password,
-			profileName     : name,
-			profileBio      : bio,
-			profileAbout    : about,
-			profileProjects : projects,
-			profileLinks    : links
-			//BUTTONS
-		};
+		//Get profileID of profile we want to read
+		let searchID = document.getElementById('searchID');
 
-		let userName = 'omega';
+		let profileData = {
+			profileID = searchID
+		}
+
+		let userName = 'omega'
 
 		const newURL = url + '/users/' + userName + '/readProfile';
 		console.log('counterRead: fetching ' + newURL);
 		const resp = await postData(newURL, profileData);
 		console.log(resp);
 		const j = await resp.json();
+
+		//This *should* be a JSON of the profile
+		//Maybe should be j['profileAttributes']?
+		let profile = j.profileAttributes;
+		
+		//Assign values needed to display on html
+		let name = profile.name;
+		let bio = profile.bio;
+		let about = profile.about;
+		let projects = profile.projects;
+		let links = profile.links;
+
 		if (j['result'] !== 'error') {
 			console.log('Read works!');
-			document.getElementById('readOutput').innerHTML = 'User:' + name + "'s profile has been read";
+			//Now, fill in HTML with stuff we read
+			document.getElementById('profileName').innerHTML = '<b>' + name + '</b>';
+			document.getElementById('bio').innerHTML = bio;
+			document.getElementById('aboutSection').innerHTML = about;
+			document.getElementById('projectSection').innerHTML = projects;
+			document.getElementById('contactSection').innerHTML = links;
 		} else {
-			document.getElementById('readOutput').innerHTML = 'Does not work';
+			document.getElementById('profileName').innerHTML = 'User Not Found';
 		}
 	})();
 }

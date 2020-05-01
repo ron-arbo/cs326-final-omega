@@ -69,9 +69,11 @@ export class Database {
 	public async get(key: string): Promise<string> {
 		let db = this.client.db(this.dbName); // this.level(this.dbFile);
 		let collection = db.collection(this.collectionName);
-		console.log('get: key = ' + key);
-		let result = await collection.findOne({ name: key });
-		console.log('get: returned ' + JSON.stringify(result));
+
+		//Find info of userProfile
+		let result = await collection.findOne({ profileID: key });
+
+		//We want to return the whole JSON, not sure if that's what result.value is
 		if (result) {
 			return result.value;
 		} else {

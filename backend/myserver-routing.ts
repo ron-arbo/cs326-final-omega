@@ -250,7 +250,7 @@ export class MyServer {
 		profileID: number,
 		response
 	): Promise<void> {
-		//Get the following attributes from db, using the profileId parameter:
+		//Get the following attributes (in a JSON) from db, using the profileId parameter:
 		// profileID: number,
 		// email: string,
 		// password: string,
@@ -260,12 +260,13 @@ export class MyServer {
 		// about: string,
 		// projects: string,
 		// links: string,
+		let profileAttributes = await this.theDatabase.get(profileID);
 		
-		//Respond to client that profile was read
+		//Respond to client that profile was read, return the JSON in the response
 		response.write(
 			JSON.stringify({
 				result: 'read',
-				name: profileID
+				profileAttributes: profileAttributes
 			})
 		);
 		response.end();
