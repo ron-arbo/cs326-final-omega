@@ -278,7 +278,7 @@ export class MyServer {
 	): Promise<void> {
 
 		//Update Project in database
-		await this.theDatabase.put(
+		await this.theDatabase.putProject(
 			projectName,
 			projectDescription,
 			projectWorkers,
@@ -308,7 +308,7 @@ export class MyServer {
 		response): Promise<void> {
 
 		//Update Profile in Database
-		await this.theDatabase.put(
+		await this.theDatabase.putProfile(
 			profileID,
 			email,
 			password,

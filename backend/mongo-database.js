@@ -91,14 +91,12 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.insertOne({
-                                projectName: projectName,
-                                projectDecription: projectDescription,
-                                projectWorkers: projectWorkers,
-                                projectProgress: projectProgress,
-                                projectLinks: projectLinks,
-                                projectNumWorkers: projectNumWorkers
-                            })];
+                        return [4 /*yield*/, collection.updateOne({ projectName: projectName }, { $set: { projectDecription: projectDescription,
+                                    projectWorkers: projectWorkers,
+                                    projectProgress: projectProgress,
+                                    projectLinks: projectLinks,
+                                    projectNumWorkers: projectNumWorkers }
+                            }, { 'upsert': true })];
                     case 1:
                         result = _a.sent();
                         console.log('result = ' + result);
@@ -115,17 +113,15 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.insertOne({
-                                profileID: profileID,
-                                profileEmail: email,
-                                profilePassword: password,
-                                firstName: firstName,
-                                lastName: lastName,
-                                profileBio: bio,
-                                profileAbout: about,
-                                profileProjects: project,
-                                profileLinks: links
-                            })];
+                        return [4 /*yield*/, collection.updateOne({ profileID: profileID }, { $set: { profileEmail: email,
+                                    profilePassword: password,
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                    profileBio: bio,
+                                    profileAbout: about,
+                                    profileProjects: project,
+                                    profileLinks: links }
+                            }, { 'upsert': true })];
                     case 1:
                         result = _a.sent();
                         console.log('result = ' + result);

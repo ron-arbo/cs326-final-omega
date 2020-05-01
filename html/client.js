@@ -124,7 +124,7 @@ function projectRead() {
 		//let readProjectOutput = document.getElementById('readProjectOutput');
 		//readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
-			//Need to assign all variables above to html elements here
+			//Assigning variables to html elements
 			document.getElementById('projectName').innerHTML = projectName;
 			document.getElementById('projectDescription').innerHTML = projectDescription;
 			document.getElementById('projectWorkers').innerHTML = projectWorkers;
@@ -184,14 +184,15 @@ function profileRead() {
 //UPDATE Functions
 function projectUpdate() {
 	(async () => {
-		let projectName = 'sampleName';
-		let projectDescription = 'sampleDescription';
-		let projectWorkers = 'sampleWorkers';
-		let projectProgress = 'sampleProgress';
-		let projectLinks = 'sampleLinks';
-		let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
-			return e.value;
-		});
+		let projectName = document.getElementById('projectName').value;
+		let projectDescription = document.getElementById('projectDescription').value;
+		let projectWorkers = document.getElementById('projectWorkers').value;
+		let projectProgress = document.getElementById('projectProgress').value;
+		let projectLinks = document.getElementById('projectLinks').value;
+		let projectNumWorkers = document.getElementById('projectNumWorkers').value
+		// let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
+		// 	return e.value;
+		// });
 		const projectData = {
 			projectName       : projectName,
 			projectDescription : projectDescription,
@@ -199,7 +200,7 @@ function projectUpdate() {
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
 			//Buttons
-			projectButtons    : projectButtons,
+			//projectButtons    : projectButtons,
 			projectNumWorkers : projectNumWorkers
 		};
 

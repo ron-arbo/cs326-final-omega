@@ -317,7 +317,7 @@ var MyServer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: 
                     //Update Project in database
-                    return [4 /*yield*/, this.theDatabase.put(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
+                    return [4 /*yield*/, this.theDatabase.putProject(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
                     case 1:
                         //Update Project in database
                         _a.sent();
@@ -338,7 +338,7 @@ var MyServer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: 
                     //Update Profile in Database
-                    return [4 /*yield*/, this.theDatabase.put(profileID, email, password, firstName, lastName, bio, about, project, links)
+                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links)
                         //Respond to client about update
                     ];
                     case 1:
