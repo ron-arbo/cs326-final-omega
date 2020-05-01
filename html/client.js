@@ -137,7 +137,7 @@ function profileRead() {
 		let searchID = document.getElementById('searchID');
 
 		let profileData = {
-			profileID = searchID
+			profileID : searchID
 		};
 
 		let userName = 'omega';
