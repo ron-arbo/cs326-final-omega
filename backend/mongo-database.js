@@ -83,7 +83,7 @@ var Database = /** @class */ (function () {
         }); })();
     }
     //PUT Functions
-    Database.prototype.putProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers) {
+    Database.prototype.putProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, projectButtons) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, result;
             return __generator(this, function (_a) {
@@ -97,7 +97,8 @@ var Database = /** @class */ (function () {
                                 projectWorkers: projectWorkers,
                                 projectProgress: projectProgress,
                                 projectLinks: projectLinks,
-                                projectNumWorkers: projectNumWorkers
+                                projectNumWorkers: projectNumWorkers,
+                                projectButtons: projectButtons
                             })];
                     case 1:
                         result = _a.sent();
@@ -223,9 +224,7 @@ var Database = /** @class */ (function () {
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
                         projects = [];
-                        return [4 /*yield*/, collection.find()
-                                .toArray()
-                                .then(function (items) {
+                        return [4 /*yield*/, collection.find().toArray().then(function (items) {
                                 console.log("Successfully found " + items.length + " documents.");
                                 // console.log(items);
                                 projects.push(items);
@@ -237,7 +236,7 @@ var Database = /** @class */ (function () {
                         // console.log(projects[0]);
                         // console.log("RESULT...." + );
                         if (result) {
-                            console.log("result is not null");
+                            console.log('result is not null');
                             return [2 /*return*/, projects[0]];
                         }
                         else {

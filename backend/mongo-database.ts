@@ -48,7 +48,8 @@ export class Database {
 		projectWorkers: string,
 		projectProgress: string,
 		projectLinks: string,
-		projectNumWorkers: string
+		projectNumWorkers: string,
+		projectButtons: string
 	): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
@@ -61,7 +62,8 @@ export class Database {
 			projectWorkers: projectWorkers,
 			projectProgress: projectProgress,
 			projectLinks: projectLinks,
-			projectNumWorkers: projectNumWorkers
+			projectNumWorkers: projectNumWorkers,
+			projectButtons: projectButtons
 		});
 		console.log('result = ' + result);
 	}
@@ -129,13 +131,13 @@ export class Database {
 	public async delProject(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		
+
 		let result = await collection.deleteOne({ projectName: key });
 	}
 	public async delProfile(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		
+
 		let result = await collection.deleteOne({ profileID: key });
 	}
 
@@ -148,22 +150,20 @@ export class Database {
 		// console.log(r);
 		// returns all projects
 		let projects: Array<string> = [];
-		let result = await collection.find()
-			.toArray()
-			.then(items => {
-				console.log(`Successfully found ${items.length} documents.`);
-				// console.log(items);
-				projects.push(items);
-				return items
-			});
+		let result = await collection.find().toArray().then((items) => {
+			console.log(`Successfully found ${items.length} documents.`);
+			// console.log(items);
+			projects.push(items);
+			return items;
+		});
 
 		// console.log()
 		// console.log(projects[0]);
-		
+
 		// console.log("RESULT...." + );
 
 		if (result) {
-			console.log("result is not null")
+			console.log('result is not null');
 			return projects[0];
 		} else {
 			return null;

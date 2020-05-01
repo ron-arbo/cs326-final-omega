@@ -1,4 +1,4 @@
-import { link } from "fs";
+import { link } from 'fs';
 
 let http = require('http');
 let url = require('url');
@@ -39,9 +39,18 @@ export class MyServer {
 
 		//Profile-related endpoints
 		this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readProfileHandler.bind(this)]);
-		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
-		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/readProfile', [
+			this.errorHandler.bind(this),
+			this.readProfileHandler.bind(this)
+		]);
+		this.router.post('/users/:userId/updateProfile', [
+			this.errorHandler.bind(this),
+			this.updateProfileHandler.bind(this)
+		]);
+		this.router.post('/users/:userId/deleteProfile', [
+			this.errorHandler.bind(this),
+			this.deleteProfileHandler.bind(this)
+		]);
 
 		//Other endpoints
 		this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
@@ -59,7 +68,7 @@ export class MyServer {
 		//May need to change this, not sure if it's correct
 		let value: boolean = await this.theDatabase.isFound(request.body.projectName);
 		//	console.log("result from database.isFound: " + JSON.stringify(value));
-		
+
 		//Check that value is found, if not respond to client with error, if so, continue to next handler
 		if (!value) {
 			response.write(JSON.stringify({ result: 'error' }));
@@ -68,7 +77,6 @@ export class MyServer {
 			next();
 		}
 	}
-
 
 	//CREATE Handlers
 	private async createHandler(request, response): Promise<void> {
@@ -79,6 +87,7 @@ export class MyServer {
 			request.body.projectProgress,
 			request.body.projectLinks,
 			request.body.projectNumWorkers,
+			request.body.projectButtons,
 			response
 		);
 	}
@@ -93,21 +102,13 @@ export class MyServer {
 		);
 	}
 
-
 	//READ Handlers
 	private async readHandler(request, response): Promise<void> {
-		await this.readProject(
-			request.body.projectName,
-			response
-		);
+		await this.readProject(request.body.projectName, response);
 	}
 	private async readProfileHandler(request, response): Promise<void> {
-		await this.readProfile(
-			request.body.profileID,
-			response
-		);
+		await this.readProfile(request.body.profileID, response);
 	}
-
 
 	//UPDATE Handlers
 	private async updateHandler(request, response): Promise<void> {
@@ -118,6 +119,7 @@ export class MyServer {
 			request.body.projectProgress,
 			request.body.projectLinks,
 			request.body.projectNumWorkers,
+			request.body.projectButtons,
 			response
 		);
 	}
@@ -136,7 +138,6 @@ export class MyServer {
 		);
 	}
 
-
 	//DELETE Handlers
 	private async deleteHandler(request, response): Promise<void> {
 		await this.deleteProject(request.body.name, response);
@@ -146,16 +147,14 @@ export class MyServer {
 		await this.deleteProfile(request.body.name, response);
 	}
 
-	private async findAllProjectsHandler(request, response): Promise<void>{
+	private async findAllProjectsHandler(request, response): Promise<void> {
 		await this.findAllProjects(response);
 	}
-
 
 	//Listener
 	public listen(port): void {
 		this.server.listen(port);
 	}
-
 
 	//CREATE Functions
 	public async createProject(
@@ -165,6 +164,7 @@ export class MyServer {
 		projectProgress: string,
 		projectLinks: string,
 		projectNumWorkers: string,
+		projectButtons: string,
 		response
 	): Promise<void> {
 		//Put new project in database
@@ -174,7 +174,8 @@ export class MyServer {
 			projectWorkers,
 			projectProgress,
 			projectLinks,
-			projectNumWorkers
+			projectNumWorkers,
+			projectButtons
 		);
 		//Respond to client
 		response.write(
@@ -198,18 +199,9 @@ export class MyServer {
 		let about: string = '';
 		let project: string = '';
 		let links: string = '';
-		
+
 		//Put new user in database
-		await this.theDatabase.putProfile(
-			profileID,
-			email, 
-			password, 
-			firstName, 
-			lastName, 
-			bio, 
-			about, 
-			project, 
-			links);
+		await this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links);
 		//Respond to client
 		response.write(
 			JSON.stringify({
@@ -221,12 +213,8 @@ export class MyServer {
 		response.end();
 	}
 
-
-	//READ Functions	
-	public async readProject(
-		projectName: string,
-		response
-	): Promise<void> {
+	//READ Functions
+	public async readProject(projectName: string, response): Promise<void> {
 		//let value = await this.theDatabase.get(name);
 		let projectAttributes = await this.theDatabase.getProject(projectName);
 		console.log(projectAttributes);
@@ -239,10 +227,7 @@ export class MyServer {
 		);
 		response.end();
 	}
-	public async readProfile(
-		profileID: number,
-		response
-	): Promise<void> {
+	public async readProfile(profileID: number, response): Promise<void> {
 		//Get the following attributes (in a JSON) from db, using the profileId parameter:
 		// profileID: number,
 		// email: string,
@@ -254,7 +239,7 @@ export class MyServer {
 		// projects: string,
 		// links: string,
 		let profileAttributes = await this.theDatabase.getProfile(profileID);
-		
+
 		//Respond to client that profile was read, return the JSON in the response
 		response.write(
 			JSON.stringify({
@@ -265,7 +250,6 @@ export class MyServer {
 		response.end();
 	}
 
-
 	//UPDATE Functions
 	public async updateProject(
 		projectName: string,
@@ -274,9 +258,9 @@ export class MyServer {
 		projectProgress: string,
 		projectLinks: string,
 		projectNumWorkers: string,
+		projectButtons: string,
 		response
 	): Promise<void> {
-
 		//Update Project in database
 		await this.theDatabase.put(
 			projectName,
@@ -284,7 +268,8 @@ export class MyServer {
 			projectWorkers,
 			projectProgress,
 			projectLinks,
-			projectNumWorkers
+			projectNumWorkers,
+			projectButtons
 		);
 		//Respond to client that project was updated
 		response.write(
@@ -305,30 +290,19 @@ export class MyServer {
 		about: string,
 		project: string,
 		links: string,
-		response): Promise<void> {
-
+		response
+	): Promise<void> {
 		//Update Profile in Database
-		await this.theDatabase.put(
-			profileID,
-			email,
-			password,
-			firstName,
-			lastName,
-			bio,
-			about,
-			project,
-			links
-		)
+		await this.theDatabase.put(profileID, email, password, firstName, lastName, bio, about, project, links);
 		//Respond to client about update
 		response.write(
 			JSON.stringify({
 				result: 'updated',
-				name: firstName + " " + lastName
+				name: firstName + ' ' + lastName
 			})
 		);
 		response.end();
 	}
-
 
 	//DELETE Functions
 	public async deleteProject(name: string, response): Promise<void> {
@@ -353,15 +327,14 @@ export class MyServer {
 		response.end();
 	}
 
-
 	//Other Functions
 	public async findAllProjects(response): Promise<void> {
 		let projects = await this.theDatabase.find();
 
-		console.log("routing function");
-		console.log("----Projects----")
+		console.log('routing function');
+		console.log('----Projects----');
 		console.log(projects);
-		
+
 		response.write(
 			JSON.stringify({
 				result: 'find',
@@ -373,6 +346,6 @@ export class MyServer {
 }
 
 // public async errorCounter(name: string, response): Promise<void> {
-	// 	response.write(JSON.stringify({ 'result': 'error' }));
-	// 	response.end();
-	// }
+// 	response.write(JSON.stringify({ 'result': 'error' }));
+// 	response.end();
+// }
