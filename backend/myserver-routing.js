@@ -89,7 +89,7 @@ var MyServer = /** @class */ (function () {
             var value;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.body.name)];
+                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.body.projectName)];
                     case 1:
                         value = _a.sent();
                         //	console.log("result from database.isFound: " + JSON.stringify(value));
@@ -280,6 +280,7 @@ var MyServer = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.theDatabase.getProject(projectName)];
                     case 1:
                         projectAttributes = _a.sent();
+                        console.log(projectAttributes);
                         response.write(JSON.stringify({
                             result: 'read',
                             projectAttributes: projectAttributes

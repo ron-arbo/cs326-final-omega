@@ -57,7 +57,7 @@ export class MyServer {
 	//ERROR Handler
 	private async errorHandler(request, response, next): Promise<void> {
 		//May need to change this, not sure if it's correct
-		let value: boolean = await this.theDatabase.isFound(request.body.name);
+		let value: boolean = await this.theDatabase.isFound(request.body.projectName);
 		//	console.log("result from database.isFound: " + JSON.stringify(value));
 		
 		//Check that value is found, if not respond to client with error, if so, continue to next handler
@@ -229,6 +229,7 @@ export class MyServer {
 	): Promise<void> {
 		//let value = await this.theDatabase.get(name);
 		let projectAttributes = await this.theDatabase.getProject(projectName);
+		console.log(projectAttributes);
 
 		response.write(
 			JSON.stringify({

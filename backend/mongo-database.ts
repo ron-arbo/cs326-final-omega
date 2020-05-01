@@ -100,12 +100,12 @@ export class Database {
 		let db = this.client.db(this.dbName); // this.level(this.dbFile);
 		let collection = db.collection(this.collectionName);
 
-		//Find info of userProfile
+		//Result is the JSON of the project in the DB associated with projectName
 		let result = await collection.findOne({ projectName: key });
 
 		//We want to return the whole JSON, not sure if that's what result.value is
 		if (result) {
-			return result.value;
+			return result;
 		} else {
 			return null;
 		}

@@ -32,7 +32,7 @@ function projectCreate() {
 		//Then create JSON to return
 		const projectData = {
 			projectName       : projectName,
-			projectDecription : projectDescription,
+			projectDescription : projectDescription,
 			projectWorkers    : projectWorkers,
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
@@ -91,38 +91,48 @@ function profileCreate() {
 function projectRead() {
 	(async () => {
 		//We just need projectName, then we'll look up other attributes in DB
+		let nameFromDoc = document.getElementById('nameFromDoc').value;
+
 		const projectData = {
-			projectName       : projectName
+			projectName       : nameFromDoc
 		};
 
 		let userName = 'omega';
 
 		const newURL = url + '/users/' + userName + '/readProject';
-		console.log('counterRead: fetching ' + newURL);
+		console.log('projectRead: fetching ' + newURL);
 		const resp = await postData(newURL, projectData);
 		const j = await resp.json();
 
-		//This is hopefully the JSON returned from the db in readProject() in myserver-routing
+
+		//This the JSON returned from the db in readProject() in myserver-routing
 		let project = j.projectAttributes;
 
 		//Now declare all attributes using the above JSON
-		// let projectName = project.projectName;
-		// let projectDescription = project.projectDescription;
-		// let projectWorkers = project.projectWorkers;
-		// let projectProgress = project.projectProgress;
-		// let projectLinks = project.projectLinks;
-		// let projectNumWorkers = project.projectNumWorkers;
+		let projectName = project.projectName;
+		let projectDescription = project.projectDescription;
+		let projectWorkers = project.projectWorkers;
+		let projectProgress = project.projectProgress;
+		let projectLinks = project.projectLinks;
+		let projectNumWorkers = project.projectNumWorkers;
 
 		// //Buttons
 		// let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
 		// 	return e.value;
 		// });
 
-		let readProjectOutput = document.getElementById('readProjectOutput');
-		readProjectOutput.style.visibility = 'visible';
+		//let readProjectOutput = document.getElementById('readProjectOutput');
+		//readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
 			//Need to assign all variables above to html elements here
-			readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
+			document.getElementById('projectName').innerHTML = projectName;
+			document.getElementById('projectDescription').innerHTML = projectDescription;
+			document.getElementById('projectWorkers').innerHTML = projectWorkers;
+			document.getElementById('projectProgress').innerHTML = projectProgress;
+			document.getElementById('projectLinks').innerHTML = projectLinks;
+			document.getElementById('projectNumWorkers').innerHTML = projectNumWorkers;
+			
+			//readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
 		} else {
 			readProjectOutput.innerHTML = 'Does not work';
 		}
@@ -184,7 +194,7 @@ function projectUpdate() {
 		});
 		const projectData = {
 			projectName       : projectName,
-			projectDecription : projectDescription,
+			projectDescription : projectDescription,
 			projectWorkers    : projectWorkers,
 			projectProgress   : projectProgress,
 			projectLinks      : projectLinks,
@@ -323,7 +333,7 @@ function findAllProjects() {
 	})();
 }
 
-function addProject(projectName, projectDecription) {
+function addProject(projectName, projectDescription) {
 	let mainDiv = document.getElementById('container');
 
 	// card div
@@ -344,7 +354,7 @@ function addProject(projectName, projectDecription) {
 	a.style = 'color: green;font-size: 24px;';
 
 	let text = document.createElement('p');
-	text.textContent = projectDecription;
+	text.textContent = projectDescription;
 
 	let rowDiv = document.createElement('div');
 	rowDiv.classList.add('row');

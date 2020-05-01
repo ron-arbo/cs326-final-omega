@@ -148,7 +148,7 @@ var Database = /** @class */ (function () {
                         result = _a.sent();
                         //We want to return the whole JSON, not sure if that's what result.value is
                         if (result) {
-                            return [2 /*return*/, result.value];
+                            return [2 /*return*/, result];
                         }
                         else {
                             return [2 /*return*/, null];

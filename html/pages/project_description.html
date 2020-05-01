@@ -107,13 +107,16 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
         <div class="container">
-            <h1 id='projectName' class="mt-5">Project Name</h1>
-
+            <label for="nameFromDoc" class='mt-5'>Project Search (enter a Project Name):</label>
+            <input type='text' class='mt-5' id="nameFromDoc">
+            <button type="button" onclick="projectRead()"class='mt-5'>Search!</button>
+            
+            <h1 id='projectName' class="mt-2">Project Name</h1>
             <form style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <p>#Covid19 has already resulted in several job losses. We are seeking to host set of 3 career fairs and seeking volunteer support to mobilize recruiters and job seekers who are most effected by #covid19 outbreak. From store workers, to small business workers, we will provide a job fair platform and also provide support system. These global job fairs would bring a virtual job fair to skills categories most impacted by Covid19. The job fair is planned on 1st Friday of May, June, and July.
+                        <p id='projectDescription'>#Covid19 has already resulted in several job losses. We are seeking to host set of 3 career fairs and seeking volunteer support to mobilize recruiters and job seekers who are most effected by #covid19 outbreak. From store workers, to small business workers, we will provide a job fair platform and also provide support system. These global job fairs would bring a virtual job fair to skills categories most impacted by Covid19. The job fair is planned on 1st Friday of May, June, and July.
 
                             We are seeking a team of volunteers to reach-out to recruiters and employment office communities and spread the word, build technology and provide ecosystem to help people find jobs.
                             
@@ -131,7 +134,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Who is already working on this?</label>
                     <div class="col-sm-10">
-                        <p>We have team of 20 already working on the project. But seeking to put together a bigger team to quickly put together high impact solution to address individuals and families suffering through this tough times.</p>
+                        <p id='projectWorkers'>We have team of 20 already working on the project. But seeking to put together a bigger team to quickly put together high impact solution to address individuals and families suffering through this tough times.</p>
                     </div>
                 </div>
                 <hr>
@@ -139,35 +142,15 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">How far along are you?</label>
                     <div class="col-sm-10">
-                        <p>We have identified the set of initial tools(duck-taped solution) to rollout our first job fair as soon as possible.
-                        </p>
+                        <p id='projectProgress'>We have identified the set of initial tools(duck-taped solution) to rollout our first job fair as soon as possible.</p>
                     </div>
                 </div>
                 <hr>
 
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tasks need to be done</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Helpful Links</label>
                     <div class="col-sm-10">
-                        <p>Tasks that need to get done:
-                            <p>Stage 1:</p>
-                            <ol>
-                                <li>Connect with employment office to spread the word about virtual job fair,</li>
-                                <li>Request companies to signup</li>
-                                <li>Using technologies put together a signup sight for jobfair</li>
-                                <li>Promote job fair</li>
-                                <li>Provide job fair support</li>
-                                <li>Facilitate the job fair</li>
-                            </ol>
-                            
-                            At the same time, use data to improve process, maximize outcome and keep maturing jobs office's capabilities to address immediate job search needs for #Covid19 impacted workforce.</p>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Programming Languages</label>
-                    <div class="col-sm-10">
-                        <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veritatis rem, porro explicabo est excepturi veniam nesciunt? Temporibus voluptatibus similique optio iste dolore modi, maxime molestiae earum quam, molestias facilis. consectetur adipisicing elit. Vero error quod provident obcaecati ex, nam ullam accusantium porro aut fugiat consequatur officia ab commodi at voluptate expedita iure eligendi. Ex!</p>
+                        <p id="projectLinks">The github for the project is: github.com/myproject. Contact me at myEmail@gmail.com</p>
                     </div>
                 </div>
                 <hr>
@@ -188,7 +171,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Number of developers needed</label>
                     <div class="col-sm-10">
-                        <p>3-5</p>
+                        <p id='projectNumWorkers'>3-5</p>
                     </div>
                 </div>
 
