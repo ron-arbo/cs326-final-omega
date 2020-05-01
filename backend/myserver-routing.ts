@@ -98,11 +98,6 @@ export class MyServer {
 	private async readHandler(request, response): Promise<void> {
 		await this.readProject(
 			request.body.projectName,
-			request.body.projectDescription,
-			request.body.projectWorkers,
-			request.body.projectProgress,
-			request.body.projectLinks,
-			request.body.projectNumWorkers,
 			response
 		);
 	}
@@ -173,7 +168,7 @@ export class MyServer {
 		response
 	): Promise<void> {
 		//Put new project in database
-		await this.theDatabase.put(
+		await this.theDatabase.putProject(
 			projectName,
 			projectDescription,
 			projectWorkers,
@@ -203,8 +198,9 @@ export class MyServer {
 		let about: string = '';
 		let project: string = '';
 		let links: string = '';
+		
 		//Put new user in database
-		await this.theDatabase.put(
+		await this.theDatabase.putProfile(
 			profileID,
 			email, 
 			password, 
@@ -229,19 +225,15 @@ export class MyServer {
 	//READ Functions	
 	public async readProject(
 		projectName: string,
-		projectDescription: string,
-		projectWorkers: string,
-		projectProgress: string,
-		projectLinks: string,
-		projectNumWorkers: string,
 		response
 	): Promise<void> {
 		//let value = await this.theDatabase.get(name);
+		let projectAttributes = await this.theDatabase.getProject(projectName);
 
 		response.write(
 			JSON.stringify({
 				result: 'read',
-				name: projectName
+				projectAttributes: projectAttributes
 			})
 		);
 		response.end();
@@ -260,7 +252,7 @@ export class MyServer {
 		// about: string,
 		// projects: string,
 		// links: string,
-		let profileAttributes = await this.theDatabase.get(profileID);
+		let profileAttributes = await this.theDatabase.getProfile(profileID);
 		
 		//Respond to client that profile was read, return the JSON in the response
 		response.write(

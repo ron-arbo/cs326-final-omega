@@ -90,29 +90,9 @@ function profileCreate() {
 //READ Functions
 function projectRead() {
 	(async () => {
-		//Get the following elements from DB
-		let projectName = 'sampleName';
-		let projectDescription = 'sampleDescription';
-		let projectWorkers = 'sampleWorkers';
-		let projectProgress = 'sampleProgress';
-		let projectLinks = 'sampleLinks';
-		let projectNumWorkers = 1;
-
-		//Buttons
-		let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
-			return e.value;
-		});
-
-		//Then create JSON to return
+		//We just need projectName, then we'll look up other attributes in DB
 		const projectData = {
-			projectName       : projectName,
-			projectDecription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
-			//Buttons
-			projectButtons    : projectButtons,
-			projectNumWorkers : projectNumWorkers
+			projectName       : projectName
 		};
 
 		let userName = 'omega';
@@ -121,9 +101,27 @@ function projectRead() {
 		console.log('counterRead: fetching ' + newURL);
 		const resp = await postData(newURL, projectData);
 		const j = await resp.json();
+
+		//This is hopefully the JSON returned from the db in readProject() in myserver-routing
+		let project = j.projectAttributes;
+
+		//Now declare all attributes using the above JSON
+		// let projectName = project.projectName;
+		// let projectDescription = project.projectDescription;
+		// let projectWorkers = project.projectWorkers;
+		// let projectProgress = project.projectProgress;
+		// let projectLinks = project.projectLinks;
+		// let projectNumWorkers = project.projectNumWorkers;
+
+		// //Buttons
+		// let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
+		// 	return e.value;
+		// });
+
 		let readProjectOutput = document.getElementById('readProjectOutput');
 		readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
+			//Need to assign all variables above to html elements here
 			readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
 		} else {
 			readProjectOutput.innerHTML = 'Does not work';

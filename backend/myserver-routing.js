@@ -136,7 +136,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.readProject(request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 0: return [4 /*yield*/, this.readProject(request.body.projectName, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -229,7 +229,7 @@ var MyServer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: 
                     //Put new project in database
-                    return [4 /*yield*/, this.theDatabase.put(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
+                    return [4 /*yield*/, this.theDatabase.putProject(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
                     case 1:
                         //Put new project in database
                         _a.sent();
@@ -255,7 +255,7 @@ var MyServer = /** @class */ (function () {
                         project = '';
                         links = '';
                         //Put new user in database
-                        return [4 /*yield*/, this.theDatabase.put(profileID, email, password, firstName, lastName, bio, about, project, links)];
+                        return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links)];
                     case 1:
                         //Put new user in database
                         _a.sent();
@@ -272,16 +272,21 @@ var MyServer = /** @class */ (function () {
         });
     };
     //READ Functions	
-    MyServer.prototype.readProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, response) {
+    MyServer.prototype.readProject = function (projectName, response) {
         return __awaiter(this, void 0, void 0, function () {
+            var projectAttributes;
             return __generator(this, function (_a) {
-                //let value = await this.theDatabase.get(name);
-                response.write(JSON.stringify({
-                    result: 'read',
-                    name: projectName
-                }));
-                response.end();
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.theDatabase.getProject(projectName)];
+                    case 1:
+                        projectAttributes = _a.sent();
+                        response.write(JSON.stringify({
+                            result: 'read',
+                            projectAttributes: projectAttributes
+                        }));
+                        response.end();
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -290,7 +295,7 @@ var MyServer = /** @class */ (function () {
             var profileAttributes;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.get(profileID)];
+                    case 0: return [4 /*yield*/, this.theDatabase.getProfile(profileID)];
                     case 1:
                         profileAttributes = _a.sent();
                         //Respond to client that profile was read, return the JSON in the response

@@ -41,7 +41,8 @@ export class Database {
 		})();
 	}
 
-	public async put(
+	//PUT Functions
+	public async putProject(
 		projectName: string,
 		projectDescription: string,
 		projectWorkers: string,
@@ -62,11 +63,54 @@ export class Database {
 			projectLinks: projectLinks,
 			projectNumWorkers: projectNumWorkers
 		});
-		// let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
+		console.log('result = ' + result);
+	}
+	public async putProfile(
+		profileID: number,
+		email: string,
+		password: string,
+		firstName: string,
+		lastName: string,
+		bio: string,
+		about: string,
+		project: string,
+		links: string
+	): Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collectionName);
+
+		// console.log("put: key = " + projectName + ", value = " + value);
+		// insert one profile into the database
+		let result = await collection.insertOne({
+			profileID: profileID,
+			profileEmail: email,
+			profilePassword: password,
+			firstName: firstName,
+			lastName: lastName,
+			profileBio: bio,
+			profileAbout: about,
+			profileProjects: project,
+			profileLinks: links
+		});
 		console.log('result = ' + result);
 	}
 
-	public async get(key: string): Promise<string> {
+	//GET Functions
+	public async getProject(key: string): Promise<string> {
+		let db = this.client.db(this.dbName); // this.level(this.dbFile);
+		let collection = db.collection(this.collectionName);
+
+		//Find info of userProfile
+		let result = await collection.findOne({ projectName: key });
+
+		//We want to return the whole JSON, not sure if that's what result.value is
+		if (result) {
+			return result.value;
+		} else {
+			return null;
+		}
+	}
+	public async getProfile(key: string): Promise<string> {
 		let db = this.client.db(this.dbName); // this.level(this.dbFile);
 		let collection = db.collection(this.collectionName);
 
@@ -79,6 +123,20 @@ export class Database {
 		} else {
 			return null;
 		}
+	}
+
+	//DEL Functions
+	public async delProject(key: string): Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collectionName);
+		
+		let result = await collection.deleteOne({ projectName: key });
+	}
+	public async delProfile(key: string): Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collectionName);
+		
+		let result = await collection.deleteOne({ profileID: key });
 	}
 
 	public async find(): Promise<string> {
@@ -112,18 +170,10 @@ export class Database {
 		}
 	}
 
-	// public async del(key: string): Promise<void> {
-	// 	let db = this.client.db(this.dbName);
-	// 	let collection = db.collection(this.collectionName);
-	// 	console.log("delete: key = " + key);
-	// 	let result = await collection.deleteOne({ 'name': key });
-	// 	console.log("result = " + result);
-	// 	// await this.db.del(key);
-	// }
-
+	//ONLY CURRENTLY WORKING FOR PROJECTS (uses getProject only)
 	public async isFound(key: string): Promise<boolean> {
 		console.log('isFound: key = ' + key);
-		let v = await this.get(key);
+		let v = await this.getProject(key);
 		console.log('is found result = ' + v);
 		if (v === null) {
 			return false;

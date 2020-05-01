@@ -82,7 +82,8 @@ var Database = /** @class */ (function () {
             });
         }); })();
     }
-    Database.prototype.put = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers) {
+    //PUT Functions
+    Database.prototype.putProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, result;
             return __generator(this, function (_a) {
@@ -100,14 +101,64 @@ var Database = /** @class */ (function () {
                             })];
                     case 1:
                         result = _a.sent();
-                        // let result = await collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
                         console.log('result = ' + result);
                         return [2 /*return*/];
                 }
             });
         });
     };
-    Database.prototype.get = function (key) {
+    Database.prototype.putProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links) {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        return [4 /*yield*/, collection.insertOne({
+                                profileID: profileID,
+                                profileEmail: email,
+                                profilePassword: password,
+                                firstName: firstName,
+                                lastName: lastName,
+                                profileBio: bio,
+                                profileAbout: about,
+                                profileProjects: project,
+                                profileLinks: links
+                            })];
+                    case 1:
+                        result = _a.sent();
+                        console.log('result = ' + result);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //GET Functions
+    Database.prototype.getProject = function (key) {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        return [4 /*yield*/, collection.findOne({ projectName: key })];
+                    case 1:
+                        result = _a.sent();
+                        //We want to return the whole JSON, not sure if that's what result.value is
+                        if (result) {
+                            return [2 /*return*/, result.value];
+                        }
+                        else {
+                            return [2 /*return*/, null];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Database.prototype.getProfile = function (key) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, result;
             return __generator(this, function (_a) {
@@ -125,6 +176,39 @@ var Database = /** @class */ (function () {
                         else {
                             return [2 /*return*/, null];
                         }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //DEL Functions
+    Database.prototype.delProject = function (key) {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        return [4 /*yield*/, collection.deleteOne({ projectName: key })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Database.prototype.delProfile = function (key) {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        return [4 /*yield*/, collection.deleteOne({ profileID: key })];
+                    case 1:
+                        result = _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -164,14 +248,7 @@ var Database = /** @class */ (function () {
             });
         });
     };
-    // public async del(key: string): Promise<void> {
-    // 	let db = this.client.db(this.dbName);
-    // 	let collection = db.collection(this.collectionName);
-    // 	console.log("delete: key = " + key);
-    // 	let result = await collection.deleteOne({ 'name': key });
-    // 	console.log("result = " + result);
-    // 	// await this.db.del(key);
-    // }
+    //ONLY CURRENTLY WORKING FOR PROJECTS (uses getProject only)
     Database.prototype.isFound = function (key) {
         return __awaiter(this, void 0, void 0, function () {
             var v;
@@ -179,7 +256,7 @@ var Database = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         console.log('isFound: key = ' + key);
-                        return [4 /*yield*/, this.get(key)];
+                        return [4 /*yield*/, this.getProject(key)];
                     case 1:
                         v = _a.sent();
                         console.log('is found result = ' + v);
