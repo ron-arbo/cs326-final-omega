@@ -48,7 +48,8 @@ export class Database {
 		projectWorkers: string,
 		projectProgress: string,
 		projectLinks: string,
-		projectNumWorkers: string
+		projectNumWorkers: string,
+		projectButtons: string
 	): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
@@ -56,15 +57,18 @@ export class Database {
 		// console.log("put: key = " + projectName + ", value = " + value);
 		// insert one PROJECT into the database
 		let result = await collection.updateOne(
-			{projectName: projectName}, 
-			{$set: 
-				{projectDecription: projectDescription,
-				 projectWorkers: projectWorkers,
-				 projectProgress: projectProgress,
-				 projectLinks: projectLinks,
-				 projectNumWorkers: projectNumWorkers}
+			{ projectName: projectName },
+			{
+				$set: {
+					projectDecription: projectDescription,
+					projectWorkers: projectWorkers,
+					projectProgress: projectProgress,
+					projectLinks: projectLinks,
+					projectNumWorkers: projectNumWorkers,
+					projectButtons: projectButtons
+				}
 			},
-			{'upsert': true}
+			{ upsert: true }
 		);
 		console.log('result = ' + result);
 	}
@@ -85,18 +89,20 @@ export class Database {
 		// console.log("put: key = " + projectName + ", value = " + value);
 		// insert one profile into the database
 		let result = await collection.updateOne(
-			{profileID: profileID},
-			{$set: 
-				{profileEmail: email,
-				 profilePassword: password,
-				 firstName: firstName,
-				 lastName: lastName,
-				 profileBio: bio,
-				 profileAbout: about,
-				 profileProjects: project,
-				 profileLinks: links}
+			{ profileID: profileID },
+			{
+				$set: {
+					profileEmail: email,
+					profilePassword: password,
+					firstName: firstName,
+					lastName: lastName,
+					profileBio: bio,
+					profileAbout: about,
+					profileProjects: project,
+					profileLinks: links
+				}
 			},
-			{'upsert': true}
+			{ upsert: true }
 		);
 		console.log('result = ' + result);
 	}
@@ -135,13 +141,13 @@ export class Database {
 	public async delProject(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		
+
 		let result = await collection.deleteOne({ projectName: key });
 	}
 	public async delProfile(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		
+
 		let result = await collection.deleteOne({ profileID: key });
 	}
 
@@ -154,22 +160,20 @@ export class Database {
 		// console.log(r);
 		// returns all projects
 		let projects: Array<string> = [];
-		let result = await collection.find()
-			.toArray()
-			.then(items => {
-				console.log(`Successfully found ${items.length} documents.`);
-				// console.log(items);
-				projects.push(items);
-				return items
-			});
+		let result = await collection.find({ profileID: null }).toArray().then((items) => {
+			console.log(`Successfully found ${items.length} documents.`);
+			// console.log(items);
+			projects.push(items);
+			return items;
+		});
 
 		// console.log()
 		// console.log(projects[0]);
-		
+
 		// console.log("RESULT...." + );
 
 		if (result) {
-			console.log("result is not null")
+			console.log('result is not null');
 			return projects[0];
 		} else {
 			return null;

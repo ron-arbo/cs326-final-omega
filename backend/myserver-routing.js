@@ -68,9 +68,18 @@ var MyServer = /** @class */ (function () {
         this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         //Profile-related endpoints
         this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-        this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readProfileHandler.bind(this)]);
-        this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
-        this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
+        this.router.post('/users/:userId/readProfile', [
+            this.errorHandler.bind(this),
+            this.readProfileHandler.bind(this)
+        ]);
+        this.router.post('/users/:userId/updateProfile', [
+            this.errorHandler.bind(this),
+            this.updateProfileHandler.bind(this)
+        ]);
+        this.router.post('/users/:userId/deleteProfile', [
+            this.errorHandler.bind(this),
+            this.deleteProfileHandler.bind(this)
+        ]);
         //Other endpoints
         this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
         // Set a fall-through handler if nothing matches.
@@ -111,7 +120,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProject(request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 0: return [4 /*yield*/, this.createProject(request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, request.body.projectButtons, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -161,7 +170,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProject(request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, response)];
+                    case 0: return [4 /*yield*/, this.updateProject(request.body.projectName, request.body.projectDescription, request.body.projectWorkers, request.body.projectProgress, request.body.projectLinks, request.body.projectNumWorkers, request.body.projectButtons, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -223,13 +232,13 @@ var MyServer = /** @class */ (function () {
         this.server.listen(port);
     };
     //CREATE Functions
-    MyServer.prototype.createProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, response) {
+    MyServer.prototype.createProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, projectButtons, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Put new project in database
-                    return [4 /*yield*/, this.theDatabase.putProject(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
+                    return [4 /*yield*/, this.theDatabase.putProject(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, projectButtons)];
                     case 1:
                         //Put new project in database
                         _a.sent();
@@ -271,7 +280,7 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    //READ Functions	
+    //READ Functions
     MyServer.prototype.readProject = function (projectName, response) {
         return __awaiter(this, void 0, void 0, function () {
             var projectAttributes;
@@ -311,13 +320,13 @@ var MyServer = /** @class */ (function () {
         });
     };
     //UPDATE Functions
-    MyServer.prototype.updateProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, response) {
+    MyServer.prototype.updateProject = function (projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, projectButtons, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Update Project in database
-                    return [4 /*yield*/, this.theDatabase.putProject(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers)];
+                    return [4 /*yield*/, this.theDatabase.putProject(projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectNumWorkers, projectButtons)];
                     case 1:
                         //Update Project in database
                         _a.sent();
@@ -338,16 +347,14 @@ var MyServer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: 
                     //Update Profile in Database
-                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links)
-                        //Respond to client about update
-                    ];
+                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links)];
                     case 1:
                         //Update Profile in Database
                         _a.sent();
                         //Respond to client about update
                         response.write(JSON.stringify({
                             result: 'updated',
-                            name: firstName + " " + lastName
+                            name: firstName + ' ' + lastName
                         }));
                         response.end();
                         return [2 /*return*/];
@@ -402,8 +409,8 @@ var MyServer = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.theDatabase.find()];
                     case 1:
                         projects = _a.sent();
-                        console.log("routing function");
-                        console.log("----Projects----");
+                        console.log('routing function');
+                        console.log('----Projects----');
                         console.log(projects);
                         response.write(JSON.stringify({
                             result: 'find',
