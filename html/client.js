@@ -206,7 +206,7 @@ function projectUpdate() {
 			projectProgress    : projectProgress,
 			projectLinks       : projectLinks,
 			//Buttons
-			projectButtons     : projectButtons,
+			//projectButtons     : projectButtons,
 			projectNumWorkers  : projectNumWorkers
 		};
 
@@ -229,10 +229,11 @@ function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page
 		//NOTE: id, email, password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
-		let profileID = 10;
-		let email = 'example@gmail.com';
-		let password = 'myPassword';
-		let name = document.getElementById('nameInput').value;
+		let profileID = document.getElementById('idInput').value;
+		let email = document.getElementById('emailInput').value;
+		let password = document.getElementById('passwordInput').value;
+		let firstName = document.getElementById('firstNameInput').value;
+		let lastName = document.getElementById('lastNameInput').value;
 		let bio = document.getElementById('bioInput').value;
 		let about = document.getElementById('aboutInput').value;
 		let projects = document.getElementById('projectInput').value;
@@ -241,9 +242,10 @@ function profileUpdate() {
 
 		const profileData = {
 			profileID       : profileID,
-			email           : email,
-			password        : password,
-			profileName     : name,
+			profileEmail    : email,
+			profilePassword : password,
+			firstName       : firstName,
+			lastName        : lastName,
 			profileBio      : bio,
 			profileAbout    : about,
 			profileProjects : projects,

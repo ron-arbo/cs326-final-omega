@@ -126,14 +126,14 @@ export class MyServer {
 	private async updateProfileHandler(request, response): Promise<void> {
 		await this.updateProfile(
 			request.body.profileID,
-			request.body.email,
-			request.body.password,
+			request.body.profileEmail,
+			request.body.profilePassword,
 			request.body.firstName,
 			request.body.lastName,
-			request.body.bio,
-			request.body.about,
-			request.body.projects,
-			request.body.links,
+			request.body.profileBio,
+			request.body.profileAbout,
+			request.body.profileProjects,
+			request.body.profileLinks,
 			response
 		);
 	}

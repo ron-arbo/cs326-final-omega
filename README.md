@@ -2,17 +2,35 @@
 
 ## Todo
 
-- [ ] Identify objects and their attributes, along with CRUD operation endpoints
-- [ ] Create server.ts, database.ts, and specific page typescript file
-- [ ] Plan out possible functions for API. (Ex: Create, Read, Update, Complete. Use project IDs, user IDs)
-- [ ] Dummy server, just make sure client requests are addressed
-- [ ] Clean up front end to work with what we're adding
-- [ ] Button filters on index.html
-- [ ] Add functionality to all buttons (create, update profile, etc.)
-- [ ] Add another account option to indicate devloper/investor (or both)
-- [ ] Find a way to hyperlink user profile to edit profile, but only for the specific user logged in
-- [ ] If no user logged in, hyperlink account page to sign up
-- [ ] Create a list of all the most relevant languages and frameworks people use. Make sure to include the option to include any of    these in a project or user skills section. There may be so many we may need to resort to dropdown menus
+What is done and who did it: (If I missed something you did just add it in, mostly been keeping track of myself)  
+Database:  
+Creation and connection in code: Aryan  
+put() Method (Both Project and Profile): Aryan  
+get() Method (Both Project and Profile): Mostly Ron, Small Part Aryan  
+del() Method (Both Project and Profile): Not entirely sure, may have been Ron, takes 2 seconds anyways  
+Incorporation of Radio Buttons into DB: TJ  
+find() Method: Aryan  
+  
+HTML Connection/Output:  
+Project CRUD Operations work with DB and Output in HTML:  
+Create: Aryan, I think  
+Read: Ron  
+Update: Ron  
+Delete:  
+Profile CRUD Operations Work with DB and Output in HTML:  
+Create: Aryan/Ron?  
+Read:  
+Update: Ron (Need tweaks with HTML though)  
+Delete:  
+  
+Things that need to be done:  
+* Finish above HTML connections with DB
+* As of now we need projectName or profileID to make changes, and it needs to be on the same page. Change this? Form action/method?
+* Some HTML might be weird with our inputs (Contact section in profile, Project section in profile, etc.)
+* Change HTML on index.html. Center it around Aryan's find() feature, and maybe make searching the main thing? Idk if we're going to get around to implementing filter buttons
+* Create document layout form for DB (see google doc for milestone)
+* Milestone doc
+* Incorporate radio button skills fully. Add to profile section, since its on the profile page. If we have time, format them as buttons to look nice, like we do in the HTML
 
 ## How to run
 * Open terminal and go to the project directory

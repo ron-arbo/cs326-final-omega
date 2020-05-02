@@ -60,7 +60,7 @@ export class Database {
 			{ projectName: projectName },
 			{
 				$set: {
-					projectDecription: projectDescription,
+					projectDescription: projectDescription,
 					projectWorkers: projectWorkers,
 					projectProgress: projectProgress,
 					projectLinks: projectLinks,

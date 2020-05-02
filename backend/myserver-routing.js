@@ -182,7 +182,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProfile(request.body.profileID, request.body.email, request.body.password, request.body.firstName, request.body.lastName, request.body.bio, request.body.about, request.body.projects, request.body.links, response)];
+                    case 0: return [4 /*yield*/, this.updateProfile(request.body.profileID, request.body.profileEmail, request.body.profilePassword, request.body.firstName, request.body.lastName, request.body.profileBio, request.body.profileAbout, request.body.profileProjects, request.body.profileLinks, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
