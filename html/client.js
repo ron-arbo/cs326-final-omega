@@ -31,13 +31,13 @@ function projectCreate() {
 
 		//Then create JSON to return
 		const projectData = {
-			projectName       : projectName,
+			projectName        : projectName,
 			projectDescription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
-			projectButtons    : projectButtons,
-			projectNumWorkers : projectNumWorkers
+			projectWorkers     : projectWorkers,
+			projectProgress    : projectProgress,
+			projectLinks       : projectLinks,
+			projectButtons     : projectButtons,
+			projectNumWorkers  : projectNumWorkers
 		};
 
 		//For now, userName will be omega
@@ -94,7 +94,7 @@ function projectRead() {
 		let nameFromDoc = document.getElementById('nameFromDoc').value;
 
 		const projectData = {
-			projectName       : nameFromDoc
+			projectName : nameFromDoc
 		};
 
 		let userName = 'omega';
@@ -104,23 +104,28 @@ function projectRead() {
 		const resp = await postData(newURL, projectData);
 		const j = await resp.json();
 
-
 		//This the JSON returned from the db in readProject() in myserver-routing
 		let project = j.projectAttributes;
-
+		console.log(project);
 		//Now declare all attributes using the above JSON
 		let projectName = project.projectName;
 		let projectDescription = project.projectDescription;
 		let projectWorkers = project.projectWorkers;
 		let projectProgress = project.projectProgress;
 		let projectLinks = project.projectLinks;
+		let projectButtons = project.projectButtons;
 		let projectNumWorkers = project.projectNumWorkers;
 
-		// //Buttons
-		// let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
-		// 	return e.value;
-		// });
-
+		for (let i = 0; i < projectButtons.length; i++) {
+			//trying to add formatting to buttons but not working
+			var button = document.createElement('button');
+			button.classList.add('btn');
+			button.classList.add('btn-success');
+			if (i != 0) {
+				button.classList.add('ml-2');
+			}
+			button.textContent = projectButtons[i];
+		}
 		//let readProjectOutput = document.getElementById('readProjectOutput');
 		//readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
@@ -130,8 +135,9 @@ function projectRead() {
 			document.getElementById('projectWorkers').innerHTML = projectWorkers;
 			document.getElementById('projectProgress').innerHTML = projectProgress;
 			document.getElementById('projectLinks').innerHTML = projectLinks;
+			document.getElementById('projectButtons').innerHTML = projectButtons;
 			document.getElementById('projectNumWorkers').innerHTML = projectNumWorkers;
-			
+
 			//readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
 		} else {
 			readProjectOutput.innerHTML = 'Does not work';
@@ -159,7 +165,7 @@ function profileRead() {
 		//This *should* be a JSON of the profile
 		//Maybe should be j['profileAttributes']?
 		let profile = j.profileAttributes;
-		
+
 		//Assign values needed to display on html
 		let name = profile.name;
 		let bio = profile.bio;
@@ -193,14 +199,14 @@ function projectUpdate() {
 			return e.value;
 		});
 		const projectData = {
-			projectName       : projectName,
+			projectName        : projectName,
 			projectDescription : projectDescription,
-			projectWorkers    : projectWorkers,
-			projectProgress   : projectProgress,
-			projectLinks      : projectLinks,
+			projectWorkers     : projectWorkers,
+			projectProgress    : projectProgress,
+			projectLinks       : projectLinks,
 			//Buttons
-			projectButtons    : projectButtons,
-			projectNumWorkers : projectNumWorkers
+			projectButtons     : projectButtons,
+			projectNumWorkers  : projectNumWorkers
 		};
 
 		let userName = 'omega';
@@ -324,16 +330,17 @@ function findAllProjects() {
 		console.log(resp);
 
 		let projects = j['projects'];
-
+		console.log(projects);
 		for (let i = 0; i < projects.length; i++) {
 			let projectName = projects[i]['projectName'];
 			let projectDescription = projects[i]['projectDescription'];
-			addProject(projectName, projectDescription);
+			let projectButtons = projects[i]['projectButtons'];
+			addProject(projectName, projectDescription, projectButtons);
 		}
 	})();
 }
 
-function addProject(projectName, projectDescription) {
+function addProject(projectName, projectDescription, projectButtons) {
 	let mainDiv = document.getElementById('container');
 
 	// card div
@@ -361,8 +368,9 @@ function addProject(projectName, projectDescription) {
 	rowDiv.classList.add('mb-2');
 	rowDiv.classList.add('ml-0');
 
-	let skills = ['HTML', 'CSS', 'JS', 'Node Js'];
-	for (let i = 0; i < 4; i++) {
+	let skills = projectButtons;
+
+	for (let i = 0; i < projectButtons.length; i++) {
 		var button = document.createElement('button');
 		button.classList.add('btn');
 		button.classList.add('btn-success');

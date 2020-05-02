@@ -58,7 +58,7 @@ export class Database {
 		// insert one PROJECT into the database
 		let result = await collection.insertOne({
 			projectName: projectName,
-			projectDecription: projectDescription,
+			projectDescription: projectDescription,
 			projectWorkers: projectWorkers,
 			projectProgress: projectProgress,
 			projectLinks: projectLinks,
@@ -150,7 +150,7 @@ export class Database {
 		// console.log(r);
 		// returns all projects
 		let projects: Array<string> = [];
-		let result = await collection.find().toArray().then((items) => {
+		let result = await collection.find({ profileID: null }).toArray().then((items) => {
 			console.log(`Successfully found ${items.length} documents.`);
 			// console.log(items);
 			projects.push(items);

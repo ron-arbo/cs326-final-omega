@@ -93,7 +93,7 @@ var Database = /** @class */ (function () {
                         collection = db.collection(this.collectionName);
                         return [4 /*yield*/, collection.insertOne({
                                 projectName: projectName,
-                                projectDecription: projectDescription,
+                                projectDescription: projectDescription,
                                 projectWorkers: projectWorkers,
                                 projectProgress: projectProgress,
                                 projectLinks: projectLinks,
@@ -224,7 +224,7 @@ var Database = /** @class */ (function () {
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
                         projects = [];
-                        return [4 /*yield*/, collection.find().toArray().then(function (items) {
+                        return [4 /*yield*/, collection.find({ profileID: null }).toArray().then(function (items) {
                                 console.log("Successfully found " + items.length + " documents.");
                                 // console.log(items);
                                 projects.push(items);
