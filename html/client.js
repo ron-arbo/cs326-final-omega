@@ -274,19 +274,22 @@ function profileUpdate() {
 function projectDelete() {
 	(async () => {
 		let projectName = document.getElementById('projectName').innerHTML;
+
+		let deleteProject = document.getElementById('nameFromDoc2').value;
 		//Then, delete in database using projectName
 		let userName = 'omega';
 
-		const data = { name: projectName };
+		const data = { name: deleteProject };
 
 		const newURL = url + '/users/' + userName + '/deleteProject';
 		console.log('counterDelete: fetching ' + newURL);
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
+
 		if (j['result'] !== 'error') {
 			let deleteOutput = document.getElementById('deleteOutput');
 			deleteOutput.style.visibility = 'visible';
-			deleteOutput.innerHTML = 'Project: ' + projectName + ' has been deleted';
+			deleteOutput.innerHTML = 'Project: ' + deleteProject + ' has been deleted';
 		} else {
 			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
 		}
@@ -295,22 +298,21 @@ function projectDelete() {
 
 function profileDelete() {
 	(async () => {
-		let profileName = document.getElementById('profileName').innerHTML;
-		profileName = 'sampleUser';
+		// let profileName = document.getElementById('profileName').innerHTML;
+		delProf = document.getElementById('delID').value;
 		//Then, delete in database using projectName
 		let userName = 'omega';
 
-		const data = { name: profileName };
+		const data = { id: delProf };
 
 		const newURL = url + '/users/' + userName + '/deleteProfile';
 		console.log('counterDelete: fetching ' + newURL);
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
 		if (j['result'] !== 'error') {
-			console.log(j['result']);
-			let deleteOutput = document.getElementById('deleteOutput');
+			let deleteOutput = document.getElementById('deleteProf');
 			deleteOutput.style.visibility = 'visible';
-			deleteOutput.innerHTML = 'Profile: ' + profileName + ' has been deleted';
+			deleteOutput.innerHTML = 'Profile: ' + delProf + ' has been deleted';
 		} else {
 			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
 		}

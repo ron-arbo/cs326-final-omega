@@ -127,7 +127,7 @@ export class Database {
 		let collection = db.collection(this.collectionName);
 
 		//Find info of userProfile
-		let result = await collection.findOne({ profileID: key });
+		let result = await collection.findOne({ profileID: parseInt(key) }); //needs to be passed in as an int, key is a string
 
 		//We want to return the whole JSON, not sure if that's what result.value is
 		if (result) {
@@ -144,11 +144,11 @@ export class Database {
 
 		let result = await collection.deleteOne({ projectName: key });
 	}
+
 	public async delProfile(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-
-		let result = await collection.deleteOne({ profileID: key });
+		let result = await collection.deleteOne({ profileID: parseInt(key) });
 	}
 
 	public async find(): Promise<string> {

@@ -144,7 +144,7 @@ export class MyServer {
 	}
 
 	private async deleteProfileHandler(request, response): Promise<void> {
-		await this.deleteProfile(request.body.name, response);
+		await this.deleteProfile(request.body.id, response);
 	}
 
 	private async findAllProjectsHandler(request, response): Promise<void> {
@@ -306,7 +306,7 @@ export class MyServer {
 
 	//DELETE Functions
 	public async deleteProject(name: string, response): Promise<void> {
-		await this.theDatabase.del(name);
+		await this.theDatabase.delProject(name);
 		response.write(
 			JSON.stringify({
 				result: 'deleted',
@@ -317,7 +317,7 @@ export class MyServer {
 	}
 	public async deleteProfile(profileID: number, response): Promise<void> {
 		//Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
-		await this.theDatabase.del(profileID);
+		await this.theDatabase.delProfile(profileID);
 		response.write(
 			JSON.stringify({
 				result: 'deleted',

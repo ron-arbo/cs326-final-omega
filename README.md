@@ -9,19 +9,19 @@ put() Method (Both Project and Profile): Aryan
 get() Method (Both Project and Profile): Mostly Ron, Small Part Aryan  
 del() Method (Both Project and Profile): Not entirely sure, may have been Ron, takes 2 seconds anyways  
 Incorporation of Radio Buttons into DB: TJ  
-find() Method: Aryan  
+find() Method: Aryan small part TJ
   
 HTML Connection/Output:  
 Project CRUD Operations work with DB and Output in HTML:  
 Create: Aryan, I think  
 Read: Ron  
 Update: Ron  
-Delete:  
+Delete: TJ
 Profile CRUD Operations Work with DB and Output in HTML:  
 Create: Aryan/Ron?  
 Read:  
 Update: Ron (Need tweaks with HTML though)  
-Delete:  
+Delete: TJ
   
 Things that need to be done:  
 * Finish above HTML connections with DB

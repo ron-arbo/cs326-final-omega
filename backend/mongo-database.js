@@ -93,7 +93,7 @@ var Database = /** @class */ (function () {
                         collection = db.collection(this.collectionName);
                         return [4 /*yield*/, collection.updateOne({ projectName: projectName }, {
                                 $set: {
-                                    projectDecription: projectDescription,
+                                    projectDescription: projectDescription,
                                     projectWorkers: projectWorkers,
                                     projectProgress: projectProgress,
                                     projectLinks: projectLinks,
@@ -208,10 +208,12 @@ var Database = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         db = this.client.db(this.dbName);
+                        console.log('This is the key: ' + key);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.deleteOne({ profileID: key })];
+                        return [4 /*yield*/, collection.deleteOne({ profileID: parseInt(key) })];
                     case 1:
                         result = _a.sent();
+                        console.log(result);
                         return [2 /*return*/];
                 }
             });
