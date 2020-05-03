@@ -39,21 +39,13 @@ export class MyServer {
 
 		//Profile-related endpoints
 		this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-		this.router.post('/users/:userId/readProfile', [
-			this.errorHandler.bind(this),
-			this.readProfileHandler.bind(this)
-		]);
-		this.router.post('/users/:userId/updateProfile', [
-			this.errorHandler.bind(this),
-			this.updateProfileHandler.bind(this)
-		]);
-		this.router.post('/users/:userId/deleteProfile', [
-			this.errorHandler.bind(this),
-			this.deleteProfileHandler.bind(this)
-		]);
+		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this),this.readProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this),this.updateProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this),this.deleteProfileHandler.bind(this)]);
 
 		//Other endpoints
 		this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
+		this.router.post('/users/:userID/projectSearch', [this.projectSearchHandler.bind(this)]);
 
 		// Set a fall-through handler if nothing matches.
 		this.router.post('*', async (request, response) => {
@@ -147,8 +139,13 @@ export class MyServer {
 		await this.deleteProfile(request.body.id, response);
 	}
 
+	//OTHER Handlers
 	private async findAllProjectsHandler(request, response): Promise<void> {
 		await this.findAllProjects(response);
+	}
+
+	private async projectSearchHandler(request, response): Promise<void> {
+		await this.projectSearch(request.body.projectName, response);
 	}
 
 	//Listener
@@ -338,6 +335,22 @@ export class MyServer {
 		response.write(
 			JSON.stringify({
 				result: 'find',
+				projects: projects
+			})
+		);
+		response.end();
+	}
+
+	public async projectSearch(projectName: string, response): Promise<void> {
+		let projects = await this.theDatabase.projectSearch(projectName);
+
+		console.log('routing function');
+		console.log('----Projects----');
+		console.log(projects);
+
+		response.write(
+			JSON.stringify({
+				result: 'search',
 				projects: projects
 			})
 		);

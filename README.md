@@ -5,29 +5,32 @@
 What is done and who did it: (If I missed something you did just add it in, mostly been keeping track of myself)  
 Database:  
 Creation and connection in code: Aryan  
-put() Method (Both Project and Profile): Aryan  
+put() Method (Both Project and Profile): Mostly Aryan, Small Part Ron 
 get() Method (Both Project and Profile): Mostly Ron, Small Part Aryan  
-del() Method (Both Project and Profile): Not entirely sure, may have been Ron, takes 2 seconds anyways  
+del() Method (Both Project and Profile): Ron 
 Incorporation of Radio Buttons into DB: TJ  
-find() Method: Aryan small part TJ
+find() Method: Mostly Aryan, Small Part TJ  
   
 HTML Connection/Output:  
 Project CRUD Operations work with DB and Output in HTML:  
 Create: Aryan, I think  
 Read: Ron  
 Update: Ron  
-Delete: TJ
+Delete: TJ  
 Profile CRUD Operations Work with DB and Output in HTML:  
 Create: Aryan/Ron?  
 Read:  
 Update: Ron (Need tweaks with HTML though)  
-Delete: TJ
+Delete: TJ  
+  
+Other:  
+Project Searching Functionality: Ron  
+Minor Index.html layout changes: Ron    
   
 Things that need to be done:  
 * Finish above HTML connections with DB
 * As of now we need projectName or profileID to make changes, and it needs to be on the same page. Change this? Form action/method?
 * Some HTML might be weird with our inputs (Contact section in profile, Project section in profile, etc.)
-* Change HTML on index.html. Center it around Aryan's find() feature, and maybe make searching the main thing? Idk if we're going to get around to implementing filter buttons
 * Create document layout form for DB (see google doc for milestone)
 * Milestone doc
 * Incorporate radio button skills fully. Add to profile section, since its on the profile page. If we have time, format them as buttons to look nice, like we do in the HTML

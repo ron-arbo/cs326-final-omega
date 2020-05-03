@@ -319,6 +319,21 @@ function profileDelete() {
 	})();
 }
 
+//Clears the results div and adds a "Results" header
+function resultsHelper(){
+	let resultsDiv = document.getElementById("results")
+	let child = resultsDiv.lastElementChild;  
+	while (child) { 
+		resultsDiv.removeChild(child); 
+		child = resultsDiv.lastElementChild; 
+	} 
+	let resultHeader = document.createElement('h5');
+	resultHeader.classList.add('card-header');
+	resultHeader.classList.add('mt-4');
+	resultHeader.innerHTML = "Results:";
+	resultsDiv.appendChild(resultHeader);
+}
+
 // get all projects from the database
 function findAllProjects() {
 	console.log('finding all projects');
@@ -337,17 +352,40 @@ function findAllProjects() {
 		let projects = j['projects'];
 		console.log(projects);
 
-		let resultsDiv = document.getElementById("results")
-		let child = resultsDiv.lastElementChild;  
-        while (child) { 
-            resultsDiv.removeChild(child); 
-            child = resultsDiv.lastElementChild; 
-		} 
-		let resultHeader = document.createElement('h5');
-		resultHeader.classList.add('card-header');
-		resultHeader.classList.add('mt-4');
-		resultHeader.innerHTML = "Results:";
-		resultsDiv.appendChild(resultHeader);
+		resultsHelper();
+
+		for (let i = 0; i < projects.length; i++) {
+			let projectName = projects[i]['projectName'];
+			let projectDescription = projects[i]['projectDescription'];
+			let projectButtons = projects[i]['projectButtons'];
+			addProject(projectName, projectDescription, projectButtons);
+		}
+	})();
+}
+
+//Returns specific projects with projectName matching the one given in the serach bar
+function projectSearch() {
+	console.log('finding all projects');
+	(async () => {
+	
+		let projectName = document.getElementById('searchBar').value;
+
+		const data = {
+			projectName: projectName
+		};
+		console.log("ProjectName in client: "+ projectName);
+		const newURL = url + '/users/' + 'omega' + '/projectSearch';
+		const resp = await postData(newURL, data);
+
+		console.log('getting response');
+		const j = await resp.json();
+		console.log('printing response:-- ');
+		console.log(resp);
+
+		let projects = j['projects'];
+		console.log(projects);
+
+		resultsHelper();
 
 		for (let i = 0; i < projects.length; i++) {
 			let projectName = projects[i]['projectName'];

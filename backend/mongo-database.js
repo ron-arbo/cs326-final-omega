@@ -217,6 +217,7 @@ var Database = /** @class */ (function () {
             });
         });
     };
+    //OTHER Functions
     Database.prototype.find = function () {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, projects, result;
@@ -227,6 +228,39 @@ var Database = /** @class */ (function () {
                         collection = db.collection(this.collectionName);
                         projects = [];
                         return [4 /*yield*/, collection.find({ profileID: null }).toArray().then(function (items) {
+                                console.log("Successfully found " + items.length + " documents.");
+                                // console.log(items);
+                                projects.push(items);
+                                return items;
+                            })];
+                    case 1:
+                        result = _a.sent();
+                        // console.log()
+                        // console.log(projects[0]);
+                        // console.log("RESULT...." + );
+                        if (result) {
+                            console.log('result is not null');
+                            return [2 /*return*/, projects[0]];
+                        }
+                        else {
+                            return [2 /*return*/, null];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Database.prototype.projectSearch = function (projectName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, projects, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        projects = [];
+                        console.log("Searching for projects with name: " + projectName);
+                        return [4 /*yield*/, collection.find({ projectName: projectName }).toArray().then(function (items) {
                                 console.log("Successfully found " + items.length + " documents.");
                                 // console.log(items);
                                 projects.push(items);

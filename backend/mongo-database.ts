@@ -151,6 +151,8 @@ export class Database {
 		let result = await collection.deleteOne({ profileID: parseInt(key) });
 	}
 
+
+	//OTHER Functions
 	public async find(): Promise<string> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
@@ -158,6 +160,33 @@ export class Database {
 		// returns all projects
 		let projects: Array<string> = [];
 		let result = await collection.find({ profileID: null }).toArray().then((items) => {
+			console.log(`Successfully found ${items.length} documents.`);
+			// console.log(items);
+			projects.push(items);
+			return items;
+		});
+
+		// console.log()
+		// console.log(projects[0]);
+
+		// console.log("RESULT...." + );
+
+		if (result) {
+			console.log('result is not null');
+			return projects[0];
+		} else {
+			return null;
+		}
+	}
+
+	public async projectSearch(projectName: string): Promise<string> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collectionName);
+
+		// returns all projects
+		let projects: Array<string> = [];
+		console.log("Searching for projects with name: " + projectName);
+		let result = await collection.find({ projectName: projectName }).toArray().then((items) => {
 			console.log(`Successfully found ${items.length} documents.`);
 			// console.log(items);
 			projects.push(items);

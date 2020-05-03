@@ -68,20 +68,12 @@ var MyServer = /** @class */ (function () {
         this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         //Profile-related endpoints
         this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-        this.router.post('/users/:userId/readProfile', [
-            this.errorHandler.bind(this),
-            this.readProfileHandler.bind(this)
-        ]);
-        this.router.post('/users/:userId/updateProfile', [
-            this.errorHandler.bind(this),
-            this.updateProfileHandler.bind(this)
-        ]);
-        this.router.post('/users/:userId/deleteProfile', [
-            this.errorHandler.bind(this),
-            this.deleteProfileHandler.bind(this)
-        ]);
+        this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readProfileHandler.bind(this)]);
+        this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
+        this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
         //Other endpoints
         this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
+        this.router.post('/users/:userID/projectSearch', [this.projectSearchHandler.bind(this)]);
         // Set a fall-through handler if nothing matches.
         this.router.post('*', function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -215,11 +207,24 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
+    //OTHER Handlers
     MyServer.prototype.findAllProjectsHandler = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.findAllProjects(response)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyServer.prototype.projectSearchHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.projectSearch(request.body.projectName, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -414,6 +419,27 @@ var MyServer = /** @class */ (function () {
                         console.log(projects);
                         response.write(JSON.stringify({
                             result: 'find',
+                            projects: projects
+                        }));
+                        response.end();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyServer.prototype.projectSearch = function (projectName, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var projects;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.theDatabase.projectSearch(projectName)];
+                    case 1:
+                        projects = _a.sent();
+                        console.log('routing function');
+                        console.log('----Projects----');
+                        console.log(projects);
+                        response.write(JSON.stringify({
+                            result: 'search',
                             projects: projects
                         }));
                         response.end();
