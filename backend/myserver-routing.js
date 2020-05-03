@@ -207,9 +207,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('ID inside delteProf: ' + request.body.id);
-                        return [4 /*yield*/, this.deleteProfile(request.body.id, response)];
+                    case 0: return [4 /*yield*/, this.deleteProfile(request.body.id, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -392,7 +390,6 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         //Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
                         _a.sent();
-                        console.log('Reached delete profile in MYSERVER');
                         response.write(JSON.stringify({
                             result: 'deleted',
                             profileID: profileID

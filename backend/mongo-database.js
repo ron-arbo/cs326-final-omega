@@ -169,7 +169,7 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.findOne({ profileID: key })];
+                        return [4 /*yield*/, collection.findOne({ profileID: parseInt(key) })];
                     case 1:
                         result = _a.sent();
                         //We want to return the whole JSON, not sure if that's what result.value is
@@ -208,12 +208,10 @@ var Database = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         db = this.client.db(this.dbName);
-                        console.log('This is the key: ' + key);
                         collection = db.collection(this.collectionName);
                         return [4 /*yield*/, collection.deleteOne({ profileID: parseInt(key) })];
                     case 1:
                         result = _a.sent();
-                        console.log(result);
                         return [2 /*return*/];
                 }
             });

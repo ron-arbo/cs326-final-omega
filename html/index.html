@@ -95,7 +95,8 @@
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <!-- <label for="searchBar" class="text-white mr-2">Project Search:</label> -->
+                    <input id="searchBar" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     <a href="/pages/profile.html">
                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
@@ -114,22 +115,31 @@
 
             <h1 class="mt-5">Welcome to CodeTogether!</h1>
 
-            <button type="button" class="btn btn-success ml-2 mb-3" style="font-size: 14px;" onclick="findAllProjects()">Show all projects</button>
+            <!-- <button type="button" class="btn btn-success ml-2 mb-3" style="font-size: 14px;" onclick="findAllProjects()">Show all projects</button> -->
 
             <div class="card">
                 <!-- <h5 class="card-header">Featured</h5> -->
                 <div class="card-body">
                     <div class="row">
-                        <h5 class="card-title ml-3 mt-1">Have an idea which you think will be the next big thing? Don't
-                            waste any time and find the right team here</h5>
                         <a href="/pages/create_project.html" class="btn btn-outline-success ml-3">Create Project</a>
+                        <h5 class="card-title ml-3 mt-1">Do you have an idea which you think will be the next big thing? Don't
+                            waste time, find the right team here</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <!-- <h5 class="card-header">Featured</h5> -->
+                <div class="card-body">
+                    <div class="row">
+                        <button onclick="findAllProjects()" class="btn btn-outline-success ml-3">Browse Projects</button>
+                        <h5 class="card-title ml-3 mt-1">Just looking for some inspiration? Click here to see a wide variety of projects currently in progress</h5>
                     </div>
                 </div>
             </div>
             
 
-            <div class="card mt-3">
-                <!-- <h5 class="card-header">Featured</h5> -->
+            <!-- <div class="card mt-3">
                 <div class="card-body">
                     <h5 class="card-title mt-1">Filter projects by skills  </h5>
                     
@@ -148,10 +158,12 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
+
+            <div id=results>
 
             <div class="card mt-4">
-                <!-- <h5 class="card-header">Featured</h5> -->
+                <h5 class="card-header">Featured Project:</h5>
                 <div class="card-body">
                     <a class="card-title" style="color: green;font-size: 24px;" href="./pages/project_description.html">Covid Pandemic</a>
                     <p class="card-text">'Face pandemic' is a non-profit and community-driven effort to utilized
@@ -161,12 +173,7 @@
                         to keep everyone in communities safe globally. We have developed an application that anonymously
                         acquires health and location information form participants and performs real-time analytics to
                         predict the spread of the virus, alert everyone about the hot zones and identify preventive
-                        measures. Predictive analytics capability can help health professionals and emergency response
-                        teams to prepare in advance. THIS IS NOT A CONTACT TRACING APP. Our focus is to create a
-                        complete system that can help to identify infectious diseases in the early stages, start
-                        preventive measures and operation planning for the doctors/hospitals. Scale and reach to the
-                        maximum number of population is the key and it should work online - offline. We can't ever again
-                        in this situation yet and need to remember "Prevention is better than cure".</p>
+                        measures.</p>
                     <div class="row mb-2 ml-0 ">
                         <button type="button" class="btn btn-success">HTML</button>
                         <button type="button" class="btn btn-success ml-2">Javascript</button>
@@ -179,7 +186,7 @@
 
 
             <div class="card mt-4">
-                <!-- <h5 class="card-header">Featured</h5> -->
+                <h5 class="card-header">Featured Project:</h5>
                 <div class="card-body">
                     <a class="card-title" style="color: green;font-size: 24px;" href="./pages/project_description.html">UMass Carpool</a>
                     <p class="card-text">'Face pandemic' is a non-profit and community-driven effort to utilized
@@ -203,8 +210,10 @@
 
 
             <!-- sample button for trying dynamic addition of projects -->
-            <button type="button" class="btn btn-success m-4" style="font-size: 14px;" onclick="findAllProjects()">Add project - Sample</button>
+            <!-- <button type="button" class="btn btn-success m-4" style="font-size: 14px;" onclick="findAllProjects()">Add project - Sample</button> -->
 
+
+            </div>
 
         </div>
     </main>

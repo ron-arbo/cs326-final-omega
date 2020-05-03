@@ -155,9 +155,6 @@ export class Database {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
 
-		//  findOne works but not find
-		// let r = await db.collection(this.collectionName).findOne({projectName: 'Sample project'});
-		// console.log(r);
 		// returns all projects
 		let projects: Array<string> = [];
 		let result = await collection.find({ profileID: null }).toArray().then((items) => {

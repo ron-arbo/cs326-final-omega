@@ -336,6 +336,19 @@ function findAllProjects() {
 
 		let projects = j['projects'];
 		console.log(projects);
+
+		let resultsDiv = document.getElementById("results")
+		let child = resultsDiv.lastElementChild;  
+        while (child) { 
+            resultsDiv.removeChild(child); 
+            child = resultsDiv.lastElementChild; 
+		} 
+		let resultHeader = document.createElement('h5');
+		resultHeader.classList.add('card-header');
+		resultHeader.classList.add('mt-4');
+		resultHeader.innerHTML = "Results:";
+		resultsDiv.appendChild(resultHeader);
+
 		for (let i = 0; i < projects.length; i++) {
 			let projectName = projects[i]['projectName'];
 			let projectDescription = projects[i]['projectDescription'];
@@ -346,7 +359,7 @@ function findAllProjects() {
 }
 
 function addProject(projectName, projectDescription, projectButtons) {
-	let mainDiv = document.getElementById('container');
+	let mainDiv = document.getElementById('results');
 
 	// card div
 	let cardDiv = document.createElement('div');
