@@ -4,10 +4,11 @@
 
 What is done and who did it: (If I missed something you did just add it in, mostly been keeping track of myself)  
 Database:  
+Note that we have two methods for each operation. One for projects, and one for profiles. Their implementation is very similar.  
 Creation and connection in code: Aryan  
-put() Method (Both Project and Profile): Mostly Aryan, Small Part Ron 
-get() Method (Both Project and Profile): Mostly Ron, Small Part Aryan  
-del() Method (Both Project and Profile): Ron 
+put() Method: Mostly Aryan, Small Part Ron 
+get() Method: Mostly Ron, Small Part Aryan  
+del() Method: Ron  
 Incorporation of Radio Buttons into DB: TJ  
 find() Method: Mostly Aryan, Small Part TJ  
   
