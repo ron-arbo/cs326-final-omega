@@ -1,6 +1,6 @@
 const url = 'http://localhost:8080/codetogether'; //Local host
 // const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
-
+const projName = "";
 window.onload = function () {
 	var url = document.location.href,
 		params = url.split('?')[1].split('&'),
@@ -12,19 +12,20 @@ window.onload = function () {
 	}
 	this.console.log(data.name);
 	this.projectRead(data.name);
+	this.projName = data.name;
 	// haven't thought how would index.html work with the same function
 }
 async function postData(url, data) {
 	const resp = await fetch(url, {
-		method      : 'POST',
-		mode        : 'cors',
-		cache       : 'no-cache',
-		credentials : 'same-origin',
-		headers     : {
-			'Content-Type' : 'application/json'
+		method: 'POST',
+		mode: 'cors',
+		cache: 'no-cache',
+		credentials: 'same-origin',
+		headers: {
+			'Content-Type': 'application/json'
 		},
-		redirect    : 'follow',
-		body        : JSON.stringify(data)
+		redirect: 'follow',
+		body: JSON.stringify(data)
 	});
 	return resp;
 }
@@ -38,19 +39,19 @@ function projectCreate() {
 		let projectProgress = document.getElementById('projectProgress').value;
 		let projectLinks = document.getElementById('projectLinks').value;
 		let projectNumWorkers = document.getElementById('projectNumWorkers').value;
-		let projectButtons = $.map($('input:checkbox:checked'), function(e, i) {
+		let projectButtons = $.map($('input:checkbox:checked'), function (e, i) {
 			return e.value;
 		});
 
 		//Then create JSON to return
 		const projectData = {
-			projectName        : projectName,
-			projectDescription : projectDescription,
-			projectWorkers     : projectWorkers,
-			projectProgress    : projectProgress,
-			projectLinks       : projectLinks,
-			projectButtons     : projectButtons,
-			projectNumWorkers  : projectNumWorkers
+			projectName: projectName,
+			projectDescription: projectDescription,
+			projectWorkers: projectWorkers,
+			projectProgress: projectProgress,
+			projectLinks: projectLinks,
+			projectButtons: projectButtons,
+			projectNumWorkers: projectNumWorkers
 		};
 
 		//For now, userName will be omega
@@ -78,11 +79,11 @@ function profileCreate() {
 		let password = document.getElementById('inputPassword').value;
 
 		const profileData = {
-			profileID : profileID,
-			email     : email,
-			password  : password,
-			firstName : firstName,
-			lastName  : lastName
+			profileID: profileID,
+			email: email,
+			password: password,
+			firstName: firstName,
+			lastName: lastName
 		};
 
 		//For now, userName will be omega
@@ -107,7 +108,7 @@ function projectRead(name) {
 		// let nameFromDoc = document.getElementById('nameFromDoc').value;
 		let pName = await name;
 		const projectData = {
-			projectName : pName
+			projectName: pName
 		};
 
 		let userName = 'omega';
@@ -164,7 +165,7 @@ function profileRead() {
 		let searchID = document.getElementById('searchID');
 
 		let profileData = {
-			profileID : searchID
+			profileID: searchID
 		};
 
 		let userName = 'omega';
@@ -213,14 +214,14 @@ function projectUpdate() {
 		// 	return e.value;
 		// });
 		const projectData = {
-			projectName        : projectName,
-			projectDescription : projectDescription,
-			projectWorkers     : projectWorkers,
-			projectProgress    : projectProgress,
-			projectLinks       : projectLinks,
+			projectName: projectName,
+			projectDescription: projectDescription,
+			projectWorkers: projectWorkers,
+			projectProgress: projectProgress,
+			projectLinks: projectLinks,
 			//Buttons
 			//projectButtons     : projectButtons,
-			projectNumWorkers  : projectNumWorkers
+			projectNumWorkers: projectNumWorkers
 		};
 
 		let userName = 'omega';
@@ -254,15 +255,15 @@ function profileUpdate() {
 		//BUTTONS, IDK
 
 		const profileData = {
-			profileID       : profileID,
-			profileEmail    : email,
-			profilePassword : password,
-			firstName       : firstName,
-			lastName        : lastName,
-			profileBio      : bio,
-			profileAbout    : about,
-			profileProjects : projects,
-			profileLinks    : links
+			profileID: profileID,
+			profileEmail: email,
+			profilePassword: password,
+			firstName: firstName,
+			lastName: lastName,
+			profileBio: bio,
+			profileAbout: about,
+			profileProjects: projects,
+			profileLinks: links
 			//BUTTONS
 		};
 
@@ -286,9 +287,11 @@ function profileUpdate() {
 //DELETE Functions
 function projectDelete() {
 	(async () => {
-		let projectName = document.getElementById('projectName').innerHTML;
+		// let projectName = this.projecName
+		console.log(this.projName);
 
-		let deleteProject = document.getElementById('nameFromDoc2').value;
+		let deleteProject = this.projName;
+		console.log(this.projName);
 		//Then, delete in database using projectName
 		let userName = 'omega';
 
@@ -333,13 +336,13 @@ function profileDelete() {
 }
 
 //Clears the results div and adds a "Results" header
-function resultsHelper(){
+function resultsHelper() {
 	let resultsDiv = document.getElementById("results")
-	let child = resultsDiv.lastElementChild;  
-	while (child) { 
-		resultsDiv.removeChild(child); 
-		child = resultsDiv.lastElementChild; 
-	} 
+	let child = resultsDiv.lastElementChild;
+	while (child) {
+		resultsDiv.removeChild(child);
+		child = resultsDiv.lastElementChild;
+	}
 	let resultHeader = document.createElement('h5');
 	resultHeader.classList.add('card-header');
 	resultHeader.classList.add('mt-4');
@@ -380,13 +383,13 @@ function findAllProjects() {
 function projectSearch() {
 	console.log('finding all projects');
 	(async () => {
-	
+
 		let projectName = document.getElementById('searchBar').value;
 
 		const data = {
 			projectName: projectName
 		};
-		console.log("ProjectName in client: "+ projectName);
+		console.log("ProjectName in client: " + projectName);
 		const newURL = url + '/users/' + 'omega' + '/projectSearch';
 		const resp = await postData(newURL, data);
 
@@ -413,13 +416,13 @@ function projectSearch() {
 // once we load all the projects in index.html
 // onclick function changes the global variable - projectName
 // then once we go to the project_description page - we use the project name and load that project
-function projectClick(name, page_name){
+function projectClick(name, page_name) {
 
-	if(page_name === 'index'){
+	if (page_name === 'index') {
 		// we get the project name here when they click on the function
 		projectName = name;
 		window.location.replace("./pages/page_description.html");
-	}else if(page_name === 'description'){
+	} else if (page_name === 'description') {
 		let n = projectName;
 		console.log(n);
 	}
