@@ -7,6 +7,22 @@
 </style>
 
 <head>
+
+    <!-- <script>
+        window.onload = function () {
+            var url = document.location.href,
+                params = url.split('?')[1].split('&'),
+                data = {},
+                tmp;
+            for (var i = 0, l = params.length; i < l; i++) {
+                tmp = params[i].split('=');
+                data[tmp[0]] = tmp[1];
+            }
+            console.log(data.name);
+            
+            // document.getElementById('here').innerHTML = data.name;
+        }
+    </script> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -24,14 +40,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
     <script src='../client.js'></script>
 
     <!-- Favicons -->
@@ -107,30 +123,41 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
         <div class="container">
-            <label for="nameFromDoc" class='mt-5'>Project Search (enter a Project Name):</label>
+            <!-- <label for="nameFromDoc" class='mt-5'>Project Search (enter a Project Name):</label>
             <input type='text' class='mt-5' id="nameFromDoc">
-            <button type="button" onclick="projectRead()"class='mt-5'>Search!</button>
-            <br />
+            <button type="button" onclick="projectRead()" class='mt-5'>Search!</button>
+            <br /> -->
             <label for="nameFromDoc" class='mt-5'>Project Delete (enter a Project Name):</label>
             <input type='text' class='mt-5' id="nameFromDoc2">
-            <button type="button" onclick="projectDelete()"class='mt-5'>Delete!</button>
-            
+            <button type="button" onclick="projectDelete()" class='mt-5'>Delete!</button>
+
             <h1 id='projectName' class="mt-2">Project Name</h1>
-            <form style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
+            <form
+                style="background-color: white;padding: 20px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-radius: 10px;">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <p id='projectDescription'>#Covid19 has already resulted in several job losses. We are seeking to host set of 3 career fairs and seeking volunteer support to mobilize recruiters and job seekers who are most effected by #covid19 outbreak. From store workers, to small business workers, we will provide a job fair platform and also provide support system. These global job fairs would bring a virtual job fair to skills categories most impacted by Covid19. The job fair is planned on 1st Friday of May, June, and July.
+                        <p id='projectDescription'>#Covid19 has already resulted in several job losses. We are seeking
+                            to host set of 3 career fairs and seeking volunteer support to mobilize recruiters and job
+                            seekers who are most effected by #covid19 outbreak. From store workers, to small business
+                            workers, we will provide a job fair platform and also provide support system. These global
+                            job fairs would bring a virtual job fair to skills categories most impacted by Covid19. The
+                            job fair is planned on 1st Friday of May, June, and July.
 
-                            We are seeking a team of volunteers to reach-out to recruiters and employment office communities and spread the word, build technology and provide ecosystem to help people find jobs.
-                            
-                            We will all be working towards creating world's largest career drive to support and help workers most impacted by #covid19 outbreak.
-                            
+                            We are seeking a team of volunteers to reach-out to recruiters and employment office
+                            communities and spread the word, build technology and provide ecosystem to help people find
+                            jobs.
+
+                            We will all be working towards creating world's largest career drive to support and help
+                            workers most impacted by #covid19 outbreak.
+
                             Update:
                             We've launched #stage1 beta site to get the signups rolling. Check: https://jobsoffice.org
-                            Launched 1st and largest career event to support covid impacted workers: Check: https://covidjobfair.eventbrite.com
-                            
-                            With 10m unemployment claims just in US, we need a healthy and sustained ecosystem to provide help to most vulnerable in these new times.</p>
+                            Launched 1st and largest career event to support covid impacted workers: Check:
+                            https://covidjobfair.eventbrite.com
+
+                            With 10m unemployment claims just in US, we need a healthy and sustained ecosystem to
+                            provide help to most vulnerable in these new times.</p>
                     </div>
                 </div>
 
@@ -138,7 +165,9 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Who is already working on this?</label>
                     <div class="col-sm-10">
-                        <p id='projectWorkers'>We have team of 20 already working on the project. But seeking to put together a bigger team to quickly put together high impact solution to address individuals and families suffering through this tough times.</p>
+                        <p id='projectWorkers'>We have team of 20 already working on the project. But seeking to put
+                            together a bigger team to quickly put together high impact solution to address individuals
+                            and families suffering through this tough times.</p>
                     </div>
                 </div>
                 <hr>
@@ -146,7 +175,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">How far along are you?</label>
                     <div class="col-sm-10">
-                        <p id='projectProgress'>We have identified the set of initial tools(duck-taped solution) to rollout our first job fair as soon as possible.</p>
+                        <p id='projectProgress'>We have identified the set of initial tools(duck-taped solution) to
+                            rollout our first job fair as soon as possible.</p>
                     </div>
                 </div>
                 <hr>
@@ -154,7 +184,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Helpful Links</label>
                     <div class="col-sm-10">
-                        <p id="projectLinks">The github for the project is: github.com/myproject. Contact me at myEmail@gmail.com</p>
+                        <p id="projectLinks">The github for the project is: github.com/myproject. Contact me at
+                            myEmail@gmail.com</p>
                     </div>
                 </div>
                 <hr>
@@ -179,9 +210,11 @@
                     </div>
                 </div>
 
-                <a href="update_project.html" style="text-decoration: none;"><button type="button" class="btn btn-success btn-lg btn-block">Edit</button></a>
+                <a href="update_project.html" style="text-decoration: none;"><button type="button"
+                        class="btn btn-success btn-lg btn-block">Edit</button></a>
                 <br>
-                <button onclick='projectDelete()' type="button" class="btn btn-danger btn-lg btn-block">Delete Project (Should only be available to creator)</button>
+                <button onclick='projectDelete()' type="button" class="btn btn-danger btn-lg btn-block">Delete Project
+                    (Should only be available to creator)</button>
                 <br>
                 <div id='deleteOutput' class="alert alert-danger" role="alert" style="visibility: hidden;"></div>
             </form>
@@ -197,12 +230,14 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script>
+        window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')
+    </script>
     <script src="/docs/4.4/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
-        crossorigin="anonymous"></script>
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous">
+    </script>
 
 </body>
 

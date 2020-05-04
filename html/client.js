@@ -1,6 +1,19 @@
 const url = 'http://localhost:8080/codetogether'; //Local host
 // const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 
+window.onload = function () {
+	var url = document.location.href,
+		params = url.split('?')[1].split('&'),
+		data = {},
+		tmp;
+	for (var i = 0, l = params.length; i < l; i++) {
+		tmp = params[i].split('=');
+		data[tmp[0]] = tmp[1];
+	}
+	this.console.log(data.name);
+	this.projectRead(data.name);
+	// haven't thought how would index.html work with the same function
+}
 async function postData(url, data) {
 	const resp = await fetch(url, {
 		method      : 'POST',
@@ -88,13 +101,13 @@ function profileCreate() {
 }
 
 //READ Functions
-function projectRead() {
+function projectRead(name) {
 	(async () => {
 		//We just need projectName, then we'll look up other attributes in DB
-		let nameFromDoc = document.getElementById('nameFromDoc').value;
-
+		// let nameFromDoc = document.getElementById('nameFromDoc').value;
+		let pName = await name;
 		const projectData = {
-			projectName : nameFromDoc
+			projectName : pName
 		};
 
 		let userName = 'omega';
@@ -396,6 +409,22 @@ function projectSearch() {
 	})();
 }
 
+// trying something
+// once we load all the projects in index.html
+// onclick function changes the global variable - projectName
+// then once we go to the project_description page - we use the project name and load that project
+function projectClick(name, page_name){
+
+	if(page_name === 'index'){
+		// we get the project name here when they click on the function
+		projectName = name;
+		window.location.replace("./pages/page_description.html");
+	}else if(page_name === 'description'){
+		let n = projectName;
+		console.log(n);
+	}
+}
+
 function addProject(projectName, projectDescription, projectButtons) {
 	let mainDiv = document.getElementById('results');
 
@@ -411,7 +440,8 @@ function addProject(projectName, projectDescription, projectButtons) {
 	cardBodyDiv.classList.add('card-body');
 
 	let a = document.createElement('a');
-	a.href = './pages/project_description.html';
+	a.href = './pages/project_description.html?name=' + projectName;
+	// a.onClick = projectClick(projectName, 'index')
 	a.textContent = projectName;
 	a.classList.add('card-title');
 	a.style = 'color: green;font-size: 24px;';
