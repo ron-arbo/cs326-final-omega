@@ -4,7 +4,7 @@
 Our database is a collection containing two types of documents: Projects and Profiles. They are described below  
 ```Typescript
     project document {  
-        _id: <ObjectId>  
+        _id: <ObjectId>,            //ObjectId provided by MongoDB  
         projectName: String,        //Name of the project  
         projectButtons: String[],   //Array of all languages used to create the project (Ex: ["Java", "HTML", "CSS"])  
         projectDescription: String, //Description of the project  
@@ -17,7 +17,7 @@ Our database is a collection containing two types of documents: Projects and Pro
 
 ```Typescript
     profile document {  
-        _id: <ObjectId>  
+        _id: <ObjectId>,           //ObjectId provided by MongoDB  
         profileID: String,         //ID used to identify specific profile  
         firstName: String,         //First name of user  
         lastName: String,          //Last name of user  
@@ -33,8 +33,9 @@ Our database is a collection containing two types of documents: Projects and Pro
 # *Rough* Breakdown of Work
 Note that we have two methods for the put(), get(), and del() operations. One for projects, and one for profiles. Their implementation is very similar.  
 Creation of database and connection in code: Aryan  
-put() Method: Mostly Aryan, Small Part Ron 
+put() Method: Mostly Aryan, Small Part Ron  
 get() Method: Mostly Ron, Small Part Aryan  
 del() Method: Ron  
-Incorporation of Radio Buttons into DB: TJ  
 find() Method: Mostly Aryan, Small Part TJ  
+find() Essentially uses get() to retrieve a list of projects in the database to display in our HTML  
+Adding radio button selections from HTML into DB entries: TJ  
