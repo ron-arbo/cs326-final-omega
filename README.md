@@ -20,7 +20,7 @@ Update: Ron
 Delete: TJ  
 Profile CRUD Operations Work with DB and Output in HTML:  
 Create: Aryan/Ron?  
-Read:  
+Read: Ron  
 Update: Ron (Need tweaks with HTML though)  
 Delete: TJ  
   
@@ -31,12 +31,9 @@ Hyperlink projectName in index.html to appropriate project description: Aryan
 Hyperlink lastName in index.html to appropriate profile page: Ron, but largely based off Aryan's work
   
 Things that need to be done:  
-* Finish above HTML connections with DB
-* As of now we need projectName or profileID to make changes, and it needs to be on the same page. Change this? Form action/method?
+* Finish above HTML connections with DB (Try to change the need for input for delete, update)
 * Some HTML might be weird with our inputs (Contact section in profile, Project section in profile, etc.)
-* Create document layout form for DB (see google doc for milestone)
-* Milestone doc
-* Incorporate radio button skills fully. Add to profile section, since its on the profile page. If we have time, format them as buttons to look nice, like we do in the HTML
+* Add radio buttons to profiles? Either this, or we need to delete the skills section in profile
 
 ## How to run
 * Open terminal and go to the project directory

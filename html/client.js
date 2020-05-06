@@ -1,5 +1,5 @@
-const url = 'http://localhost:8080/codetogether'; //Local host
-// const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+//const url = 'http://localhost:8080/codetogether'; //Local host
+const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 const projName = "";
 window.onload = function () {
 	var url = document.location.href,
