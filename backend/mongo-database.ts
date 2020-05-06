@@ -127,11 +127,11 @@ export class Database {
 		let collection = db.collection(this.collectionName);
 
 		//Find info of userProfile
-		let result = await collection.findOne({ profileID: parseInt(key) }); //needs to be passed in as an int, key is a string
+		let result = await collection.findOne({ lastName: key });
 
 		//We want to return the whole JSON, not sure if that's what result.value is
 		if (result) {
-			return result.value;
+			return result;
 		} else {
 			return null;
 		}
@@ -166,11 +166,6 @@ export class Database {
 			return items;
 		});
 
-		// console.log()
-		// console.log(projects[0]);
-
-		// console.log("RESULT...." + );
-
 		if (result) {
 			console.log('result is not null');
 			return projects[0];
@@ -179,29 +174,38 @@ export class Database {
 		}
 	}
 
-	public async projectSearch(projectName: string): Promise<string> {
+	public async projectSearch(key: string): Promise<string> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
 
 		// returns all projects
 		let projects: Array<string> = [];
-		console.log("Searching for projects with name: " + projectName);
-		let result = await collection.find({ projectName: projectName }).toArray().then((items) => {
-			console.log(`Successfully found ${items.length} documents.`);
+		console.log("Searching for projects/profiles with name: " + key);
+		let projectResult = await collection.find({ projectName: key }).toArray().then((projList) => {
+			console.log(`Successfully found ${projList.length} projects.`);
 			// console.log(items);
-			projects.push(items);
-			return items;
+			projects.push(projList);
+			return projList;
 		});
+		console.log('projectResult: ' + projectResult);
+		let profiles: Array<string> = [];
+		let profileResult = await collection.find({ lastName: key }).toArray().then((profList) => {
+			console.log(`Successfully found ${profList.length} profiles.`);
+			// console.log(items);
+			profiles.push(profList);
+			return profList;
+		});
+		console.log("profileResult: " + profileResult);
 
-		// console.log()
-		// console.log(projects[0]);
-
-		// console.log("RESULT...." + );
-
-		if (result) {
-			console.log('result is not null');
+		//Check if 0 projects found, must have been a profile. If 0 profiles found, then invalid search
+		if (projectResult.length !== 0) {
+			console.log('result is a project');
 			return projects[0];
-		} else {
+		} else if(profileResult.length !== 0){
+			console.log("result is a profile");
+			return profiles[0];
+		}
+		else{
 			return null;
 		}
 	}

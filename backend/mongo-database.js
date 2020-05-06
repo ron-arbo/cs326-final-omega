@@ -169,12 +169,12 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.findOne({ profileID: parseInt(key) })];
+                        return [4 /*yield*/, collection.findOne({ lastName: key })];
                     case 1:
                         result = _a.sent();
                         //We want to return the whole JSON, not sure if that's what result.value is
                         if (result) {
-                            return [2 /*return*/, result.value];
+                            return [2 /*return*/, result];
                         }
                         else {
                             return [2 /*return*/, null];
@@ -235,9 +235,6 @@ var Database = /** @class */ (function () {
                             })];
                     case 1:
                         result = _a.sent();
-                        // console.log()
-                        // console.log(projects[0]);
-                        // console.log("RESULT...." + );
                         if (result) {
                             console.log('result is not null');
                             return [2 /*return*/, projects[0]];
@@ -250,30 +247,43 @@ var Database = /** @class */ (function () {
             });
         });
     };
-    Database.prototype.projectSearch = function (projectName) {
+    Database.prototype.projectSearch = function (key) {
         return __awaiter(this, void 0, void 0, function () {
-            var db, collection, projects, result;
+            var db, collection, projects, projectResult, profiles, profileResult;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
                         projects = [];
-                        console.log("Searching for projects with name: " + projectName);
-                        return [4 /*yield*/, collection.find({ projectName: projectName }).toArray().then(function (items) {
-                                console.log("Successfully found " + items.length + " documents.");
+                        console.log("Searching for projects/profiles with name: " + key);
+                        return [4 /*yield*/, collection.find({ projectName: key }).toArray().then(function (projList) {
+                                console.log("Successfully found " + projList.length + " projects.");
                                 // console.log(items);
-                                projects.push(items);
-                                return items;
+                                projects.push(projList);
+                                return projList;
                             })];
                     case 1:
-                        result = _a.sent();
-                        // console.log()
-                        // console.log(projects[0]);
-                        // console.log("RESULT...." + );
-                        if (result) {
-                            console.log('result is not null');
+                        projectResult = _a.sent();
+                        console.log('projectResult: ' + projectResult);
+                        profiles = [];
+                        return [4 /*yield*/, collection.find({ lastName: key }).toArray().then(function (profList) {
+                                console.log("Successfully found " + profList.length + " profiles.");
+                                // console.log(items);
+                                profiles.push(profList);
+                                return profList;
+                            })];
+                    case 2:
+                        profileResult = _a.sent();
+                        console.log("profileResult: " + profileResult);
+                        //Check if 0 projects found, must have been a profile. If 0 profiles found, then invalid search
+                        if (projectResult.length !== 0) {
+                            console.log('result is a project');
                             return [2 /*return*/, projects[0]];
+                        }
+                        else if (profileResult.length !== 0) {
+                            console.log("result is a profile");
+                            return [2 /*return*/, profiles[0]];
                         }
                         else {
                             return [2 /*return*/, null];

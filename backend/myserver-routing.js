@@ -124,7 +124,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProfile(request.body.profileID, request.body.email, request.body.password, request.body.firstName, request.body.lastName, response)];
+                    case 0: return [4 /*yield*/, this.createProfile(request.body.profileID, request.body.firstName, request.body.lastName, request.body.profileAbout, request.body.profileBio, request.body.profileEmail, request.body.profileLinks, request.body.profilePassword, request.body.profileProjects, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -149,7 +149,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.readProfile(request.body.profileID, response)];
+                    case 0: return [4 /*yield*/, this.readProfile(request.body.lastName, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -224,7 +224,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.projectSearch(request.body.projectName, response)];
+                    case 0: return [4 /*yield*/, this.projectSearch(request.body.searchKey, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -258,19 +258,16 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.createProfile = function (profileID, email, password, firstName, lastName, response) {
+    MyServer.prototype.createProfile = function (profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var bio, about, project, links;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        bio = '';
-                        about = '';
-                        project = '';
-                        links = '';
-                        //Put new user in database
-                        return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links)];
+                    case 0: 
+                    //Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
+                    //Put new user in database
+                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects)];
                     case 1:
+                        //Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
                         //Put new user in database
                         _a.sent();
                         //Respond to client
@@ -305,14 +302,15 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.readProfile = function (profileID, response) {
+    MyServer.prototype.readProfile = function (lastName, response) {
         return __awaiter(this, void 0, void 0, function () {
             var profileAttributes;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.getProfile(profileID)];
+                    case 0: return [4 /*yield*/, this.theDatabase.getProfile(lastName)];
                     case 1:
                         profileAttributes = _a.sent();
+                        console.log('profileAttributes within myser-routing: ' + profileAttributes);
                         //Respond to client that profile was read, return the JSON in the response
                         response.write(JSON.stringify({
                             result: 'read',
@@ -427,20 +425,20 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.projectSearch = function (projectName, response) {
+    MyServer.prototype.projectSearch = function (searchKey, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var projects;
+            var results;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.projectSearch(projectName)];
+                    case 0: return [4 /*yield*/, this.theDatabase.projectSearch(searchKey)];
                     case 1:
-                        projects = _a.sent();
+                        results = _a.sent();
                         console.log('routing function');
-                        console.log('----Projects----');
-                        console.log(projects);
+                        console.log('----Results----');
+                        console.log(results);
                         response.write(JSON.stringify({
                             result: 'search',
-                            projects: projects
+                            resultList: results
                         }));
                         response.end();
                         return [2 /*return*/];

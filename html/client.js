@@ -3,16 +3,28 @@ const url = 'http://localhost:8080/codetogether'; //Local host
 const projName = "";
 window.onload = function () {
 	var url = document.location.href,
-		params = url.split('?')[1].split('&'),
+		params = url.split('?')[1].split('&'),  //Will be 'name' in our case (Splits after ?, before &)
 		data = {},
 		tmp;
 	for (var i = 0, l = params.length; i < l; i++) {
-		tmp = params[i].split('=');
+		tmp = params[i].split('='); //Splits around equals, so tmp[0] is the variable name and tmp[1] is the variable value
 		data[tmp[0]] = tmp[1];
 	}
-	this.console.log(data.name);
-	this.projectRead(data.name);
-	this.projName = data.name;
+
+	this.console.log('data[name]: ' + data['name']);
+	this.console.log('data[lastName]: ' + data['lastName']);
+
+	//Checks if we're looking at a project or profile
+	if(data['name']){
+		this.console.log(data.name);
+		this.projectRead(data.name);
+		this.projName = data.name;
+	}
+	else if(data['lastName']){
+		this.console.log("calling profileRead on: " + data.lastName);
+		this.profileRead(data.lastName);
+	}
+	
 	// haven't thought how would index.html work with the same function
 }
 async function postData(url, data) {
@@ -80,10 +92,15 @@ function profileCreate() {
 
 		const profileData = {
 			profileID: profileID,
-			email: email,
-			password: password,
 			firstName: firstName,
-			lastName: lastName
+			lastName: lastName,
+			profileAbout: 'This user has not completed this section',
+			profileBio: 'This user has not completed this section',
+			profileEmail: email,
+			profileLinks: 'This user has not completed this section',
+			profilePassword: password,
+			profileProjects: 'This user has not completed this section'
+			
 		};
 
 		//For now, userName will be omega
@@ -159,13 +176,17 @@ function projectRead(name) {
 	})();
 }
 
-function profileRead() {
+function profileRead(lastName) {
 	(async () => {
 		//Get profileID of profile we want to read
-		let searchID = document.getElementById('searchID');
+		//let searchID = document.getElementById('searchID');
 
+		// let profileData = {
+		// 	profileID: searchID
+		// };
+		let lName = await lastName;
 		let profileData = {
-			profileID: searchID
+			lastName: lName
 		};
 
 		let userName = 'omega';
@@ -177,20 +198,20 @@ function profileRead() {
 		const j = await resp.json();
 
 		//This *should* be a JSON of the profile
-		//Maybe should be j['profileAttributes']?
 		let profile = j.profileAttributes;
+		console.log('profile in profileRead : ' + profile);
 
 		//Assign values needed to display on html
-		let name = profile.name;
-		let bio = profile.bio;
-		let about = profile.about;
-		let projects = profile.projects;
-		let links = profile.links;
+		let firstName = profile.firstName;
+		let lastName2 = profile.lastName;
+		let bio = profile.profileBio;
+		let about = profile.profileAbout;
+		let projects = profile.profileProjects;
+		let links = profile.profileLinks;
 
 		if (j['result'] !== 'error') {
-			console.log('Read works!');
 			//Now, fill in HTML with stuff we read
-			document.getElementById('profileName').innerHTML = '<b>' + name + '</b>';
+			document.getElementById('profileName').innerHTML = '<b>' + firstName + ' ' + lastName2 + '</b>';
 			document.getElementById('bio').innerHTML = bio;
 			document.getElementById('aboutSection').innerHTML = about;
 			document.getElementById('projectSection').innerHTML = projects;
@@ -384,12 +405,12 @@ function projectSearch() {
 	console.log('finding all projects');
 	(async () => {
 
-		let projectName = document.getElementById('searchBar').value;
+		let searchKey = document.getElementById('searchBar').value;
 
 		const data = {
-			projectName: projectName
+			searchKey: searchKey
 		};
-		console.log("ProjectName in client: " + projectName);
+		console.log("Search key in client: " + searchKey);
 		const newURL = url + '/users/' + 'omega' + '/projectSearch';
 		const resp = await postData(newURL, data);
 
@@ -398,17 +419,34 @@ function projectSearch() {
 		console.log('printing response:-- ');
 		console.log(resp);
 
-		let projects = j['projects'];
-		console.log(projects);
+		let resultList = j['resultList'];
+		console.log("resultList: " + resultList);
+		console.log('resultList[0][projectName]: ' + resultList[0]['projectName']);
+		console.log('resultList[0][lastName]: ' + resultList[0]['lastName']);
+
 
 		resultsHelper();
 
-		for (let i = 0; i < projects.length; i++) {
-			let projectName = projects[i]['projectName'];
-			let projectDescription = projects[i]['projectDescription'];
-			let projectButtons = projects[i]['projectButtons'];
-			addProject(projectName, projectDescription, projectButtons);
+		if(resultList[0]['projectName']){
+			console.log("resultList contains projects");
+			for (let i = 0; i < resultList.length; i++) {
+				let projectName = resultList[i]['projectName'];
+				let projectDescription = resultList[i]['projectDescription'];
+				let projectButtons = resultList[i]['projectButtons'];
+				addProject(projectName, projectDescription, projectButtons);
+			}
 		}
+		else if(resultList[0]['lastName']){
+			console.log('resultList contains profiles');
+			for (let i = 0; i < resultList.length; i++) {
+				let firstName = resultList[i]['firstName'];
+				let lastName = resultList[i]['lastName'];
+				let profileBio = resultList[i]['profileBio'];
+				addProfile(firstName, lastName, profileBio);
+			}
+		}
+
+		
 	})();
 }
 
@@ -469,6 +507,57 @@ function addProject(projectName, projectDescription, projectButtons) {
 		button.textContent = skills[i];
 		rowDiv.appendChild(button);
 	}
+
+	cardBodyDiv.appendChild(a);
+	cardBodyDiv.appendChild(text);
+	cardBodyDiv.appendChild(rowDiv);
+
+	cardDiv.appendChild(cardBodyDiv);
+	mainDiv.appendChild(cardDiv);
+}
+
+function addProfile(firstName, lastName, profileBio) {
+	let mainDiv = document.getElementById('results');
+
+	// card div
+	let cardDiv = document.createElement('div');
+
+	cardDiv.classList.add('card');
+	cardDiv.classList.add('mt-4');
+	// cardmt-4
+
+	// card body
+	let cardBodyDiv = document.createElement('div');
+	cardBodyDiv.classList.add('card-body');
+
+	let a = document.createElement('a');
+	a.href = './pages/profile.html?lastName=' + lastName;
+	// a.onClick = projectClick(projectName, 'index')
+	a.textContent = firstName + ' ' + lastName;
+	a.classList.add('card-title');
+	a.style = 'color: green;font-size: 24px;';
+
+	let text = document.createElement('p');
+	text.textContent = profileBio;
+
+	let rowDiv = document.createElement('div');
+	rowDiv.classList.add('row');
+	rowDiv.classList.add('mb-2');
+	rowDiv.classList.add('ml-0');
+
+	//Ignore buttons for now in profile
+	// let skills = projectButtons;
+
+	// for (let i = 0; i < projectButtons.length; i++) {
+	// 	var button = document.createElement('button');
+	// 	button.classList.add('btn');
+	// 	button.classList.add('btn-success');
+	// 	if (i != 0) {
+	// 		button.classList.add('ml-2');
+	// 	}
+	// 	button.textContent = skills[i];
+	// 	rowDiv.appendChild(button);
+	// }
 
 	cardBodyDiv.appendChild(a);
 	cardBodyDiv.appendChild(text);

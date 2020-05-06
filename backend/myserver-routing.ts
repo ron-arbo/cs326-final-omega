@@ -86,10 +86,14 @@ export class MyServer {
 	private async createProfileHandler(request, response): Promise<void> {
 		await this.createProfile(
 			request.body.profileID,
-			request.body.email,
-			request.body.password,
 			request.body.firstName,
 			request.body.lastName,
+			request.body.profileAbout,
+			request.body.profileBio,
+			request.body.profileEmail,
+			request.body.profileLinks,
+			request.body.profilePassword,
+			request.body.profileProjects,
 			response
 		);
 	}
@@ -99,7 +103,7 @@ export class MyServer {
 		await this.readProject(request.body.projectName, response);
 	}
 	private async readProfileHandler(request, response): Promise<void> {
-		await this.readProfile(request.body.profileID, response);
+		await this.readProfile(request.body.lastName, response);
 	}
 
 	//UPDATE Handlers
@@ -145,7 +149,7 @@ export class MyServer {
 	}
 
 	private async projectSearchHandler(request, response): Promise<void> {
-		await this.projectSearch(request.body.projectName, response);
+		await this.projectSearch(request.body.searchKey, response);
 	}
 
 	//Listener
@@ -185,20 +189,20 @@ export class MyServer {
 	}
 	public async createProfile(
 		profileID: number,
-		email: string,
-		password: string,
 		firstName: string,
 		lastName: string,
+		profileAbout: string,
+		profileBio: string,
+		profileEmail: string,
+		profileLinks: string,
+		profilePassword: string,
+		profileProjects: string,
 		response
 	): Promise<void> {
 		//Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
-		let bio: string = '';
-		let about: string = '';
-		let project: string = '';
-		let links: string = '';
 
 		//Put new user in database
-		await this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links);
+		await this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects);
 		//Respond to client
 		response.write(
 			JSON.stringify({
@@ -224,18 +228,10 @@ export class MyServer {
 		);
 		response.end();
 	}
-	public async readProfile(profileID: number, response): Promise<void> {
-		//Get the following attributes (in a JSON) from db, using the profileId parameter:
-		// profileID: number,
-		// email: string,
-		// password: string,
-		// firstName: string,
-		// lastName: string,
-		// bio: string,
-		// about: string,
-		// projects: string,
-		// links: string,
-		let profileAttributes = await this.theDatabase.getProfile(profileID);
+	public async readProfile(lastName: number, response): Promise<void> {
+		let profileAttributes = await this.theDatabase.getProfile(lastName);
+
+		console.log('profileAttributes within myser-routing: ' + profileAttributes);
 
 		//Respond to client that profile was read, return the JSON in the response
 		response.write(
@@ -341,17 +337,17 @@ export class MyServer {
 		response.end();
 	}
 
-	public async projectSearch(projectName: string, response): Promise<void> {
-		let projects = await this.theDatabase.projectSearch(projectName);
+	public async projectSearch(searchKey: string, response): Promise<void> {
+		let results = await this.theDatabase.projectSearch(searchKey);
 
 		console.log('routing function');
-		console.log('----Projects----');
-		console.log(projects);
+		console.log('----Results----');
+		console.log(results);
 
 		response.write(
 			JSON.stringify({
 				result: 'search',
-				projects: projects
+				resultList: results
 			})
 		);
 		response.end();

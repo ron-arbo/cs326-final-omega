@@ -25,8 +25,10 @@ Update: Ron (Need tweaks with HTML though)
 Delete: TJ  
   
 Other:  
-Project Searching Functionality: Ron  
-Minor Index.html layout changes: Ron    
+Searching Functionality: Ron  
+Minor Index.html layout changes: Ron  
+Hyperlink projectName in index.html to appropriate project description: Aryan  
+Hyperlink lastName in index.html to appropriate profile page: Ron, but largely based off Aryan's work
   
 Things that need to be done:  
 * Finish above HTML connections with DB
