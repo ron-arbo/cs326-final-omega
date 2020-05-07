@@ -196,20 +196,20 @@ export class MyServer {
 	}
 	public async createProfile(
 		profileID: number,
+		profileEmail: string,
+		profilePassword: string,
 		firstName: string,
 		lastName: string,
 		profileAbout: string,
 		profileBio: string,
-		profileEmail: string,
 		profileLinks: string,
-		profilePassword: string,
 		profileProjects: string,
 		response
 	): Promise<void> {
 		//Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
 
 		//Put new user in database
-		await this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects);
+		await this.theDatabase.putProfile(profileID, profileEmail, profilePassword, firstName, lastName, profileAbout, profileBio, profileLinks, profileProjects);
 		//Respond to client
 		response.write(
 			JSON.stringify({
