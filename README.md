@@ -1,42 +1,3 @@
-# Code Together
-
-## Todo
-
-What is done and who did it: (If I missed something you did just add it in, mostly been keeping track of myself)  
-Database:  
-Note that we have two methods for each operation. One for projects, and one for profiles. Their implementation is very similar.  
-Creation and connection in code: Aryan  
-put() Method: Mostly Aryan, Small Part Ron 
-get() Method: Mostly Ron, Small Part Aryan  
-del() Method: Ron  
-Incorporation of Radio Buttons into DB: TJ  
-find() Method: Mostly Aryan, Small Part TJ  
-  
-HTML Connection/Output:  
-Project CRUD Operations work with DB and Output in HTML:  
-Create: Aryan, I think  
-Read: Ron  
-Update: Ron  
-Delete: TJ  
-Profile CRUD Operations Work with DB and Output in HTML:  
-Create: Aryan/Ron?  
-Read: Ron  
-Update: Ron (Need tweaks with HTML though)  
-Delete: TJ  
-  
-Other:  
-Searching Functionality: Ron  
-Minor Index.html layout changes: Ron  
-Hyperlink projectName in index.html to appropriate project description: Aryan  
-Hyperlink lastName in index.html to appropriate profile page: Ron, but largely based off Aryan's work  
-Feedback section: Aryan  
-Radio buttons integration into db and HTML: TJ  
-  
-Things that need to be done:  
-* Finish above HTML connections with DB (Try to change the need for input for delete, update)
-* Some HTML might be weird with our inputs (Contact section in profile, Project section in profile, etc.)
-* Add radio buttons to profiles? Either this, or we need to delete the skills section in profile
-
 ## How to run
 * Open terminal and go to the project directory
 * Run ``npm i @types/node`` 
@@ -45,31 +6,17 @@ Things that need to be done:
 * Go to http://localhost:8080/ 
 * website: https://cs-326-final-omega.herokuapp.com/
 
-* Project - 
-    * project_id: int
-    * name: string
-    * description: string
-    * already_working: string
-    * helpful_links:[string]
-    * programming_languages: [string]
-    * developers_working: int (or could be an array of develop ids?)
-    * developers_needed: int
+# Team Omega
+## Codetogether
+## Spring 2020  
 
-* Developer
-    * developer_id: int
-    * name: string
-    * email: string
-    * skills: [string]
-    * resume (maybe parse this using something in the future): pdf
-    * weekly_hours: int
+## Overview:  
+Our application is designed to allow people to come together to create and improve upon independent projects in an efficient way. Our site allows users to create an account to showcase their skills and previous experience to others in order to create an effective project team. Similarly, users can create public projects for people to browse. The projects will have all relevant info like a description, necessary skills, github page, etc. This way, users are able to see which project most interests them or fits well with their skillset. This site is not only for programmers, however. People who think that they have “the next big app idea” can come onto the site and create a project in the hopes that some programmers will see it and hop on board. This is what makes our site unique. The combination of programmers and entrepreneurs into one space to discuss and work on projects will facilitate the creation of more applicable and well thought out projects.   
 
-* Investor
-    * investor_id: int
-    * name: string
-    * email: string
-    * job_description: string
-    * funding: int
-    * weekly_hours: int
+## Team Members: 
+Ron Arbo: https://github.com/ron-arbo  
+Aryan Singh: https://github.com/aryansingh12  
+TJ Goldblatt: https://github.com/tjgoldblatt  
 
 # Screenshots
 ## Welcome screen, Featured projects
@@ -101,3 +48,99 @@ Things that need to be done:
 
 ## Sign Up
 <img width="1438" alt="Screen Shot 2020-05-07 at 7 29 52 PM" src="https://user-images.githubusercontent.com/31454667/81354308-4463ab00-9099-11ea-899d-2f15f4a9a448.png">
+
+## API
+Link to pdf here
+
+## Database Documentation
+Our database is a collection containing two types of documents: Projects and Profiles. They are described below 
+```Typescript
+   project document { 
+       _id: <ObjectId>,            //ObjectId provided by MongoDB 
+       projectName: String,        //Name of the project 
+       projectButtons: String[],   //Array of all languages used to create the project (Ex: ["Java", "HTML", "CSS"]) 
+       projectDescription: String, //Description of the project 
+       projectLinks: String,       //A string of helpful links related to the project (Githubs, guides, url, etc.) 
+       projectNumWorkers: String,  //The number of people you're looking for to help with the project 
+       projectProgress: String,    //The amount of progress made on the current project 
+       projectWorkers: String,     //The current people working on the project
+   }
+``` 
+ 
+```Typescript
+   profile document { 
+       _id: <ObjectId>,           //ObjectId provided by MongoDB 
+       profileID: String,         //ID used to identify specific profile 
+       firstName: String,         //First name of user 
+       lastName: String,          //Last name of user 
+       profileAbout: String,      //The 'About' section for the user's profile page 
+       profileBio: String,        //The user's bio section 
+       profileEmail: String,      //The user's email used to sign and log in  
+       profileLinks: String,      //The user's links for things like github, linkedin, facebook, etc. 
+       profilePassword: String,   //The password used by the user to sign and log in 
+       profileProjects: String,   //The 'projects' section for the user's profile page
+skills: Strings[],   //An array of the skills a user has 
+   }
+```
+
+## Division of Labor
+### Milestone 1
+index.html - TJ & Aryan  
+profile.html - Ron  
+create_project.html - Aryan & TJ  
+project_description.html - Aryan  
+login.html and signup.html - Ron  
+extra.html - Aryan  
+All CSS files related to these html files were, for the most part, worked on by the same people. Plus, some of the styling was done within the HTML with bootstrap.
+### Milestone 2
+client.js - See endpoints  
+myserver-routing.ts - See endpoints 
+Connecting HTML to JS - TJ  
+Connecting to Heroku Server - TJ and Ron  
+MongoDB Progress - Aryan  
+
+Breakdown of endpoints: (Each endpoint includes client function, server response, html output)  
+Project endpoints:  
+create - Aryan    
+read - Ron  
+update - Ron   
+delete - Ron  
+Profile Endpoints:  
+create - TJ  
+read - TJ
+update - Ron  
+delete - TJ  
+Other:  
+findAllProjects - Aryan  
+### Milestone 3  
+Note that we have two methods for the put(), get(), and del() operations. One for projects, and one for profiles. Their implementation is very similar.  
+Creation of database and connection in code: Aryan  
+put() Method: Mostly Aryan, Small Part Ron  
+get() Method: Mostly Ron, Small Part Aryan  
+del() Method: Ron  
+find() Method: Mostly Aryan, Small Part TJ  
+find() Essentially uses get() to retrieve a list of projects in the database to display in our HTML  
+Adding radio button selections from HTML into DB entries: TJ  
+### Post-Milestone 3
+HTML Connection/Output:  
+Project CRUD Operations work with DB and Output in HTML:  
+Create: Aryan
+Read: Ron  
+Update: Ron  
+Delete: TJ  
+Profile CRUD Operations Work with DB and Output in HTML:  
+Create: Aryan 
+Read: Ron  
+Update: Ron 
+Delete: TJ  
+  
+Other:  
+Searching Functionality: Ron  
+Minor Index.html layout changes: Ron  
+Hyperlink projectName in index.html to appropriate project description: Aryan  
+Hyperlink lastName in index.html to appropriate profile page: Ron, but largely based off Aryan's work  
+Feedback section: Aryan  
+Radio buttons integration into db and HTML: TJ  
+
+## Conclusion
+We thoroughly enjoyed the project as a whole, for some of us this was the first time we had done a complete project on our own basically from scratch. Our group didn’t really have any prior knowledge regarding web programming so every step of the way was a learning process. The hardest parts of the project were definitely creating the server and databases, while the easiest parts were HTML and CSS. One thing we wish we had a better understanding of prior to starting the project was the backend portion of the project, we relied a lot on stack overflow to answer questions we had. One decently sized technical hurdle was connecting Heroku to our project which took some time to figure out what we needed to do.
