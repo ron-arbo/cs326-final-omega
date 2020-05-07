@@ -478,14 +478,17 @@ function projectDelete() {
 function profileDelete() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var dProf, delProf, userName, data, newURL, resp, j, deleteOutput;
+        var pName, profileName, lastName, userName, data, newURL, resp, j;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    dProf = document.getElementById('delID');
-                    delProf = dProf.value;
+                    pName = document.getElementById('profileName');
+                    profileName = pName.innerHTML;
+                    console.log("profileName: " + profileName);
+                    lastName = profileName.split(' ')[1].split('<')[0];
+                    console.log('lastName : ' + lastName);
                     userName = 'omega';
-                    data = { id: delProf };
+                    data = { lastName: lastName };
                     newURL = url + '/users/' + userName + '/deleteProfile';
                     console.log('counterDelete: fetching ' + newURL);
                     return [4 /*yield*/, postData(newURL, data)];
@@ -495,12 +498,12 @@ function profileDelete() {
                 case 2:
                     j = _a.sent();
                     if (j['result'] !== 'error') {
-                        deleteOutput = document.getElementById('deleteProf');
-                        deleteOutput.style.visibility = 'visible';
-                        deleteOutput.innerHTML = 'Profile: ' + delProf + ' has been deleted';
+                        // let deleteOutput = document.getElementById('deleteProf') as HTMLOutputElement;
+                        // deleteOutput.style.visibility = 'visible';
+                        // deleteOutput.innerHTML = 'Profile: ' + profileName + ' has been deleted';
                     }
                     else {
-                        document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
+                        //document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
                     }
                     return [2 /*return*/];
             }

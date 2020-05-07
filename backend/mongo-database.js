@@ -236,7 +236,8 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        return [4 /*yield*/, collection.deleteOne({ profileID: parseInt(key) })];
+                        console.log("Deleting profile with last name: " + key);
+                        return [4 /*yield*/, collection.deleteOne({ lastName: key })];
                     case 1:
                         result = _a.sent();
                         return [2 /*return*/];

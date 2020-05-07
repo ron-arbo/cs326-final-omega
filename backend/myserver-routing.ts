@@ -155,7 +155,7 @@ export class MyServer {
 	}
 
 	private async deleteProfileHandler(request, response): Promise<void> {
-		await this.deleteProfile(request.body.id, response);
+		await this.deleteProfile(request.body.lastName, response);
 	}
 
 	//OTHER Handlers
@@ -341,13 +341,13 @@ export class MyServer {
 		);
 		response.end();
 	}
-	public async deleteProfile(profileID: number, response): Promise<void> {
+	public async deleteProfile(lastName: number, response): Promise<void> {
 		//Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
-		await this.theDatabase.delProfile(profileID);
+		await this.theDatabase.delProfile(lastName);
 		response.write(
 			JSON.stringify({
 				result: 'deleted',
-				profileID: profileID
+				lastName: lastName
 			})
 		);
 		response.end();
@@ -376,6 +376,10 @@ export class MyServer {
 		console.log('routing function');
 		console.log('----Results----');
 		console.log(results);
+		//If we find nothing, return empty array
+		if(results === null){
+			results = [{}];
+		}
 
 		response.write(
 			JSON.stringify({

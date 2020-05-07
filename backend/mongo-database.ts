@@ -180,7 +180,8 @@ export class Database {
 	public async delProfile(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		let result = await collection.deleteOne({ profileID: parseInt(key) });
+		console.log("Deleting profile with last name: " + key);
+		let result = await collection.deleteOne({ lastName: key });
 	}
 
 	//OTHER Functions

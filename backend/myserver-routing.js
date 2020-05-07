@@ -223,7 +223,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteProfile(request.body.id, response)];
+                    case 0: return [4 /*yield*/, this.deleteProfile(request.body.lastName, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -407,19 +407,19 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.deleteProfile = function (profileID, response) {
+    MyServer.prototype.deleteProfile = function (lastName, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
-                    return [4 /*yield*/, this.theDatabase.delProfile(profileID)];
+                    return [4 /*yield*/, this.theDatabase.delProfile(lastName)];
                     case 1:
                         //Watch out here, there is a firstName and lastName attribute, something will need to be changed with this call
                         _a.sent();
                         response.write(JSON.stringify({
                             result: 'deleted',
-                            profileID: profileID
+                            lastName: lastName
                         }));
                         response.end();
                         return [2 /*return*/];
@@ -460,6 +460,10 @@ var MyServer = /** @class */ (function () {
                         console.log('routing function');
                         console.log('----Results----');
                         console.log(results);
+                        //If we find nothing, return empty array
+                        if (results === null) {
+                            results = [{}];
+                        }
                         response.write(JSON.stringify({
                             result: 'search',
                             resultList: results
