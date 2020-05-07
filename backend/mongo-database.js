@@ -138,6 +138,32 @@ var Database = /** @class */ (function () {
             });
         });
     };
+    Database.prototype.updateProfile = function (firstName, lastName, bio, about, project, links, skills) {
+        return __awaiter(this, void 0, void 0, function () {
+            var db, collection, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        db = this.client.db(this.dbName);
+                        collection = db.collection(this.collectionName);
+                        return [4 /*yield*/, collection.updateOne({ lastName: lastName }, {
+                                $set: {
+                                    firstName: firstName,
+                                    profileBio: bio,
+                                    profileAbout: about,
+                                    profileProjects: project,
+                                    profileLinks: links,
+                                    skills: skills
+                                }
+                            })];
+                    case 1:
+                        result = _a.sent();
+                        console.log('result of updateProfile DB operation= ' + result);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     //GET Functions
     Database.prototype.getProject = function (key) {
         return __awaiter(this, void 0, void 0, function () {

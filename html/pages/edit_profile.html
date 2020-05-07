@@ -105,12 +105,12 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0 mt-5 mb-5">
         <div class="container">
-            <label for='emailInput' class='mt-4'>Please enter the email you used to sign up: </label>
+            <!-- <label for='emailInput' class='mt-4'>Please enter the email you used to sign up: </label>
             <input type="text" id='emailInput' class='mt-1'>
             <label for='emailInput' class='mt-4'>Please enter the password you used to sign up: </label>
             <input type="text" id='passwordInput' class='mt-1'>
             <label for='emailInput' class='mt-4'>Please enter the profileID to update: </label>
-            <input type="text" id='idInput' class='mt-1'>
+            <input type="text" id='idInput' class='mt-1'> -->
             <label for='delProfile' class='mt-5'>Enter profile ID to delete</label>
             <input type="text" id='delID' class='mt-1'>
             <button type='submit' onclick="profileDelete()">Submit</button>
@@ -126,6 +126,9 @@
                 <div class="form-group">
                     <label for="lastNameInput">Last Name</label>
                     <input type="text" class="form-control" id="lastNameInput" placeholder="Doe">
+                    <small id="descriptionHelpBlock" class="form-text text-muted">
+                        Note: This CANNOT change. Inputting a different last name will not change your profile.
+                    </small>
                 </div>
 
 

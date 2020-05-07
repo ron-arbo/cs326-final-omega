@@ -138,14 +138,11 @@ export class MyServer {
 	}
 	private async updateProfileHandler(request, response): Promise<void> {
 		await this.updateProfile(
-			request.body.profileID,
 			request.body.firstName,
 			request.body.lastName,
 			request.body.profileAbout,
 			request.body.profileBio,
-			request.body.profileEmail,
 			request.body.profileLinks,
-			request.body.profilePassword,
 			request.body.profileProjects,
 			request.body.skills,
 			response
@@ -304,9 +301,6 @@ export class MyServer {
 		response.end();
 	}
 	public async updateProfile(
-		profileID: number,
-		email: string,
-		password: string,
 		firstName: string,
 		lastName: string,
 		bio: string,
@@ -317,10 +311,7 @@ export class MyServer {
 		response
 	): Promise<void> {
 		//Update Profile in Database
-		await this.theDatabase.putProfile(
-			profileID,
-			email,
-			password,
+		await this.theDatabase.updateProfile(
 			firstName,
 			lastName,
 			bio,

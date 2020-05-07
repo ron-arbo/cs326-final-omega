@@ -312,16 +312,16 @@ function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page
 		//NOTE: id, email, password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
-		let pID = document!.getElementById('idInput') as HTMLInputElement;
-		let profileID: number = parseInt(pID!.value);
+		// let pID = document!.getElementById('idInput') as HTMLInputElement;
+		// let profileID: number = parseInt(pID!.value);
 		let fName = document!.getElementById('firstNameInput') as HTMLInputElement;
 		let firstName: string = fName!.value;
 		let lName = document!.getElementById('lastNameInput') as HTMLInputElement;
 		let lastName: string = lName!.value;
-		let em = document!.getElementById('emailInput') as HTMLInputElement;
-		let email: string = em!.value;
-		let pword = document!.getElementById('passwordInput') as HTMLInputElement;
-		let password: string = pword!.value;
+		// let em = document!.getElementById('emailInput') as HTMLInputElement;
+		// let email: string = em!.value;
+		// let pword = document!.getElementById('passwordInput') as HTMLInputElement;
+		// let password: string = pword!.value;
 		let bio = document!.getElementById('bioInput') as HTMLInputElement;
 		let profileBio = bio!.value;
 		let about = document!.getElementById('aboutInput') as HTMLInputElement;
@@ -335,9 +335,9 @@ function profileUpdate() {
 		});
 
 		const profileData = {
-			profileID: profileID,
-			profileEmail: email,
-			profilePassword: password,
+			//profileID: profileID,
+			//profileEmail: email,
+			//profilePassword: password,
 			firstName: firstName,
 			lastName: lastName,
 			profileBio: profileBio,

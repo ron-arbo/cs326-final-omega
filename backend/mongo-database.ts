@@ -109,6 +109,36 @@ export class Database {
 		console.log('result = ' + result);
 	}
 
+	public async updateProfile(
+		firstName: string,
+		lastName: string,
+		bio: string,
+		about: string,
+		project: string,
+		links: string,
+		skills: string[]
+	): Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collectionName);
+
+		// console.log("put: key = " + projectName + ", value = " + value);
+		// insert one profile into the database
+		let result = await collection.updateOne(
+			{ lastName: lastName },
+			{
+				$set: {
+					firstName: firstName,
+					profileBio: bio,
+					profileAbout: about,
+					profileProjects: project,
+					profileLinks: links,
+					skills: skills
+				}
+			}
+		);
+		console.log('result of updateProfile DB operation= ' + result);
+	}
+
 	//GET Functions
 	public async getProject(key: string): Promise<string> {
 		let db = this.client.db(this.dbName); // this.level(this.dbFile);

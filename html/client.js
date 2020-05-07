@@ -381,20 +381,14 @@ function projectUpdate() {
 function profileUpdate() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var pID, profileID, fName, firstName, lName, lastName, em, email, pword, password, bio, profileBio, about, profileAbout, projects, profileProjects, links, profileLinks, skills, profileData, userName, newURL, resp, j, updateOutput;
+        var fName, firstName, lName, lastName, bio, profileBio, about, profileAbout, projects, profileProjects, links, profileLinks, skills, profileData, userName, newURL, resp, j, updateOutput;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    pID = document.getElementById('idInput');
-                    profileID = parseInt(pID.value);
                     fName = document.getElementById('firstNameInput');
                     firstName = fName.value;
                     lName = document.getElementById('lastNameInput');
                     lastName = lName.value;
-                    em = document.getElementById('emailInput');
-                    email = em.value;
-                    pword = document.getElementById('passwordInput');
-                    password = pword.value;
                     bio = document.getElementById('bioInput');
                     profileBio = bio.value;
                     about = document.getElementById('aboutInput');
@@ -407,9 +401,9 @@ function profileUpdate() {
                         return e.value;
                     });
                     profileData = {
-                        profileID: profileID,
-                        profileEmail: email,
-                        profilePassword: password,
+                        //profileID: profileID,
+                        //profileEmail: email,
+                        //profilePassword: password,
                         firstName: firstName,
                         lastName: lastName,
                         profileBio: profileBio,
