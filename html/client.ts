@@ -1,5 +1,5 @@
-const url = 'http://localhost:8080/codetogether'; //Local host
-//const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+// const url = 'http://localhost:8080/codetogether'; //Local host
+const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 const projName = '';
 window.onload = function() {
 	let url2 = document.location.href,
@@ -404,7 +404,7 @@ function profileDelete(): void {
 		// let profileName = document.getElementById('profileName').innerHTML;
 		let pName = document!.getElementById('profileName') as HTMLInputElement;
 		let profileName: string = pName!.innerHTML;
-		console.log("profileName: " + profileName);
+		console.log('profileName: ' + profileName);
 		let lastName: string = profileName.split(' ')[1].split('<')[0];
 		console.log('lastName : ' + lastName);
 		//Then, delete in database using projectName

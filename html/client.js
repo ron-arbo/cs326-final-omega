@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var url = 'http://localhost:8080/codetogether'; //Local host
-//const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+// const url = 'http://localhost:8080/codetogether'; //Local host
+var url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 var projName = '';
 window.onload = function () {
     var url2 = document.location.href, params = url2.split('?')[1].split('&'), //Will be 'name' or 'lastName' in our case (Splits after ?, before &)
@@ -484,7 +484,7 @@ function profileDelete() {
                 case 0:
                     pName = document.getElementById('profileName');
                     profileName = pName.innerHTML;
-                    console.log("profileName: " + profileName);
+                    console.log('profileName: ' + profileName);
                     lastName = profileName.split(' ')[1].split('<')[0];
                     console.log('lastName : ' + lastName);
                     userName = 'omega';
