@@ -341,6 +341,12 @@ function projectDelete() {
 		} else {
 			document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
 		}
+
+		// tried javascript sleep
+		setTimeout(() => {  console.log("World!"); }, 5000);
+		// redirects to the index.html page after deleting
+		document.location.href = "../index.html";
+
 	})();
 }
 
@@ -555,20 +561,6 @@ function addProfile(firstName, lastName, profileBio) {
 	rowDiv.classList.add('row');
 	rowDiv.classList.add('mb-2');
 	rowDiv.classList.add('ml-0');
-
-	//Ignore buttons for now in profile
-	// let skills = projectButtons;
-
-	// for (let i = 0; i < projectButtons.length; i++) {
-	// 	var button = document.createElement('button');
-	// 	button.classList.add('btn');
-	// 	button.classList.add('btn-success');
-	// 	if (i != 0) {
-	// 		button.classList.add('ml-2');
-	// 	}
-	// 	button.textContent = skills[i];
-	// 	rowDiv.appendChild(button);
-	// }
 
 	cardBodyDiv.appendChild(a);
 	cardBodyDiv.appendChild(text);
