@@ -74,16 +74,22 @@ Things that need to be done:
 # Screenshots
 ## Welcome screen, All projects
 <img width="1436" alt="Screen Shot 2020-05-07 at 7 19 13 PM" src="https://user-images.githubusercontent.com/31454667/81354004-84765e00-9098-11ea-9717-bab4211289a5.png">
+
 ## Create project 
 <img width="1437" alt="Screen Shot 2020-05-07 at 7 19 23 PM" src="https://user-images.githubusercontent.com/31454667/81354005-84765e00-9098-11ea-968b-0469ba877a13.png">
+
 ## Login
 <img width="1429" alt="Screen Shot 2020-05-07 at 7 19 31 PM" src="https://user-images.githubusercontent.com/31454667/81354007-850ef480-9098-11ea-820c-a5ce060d5d29.png">
+
 ## Browse projects - from the DB
 <img width="1433" alt="Screen Shot 2020-05-07 at 7 21 43 PM" src="https://user-images.githubusercontent.com/31454667/81354008-850ef480-9098-11ea-99bc-5c9b40b37899.png">
+
 ## Profile
 <img width="1431" alt="Screen Shot 2020-05-07 at 7 21 56 PM" src="https://user-images.githubusercontent.com/31454667/81354009-850ef480-9098-11ea-9357-530f7f445c6d.png">
+
 ## Feedback section
 <img width="1432" alt="Screen Shot 2020-05-07 at 12 25 26 AM" src="https://user-images.githubusercontent.com/31454667/81354018-8b9d6c00-9098-11ea-9698-b8e2678c2095.png">
+
 ## Project Description 
 <img width="1432" alt="Screen Shot 2020-05-07 at 7 22 37 PM" src="https://user-images.githubusercontent.com/31454667/81354016-8b04d580-9098-11ea-8675-fe067f749cf8.png">
 
