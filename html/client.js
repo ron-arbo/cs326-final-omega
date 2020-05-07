@@ -1,11 +1,12 @@
-//const url = 'http://localhost:8080/codetogether'; //Local host
-const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+const url = 'http://localhost:8080/codetogether'; //Local host
+//const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 const projName = "";
 window.onload = function () {
-	var url = document.location.href,
-		params = url.split('?')[1].split('&'),  //Will be 'name' in our case (Splits after ?, before &)
+	let url2 = document.location.href,
+		params = url2.split('?')[1].split('&'),  //Will be 'name' or 'lastName' in our case (Splits after ?, before &)
 		data = {},
 		tmp;
+		this.console.log("Original url: " + url2);
 	for (var i = 0, l = params.length; i < l; i++) {
 		tmp = params[i].split('='); //Splits around equals, so tmp[0] is the variable name and tmp[1] is the variable value
 		data[tmp[0]] = tmp[1];
@@ -13,17 +14,24 @@ window.onload = function () {
 
 	this.console.log('data[name]: ' + data['name']);
 	this.console.log('data[lastName]: ' + data['lastName']);
+	this.console.log('data[email]: ' + data['email']);
 
-	//Checks if we're looking at a project or profile
+	//Read project from html
 	if(data['name']){
 		this.console.log(data.name);
 		this.projectRead(data.name);
 		this.projName = data.name;
 	}
+	//Read profile from html
 	else if(data['lastName']){
 		this.console.log("calling profileRead on: " + data.lastName);
 		this.profileRead(data.lastName);
 	}
+	// //Signing in, redirect to update the rest of their profile
+	// else if(data['email']){
+	// 	this.console.log('redirect to profileUpdate with param: ' + data.email);
+	// 	this.profileUpdate(data.email);
+	// }
 	
 	// haven't thought how would index.html work with the same function
 }
@@ -108,12 +116,15 @@ function profileCreate() {
 		console.log('projectCreate: fetching ' + newURL);
 		const resp = await postData(newURL, profileData);
 		const j = await resp.json();
+		let createProfOutput = document.getElementById('createProfOutput');
+		createProfOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
 			console.log(j['result']);
-			document.getElementById('createProfOutput').innerHTML =
-				'User:' + firstName + ' ' + lastName + "'s profile has been created";
+			let hyperlink = "<a href='edit_profile.html'>Click Here to Finish Your Profile!</a>"
+			console.log("hyperlink: " + hyperlink);
+			createProfOutput.innerHTML ='User:' + firstName + ' ' + lastName + "'s profile has been created. " + hyperlink;
 		} else {
-			document.getElementById('createProfOutput').innerHTML = 'Error Occurred During Profile Creation';
+			createProfOutput.innerHTML = 'Error Occurred During Profile Creation';
 		}
 	})();
 }
@@ -264,7 +275,7 @@ function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page
 		//NOTE: id, email, password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
-		let profileID = document.getElementById('idInput').value;
+		let profileID = parseInt(document.getElementById('idInput').value);
 		let email = document.getElementById('emailInput').value;
 		let password = document.getElementById('passwordInput').value;
 		let firstName = document.getElementById('firstNameInput').value;
@@ -566,3 +577,4 @@ function addProfile(firstName, lastName, profileBio) {
 	cardDiv.appendChild(cardBodyDiv);
 	mainDiv.appendChild(cardDiv);
 }
+
