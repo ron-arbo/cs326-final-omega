@@ -78,9 +78,6 @@ Things that need to be done:
 ## Create project 
 <img width="1437" alt="Screen Shot 2020-05-07 at 7 19 23 PM" src="https://user-images.githubusercontent.com/31454667/81354005-84765e00-9098-11ea-968b-0469ba877a13.png">
 
-## Login
-<img width="1429" alt="Screen Shot 2020-05-07 at 7 19 31 PM" src="https://user-images.githubusercontent.com/31454667/81354007-850ef480-9098-11ea-820c-a5ce060d5d29.png">
-
 ## Browse projects - from the DB
 <img width="1433" alt="Screen Shot 2020-05-07 at 7 21 43 PM" src="https://user-images.githubusercontent.com/31454667/81354008-850ef480-9098-11ea-99bc-5c9b40b37899.png">
 
@@ -92,4 +89,10 @@ Things that need to be done:
 
 ## Project Description 
 <img width="1432" alt="Screen Shot 2020-05-07 at 7 22 37 PM" src="https://user-images.githubusercontent.com/31454667/81354016-8b04d580-9098-11ea-8675-fe067f749cf8.png">
+
+## Login
+<img width="1429" alt="Screen Shot 2020-05-07 at 7 19 31 PM" src="https://user-images.githubusercontent.com/31454667/81354007-850ef480-9098-11ea-820c-a5ce060d5d29.png">
+
+## Sign Up
+<img width="1438" alt="Screen Shot 2020-05-07 at 7 29 52 PM" src="https://user-images.githubusercontent.com/31454667/81354308-4463ab00-9099-11ea-899d-2f15f4a9a448.png">
 
