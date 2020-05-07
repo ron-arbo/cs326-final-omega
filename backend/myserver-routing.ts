@@ -73,6 +73,8 @@ export class MyServer {
 		} else if (request.body.lastName) {
 			value = await this.theDatabase.isFoundProf(request.body.lastName);
 		} else {
+			console.log(request.body.projectName);
+			console.log(request.body.lastName);
 			console.log('Neither a projectName nor a lastName was found in the request');
 		}
 		//Check that value is found, if not respond to client with error, if so, continue to next handler

@@ -113,6 +113,8 @@ var MyServer = /** @class */ (function () {
                         value = _a.sent();
                         return [3 /*break*/, 5];
                     case 4:
+                        console.log(request.body.projectName);
+                        console.log(request.body.lastName);
                         console.log('Neither a projectName nor a lastName was found in the request');
                         _a.label = 5;
                     case 5:

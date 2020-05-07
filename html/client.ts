@@ -318,7 +318,7 @@ function profileUpdate() {
 		let firstName: string = fName!.value;
 		let lName = document!.getElementById('lastNameInput') as HTMLInputElement;
 		let lastName: string = lName!.value;
-		let em = document!.getElementById('inputEmail') as HTMLInputElement;
+		let em = document!.getElementById('emailInput') as HTMLInputElement;
 		let email: string = em!.value;
 		let pword = document!.getElementById('passwordInput') as HTMLInputElement;
 		let password: string = pword!.value;
@@ -330,7 +330,6 @@ function profileUpdate() {
 		let profileProjects = projects!.value;
 		let links = document.getElementById('linkInput') as HTMLInputElement;
 		let profileLinks = links!.value;
-		//BUTTONS, IDK
 		let skills: string[] = $.map($('input:checkbox:checked'), function(e: HTMLInputElement, i) {
 			return e.value;
 		});

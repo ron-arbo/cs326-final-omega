@@ -391,7 +391,7 @@ function profileUpdate() {
                     firstName = fName.value;
                     lName = document.getElementById('lastNameInput');
                     lastName = lName.value;
-                    em = document.getElementById('inputEmail');
+                    em = document.getElementById('emailInput');
                     email = em.value;
                     pword = document.getElementById('passwordInput');
                     password = pword.value;
