@@ -293,8 +293,8 @@ var Database = /** @class */ (function () {
             });
         });
     };
-    //ONLY CURRENTLY WORKING FOR PROJECTS (uses getProject only)
-    Database.prototype.isFound = function (key) {
+    //isFound function
+    Database.prototype.isFoundProj = function (key) {
         return __awaiter(this, void 0, void 0, function () {
             var v;
             return __generator(this, function (_a) {
@@ -302,6 +302,28 @@ var Database = /** @class */ (function () {
                     case 0:
                         console.log('isFound: key = ' + key);
                         return [4 /*yield*/, this.getProject(key)];
+                    case 1:
+                        v = _a.sent();
+                        console.log('is found result = ' + v);
+                        if (v === null) {
+                            return [2 /*return*/, false];
+                        }
+                        else {
+                            return [2 /*return*/, true];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Database.prototype.isFoundProf = function (key) {
+        return __awaiter(this, void 0, void 0, function () {
+            var v;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('isFound: key = ' + key);
+                        return [4 /*yield*/, this.getProfile(key)];
                     case 1:
                         v = _a.sent();
                         console.log('is found result = ' + v);

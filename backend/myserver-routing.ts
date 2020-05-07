@@ -57,10 +57,17 @@ export class MyServer {
 
 	//ERROR Handler
 	private async errorHandler(request, response, next): Promise<void> {
-		//May need to change this, not sure if it's correct
-		let value: boolean = await this.theDatabase.isFound(request.body.projectName);
-		//	console.log("result from database.isFound: " + JSON.stringify(value));
-
+		let value: boolean = false;
+		//Looking for project
+		if(request.body.projectName){
+			value = await this.theDatabase.isFoundProj(request.body.projectName);
+		}
+		else if(request.body.lastName){
+			value = await this.theDatabase.isFoundProf(request.body.lastName);
+		}
+		else{
+			console.log('Neither a projectName nor a lastName was found in the request')
+		}
 		//Check that value is found, if not respond to client with error, if so, continue to next handler
 		if (!value) {
 			response.write(JSON.stringify({ result: 'error' }));

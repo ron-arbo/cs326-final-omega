@@ -90,10 +90,23 @@ var MyServer = /** @class */ (function () {
             var value;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.body.projectName)];
+                    case 0:
+                        value = false;
+                        if (!request.body.projectName) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.theDatabase.isFoundProj(request.body.projectName)];
                     case 1:
                         value = _a.sent();
-                        //	console.log("result from database.isFound: " + JSON.stringify(value));
+                        return [3 /*break*/, 5];
+                    case 2:
+                        if (!request.body.lastName) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.theDatabase.isFoundProf(request.body.lastName)];
+                    case 3:
+                        value = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        console.log('Neither a projectName nor a lastName was found in the request');
+                        _a.label = 5;
+                    case 5:
                         //Check that value is found, if not respond to client with error, if so, continue to next handler
                         if (!value) {
                             response.write(JSON.stringify({ result: 'error' }));

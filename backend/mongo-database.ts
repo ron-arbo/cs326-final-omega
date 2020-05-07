@@ -210,10 +210,20 @@ export class Database {
 		}
 	}
 
-	//ONLY CURRENTLY WORKING FOR PROJECTS (uses getProject only)
-	public async isFound(key: string): Promise<boolean> {
+	//isFound function
+	public async isFoundProj(key: string): Promise<boolean> {
 		console.log('isFound: key = ' + key);
 		let v = await this.getProject(key);
+		console.log('is found result = ' + v);
+		if (v === null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	public async isFoundProf(key: string): Promise<boolean> {
+		console.log('isFound: key = ' + key);
+		let v = await this.getProfile(key);
 		console.log('is found result = ' + v);
 		if (v === null) {
 			return false;
