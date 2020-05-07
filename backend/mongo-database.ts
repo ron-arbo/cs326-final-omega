@@ -74,14 +74,14 @@ export class Database {
 	}
 	public async putProfile(
 		profileID: number,
-		email: string,
-		password: string,
 		firstName: string,
 		lastName: string,
-		bio: string,
 		about: string,
-		project: string,
-		links: string
+		bio: string,
+		email: string,
+		links: string,
+		password: string,
+		project: string
 	): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);

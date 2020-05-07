@@ -121,7 +121,6 @@ function profileCreate(): void {
 			profileLinks: 'This user has not completed this section',
 			profilePassword: password,
 			profileProjects: 'This user has not completed this section'
-			
 		};
 
 		//For now, userName will be omega

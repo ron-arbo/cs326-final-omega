@@ -129,14 +129,14 @@ export class MyServer {
 	private async updateProfileHandler(request, response): Promise<void> {
 		await this.updateProfile(
 			request.body.profileID,
-			request.body.profileEmail,
-			request.body.profilePassword,
 			request.body.firstName,
 			request.body.lastName,
-			request.body.profileBio,
 			request.body.profileAbout,
-			request.body.profileProjects,
+			request.body.profileBio,
+			request.body.profileEmail,
 			request.body.profileLinks,
+			request.body.profilePassword,
+			request.body.profileProjects,
 			response
 		);
 	}
@@ -196,20 +196,20 @@ export class MyServer {
 	}
 	public async createProfile(
 		profileID: number,
-		profileEmail: string,
-		profilePassword: string,
 		firstName: string,
 		lastName: string,
 		profileAbout: string,
 		profileBio: string,
+		profileEmail: string,
 		profileLinks: string,
+		profilePassword: string,
 		profileProjects: string,
 		response
 	): Promise<void> {
 		//Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
 
 		//Put new user in database
-		await this.theDatabase.putProfile(profileID, profileEmail, profilePassword, firstName, lastName, profileAbout, profileBio, profileLinks, profileProjects);
+		await this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects);
 		//Respond to client
 		response.write(
 			JSON.stringify({
@@ -293,7 +293,7 @@ export class MyServer {
 		response
 	): Promise<void> {
 		//Update Profile in Database
-		await this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links);
+		await this.theDatabase.putProfile(profileID, firstName, lastName, about, bio, email, links, password, project);
 		//Respond to client about update
 		response.write(
 			JSON.stringify({
