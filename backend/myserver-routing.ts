@@ -137,14 +137,14 @@ export class MyServer {
 	private async updateProfileHandler(request, response): Promise<void> {
 		await this.updateProfile(
 			request.body.profileID,
-			request.body.profileEmail,
-			request.body.profilePassword,
 			request.body.firstName,
 			request.body.lastName,
-			request.body.profileBio,
 			request.body.profileAbout,
-			request.body.profileProjects,
+			request.body.profileBio,
+			request.body.profileEmail,
 			request.body.profileLinks,
+			request.body.profilePassword,
+			request.body.profileProjects,
 			request.body.skills,
 			response
 		);

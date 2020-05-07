@@ -251,8 +251,6 @@ function projectRead(name) {
                         document.getElementById('projectWorkers').innerHTML = projectWorkers;
                         document.getElementById('projectProgress').innerHTML = projectProgress;
                         document.getElementById('projectLinks').innerHTML = projectLinks;
-                        // let pButtons: string = projectButtons.toString();
-                        // document.getElementById('projectButtons').innerHTML = pButtons;
                         document.getElementById('projectNumWorkers').innerHTML = projectNumWorkers;
                         //readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
                     }

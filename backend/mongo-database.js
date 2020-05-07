@@ -109,7 +109,7 @@ var Database = /** @class */ (function () {
             });
         });
     };
-    Database.prototype.putProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links, skills) {
+    Database.prototype.putProfile = function (profileID, firstName, lastName, about, bio, email, links, password, project, skills) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, result;
             return __generator(this, function (_a) {

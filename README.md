@@ -30,6 +30,7 @@ Minor Index.html layout changes: Ron
 Hyperlink projectName in index.html to appropriate project description: Aryan  
 Hyperlink lastName in index.html to appropriate profile page: Ron, but largely based off Aryan's work  
 Feedback section: Aryan  
+Radio buttons integration into db and HTML: TJ  
   
 Things that need to be done:  
 * Finish above HTML connections with DB (Try to change the need for input for delete, update)
