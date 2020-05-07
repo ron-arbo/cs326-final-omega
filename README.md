@@ -72,21 +72,18 @@ Things that need to be done:
     * weekly_hours: int
 
 # Screenshots
-
-## Welcome screen, all projects
-<img width="1430" alt="Screen Shot 2020-04-08 at 5 49 23 PM" src="https://user-images.githubusercontent.com/31454667/78837203-8f6a9f80-79c1-11ea-95ac-3e9f55ecd21b.png">
-
-## Project Description 
-<img width="1432" alt="Screen Shot 2020-04-08 at 5 49 11 PM" src="https://user-images.githubusercontent.com/31454667/78837199-8da0dc00-79c1-11ea-8eb8-bd7e50c74a71.png">
-
-## Create a new Project page
-<img width="1430" alt="Screen Shot 2020-04-08 at 5 49 42 PM" src="https://user-images.githubusercontent.com/31454667/78837206-90033600-79c1-11ea-9168-b1e71cff05fe.png">
-
-## Profile Section
-<img width="1431" alt="Screen Shot 2020-04-08 at 5 50 18 PM" src="https://user-images.githubusercontent.com/31454667/78837211-909bcc80-79c1-11ea-9940-50e10eac26e4.png">
-
+## Welcome screen, All projects
+<img width="1436" alt="Screen Shot 2020-05-07 at 7 19 13 PM" src="https://user-images.githubusercontent.com/31454667/81354004-84765e00-9098-11ea-9717-bab4211289a5.png">
+## Create project 
+<img width="1437" alt="Screen Shot 2020-05-07 at 7 19 23 PM" src="https://user-images.githubusercontent.com/31454667/81354005-84765e00-9098-11ea-968b-0469ba877a13.png">
 ## Login
-<img width="1414" alt="Screen Shot 2020-04-08 at 5 49 52 PM" src="https://user-images.githubusercontent.com/31454667/78837207-90033600-79c1-11ea-9338-b8428fb3206e.png">
+<img width="1429" alt="Screen Shot 2020-05-07 at 7 19 31 PM" src="https://user-images.githubusercontent.com/31454667/81354007-850ef480-9098-11ea-820c-a5ce060d5d29.png">
+## Browse projects - from the DB
+<img width="1433" alt="Screen Shot 2020-05-07 at 7 21 43 PM" src="https://user-images.githubusercontent.com/31454667/81354008-850ef480-9098-11ea-99bc-5c9b40b37899.png">
+## Profile
+<img width="1431" alt="Screen Shot 2020-05-07 at 7 21 56 PM" src="https://user-images.githubusercontent.com/31454667/81354009-850ef480-9098-11ea-9357-530f7f445c6d.png">
+## Feedback section
+<img width="1432" alt="Screen Shot 2020-05-07 at 12 25 26 AM" src="https://user-images.githubusercontent.com/31454667/81354018-8b9d6c00-9098-11ea-9698-b8e2678c2095.png">
+## Project Description 
+<img width="1432" alt="Screen Shot 2020-05-07 at 7 22 37 PM" src="https://user-images.githubusercontent.com/31454667/81354016-8b04d580-9098-11ea-8675-fe067f749cf8.png">
 
-## Sign Up
-<img width="1429" alt="Screen Shot 2020-04-08 at 5 50 03 PM" src="https://user-images.githubusercontent.com/31454667/78837209-90033600-79c1-11ea-92ca-1c1f54a06e5b.png">
