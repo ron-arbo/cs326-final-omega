@@ -1,15 +1,15 @@
 const url = 'http://localhost:8080/codetogether'; //Local host
 //const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
-const projName = "";
-window.onload = function () {
+const projName = '';
+window.onload = function() {
 	let url2 = document.location.href,
-		params = url2.split('?')[1].split('&'),  //Will be 'name' or 'lastName' in our case (Splits after ?, before &)
+		params = url2.split('?')[1].split('&'), //Will be 'name' or 'lastName' in our case (Splits after ?, before &)
 		data = {
-            name: null,
-            lastName: null
-        },
+			name: null,
+			lastName: null
+		},
 		tmp;
-		this.console.log("Original url: " + url2);
+	this.console.log('Original url: ' + url2);
 	for (let i = 0, l = params.length; i < l; i++) {
 		tmp = params[i].split('='); //Splits around equals, so tmp[0] is the variable name and tmp[1] is the variable value
 		data[tmp[0]] = tmp[1];
@@ -20,14 +20,13 @@ window.onload = function () {
 	//this.console.log('data[email]: ' + data['email']);
 
 	//Read project from html
-	if(data['name']){
+	if (data['name']) {
 		this.console.log(data.name);
 		this.projectRead(data.name);
 		this.projName = data.name;
-	}
-	//Read profile from html
-	else if(data['lastName']){
-		this.console.log("calling profileRead on: " + data.lastName);
+	} else if (data['lastName']) {
+		//Read profile from html
+		this.console.log('calling profileRead on: ' + data.lastName);
 		this.profileRead(data.lastName);
 	}
 	// //Signing in, redirect to update the rest of their profile
@@ -35,9 +34,9 @@ window.onload = function () {
 	// 	this.console.log('redirect to profileUpdate with param: ' + data.email);
 	// 	this.profileUpdate(data.email);
 	// }
-	
+
 	// haven't thought how would index.html work with the same function
-}
+};
 async function postData(url: string, data: any) {
 	const resp = await fetch(url, {
 		method: 'POST',
@@ -56,19 +55,19 @@ async function postData(url: string, data: any) {
 //CREATE functions
 function projectCreate(): void {
 	(async () => {
-        let pName = document!.getElementById('projectName') as HTMLInputElement;
-        let projectName: string = pName!.value;
-        let pDesc = document!.getElementById('projectDescription') as HTMLInputElement;
-        let projectDescription: string = pDesc!.value;
-        let pWork = document!.getElementById('projectWorkers') as HTMLInputElement;
-        let projectWorkers: string = pWork!.value;
-        let pProg = document!.getElementById('projectProgress') as HTMLInputElement;
-        let projectProgress: string = pProg!.value;
-        let pLink = document!.getElementById('projectLinks') as HTMLInputElement;
-        let projectLinks: string = pLink!.value;
-        let pNW = document!.getElementById('projectNumWorkers') as HTMLInputElement;
-        let projectNumWorkers: string = pNW!.value
-		let projectButtons: string[] = $.map($('input:checkbox:checked'), function (e: HTMLInputElement, i) {
+		let pName = document!.getElementById('projectName') as HTMLInputElement;
+		let projectName: string = pName!.value;
+		let pDesc = document!.getElementById('projectDescription') as HTMLInputElement;
+		let projectDescription: string = pDesc!.value;
+		let pWork = document!.getElementById('projectWorkers') as HTMLInputElement;
+		let projectWorkers: string = pWork!.value;
+		let pProg = document!.getElementById('projectProgress') as HTMLInputElement;
+		let projectProgress: string = pProg!.value;
+		let pLink = document!.getElementById('projectLinks') as HTMLInputElement;
+		let projectLinks: string = pLink!.value;
+		let pNW = document!.getElementById('projectNumWorkers') as HTMLInputElement;
+		let projectNumWorkers: string = pNW!.value;
+		let projectButtons: string[] = $.map($('input:checkbox:checked'), function(e: HTMLInputElement, i) {
 			return e.value;
 		});
 
@@ -102,14 +101,14 @@ function profileCreate(): void {
 	(async () => {
 		//Only need the elements on the sign up page
 		let profileID: number = Math.floor(Math.random() * 100000);
-        let fName = document!.getElementById('firstName') as HTMLInputElement;
-        let firstName: string = fName!.value;
-        let lName = document!.getElementById('lastName') as HTMLInputElement;
-        let lastName: string = lName!.value;
-        let em = document!.getElementById('inputEmail') as HTMLInputElement;
-        let email: string = em!.value;
-        let pword = document!.getElementById('inputPassword') as HTMLInputElement;
-        let password: string = pword!.value;
+		let fName = document!.getElementById('firstName') as HTMLInputElement;
+		let firstName: string = fName!.value;
+		let lName = document!.getElementById('lastName') as HTMLInputElement;
+		let lastName: string = lName!.value;
+		let em = document!.getElementById('inputEmail') as HTMLInputElement;
+		let email: string = em!.value;
+		let pword = document!.getElementById('inputPassword') as HTMLInputElement;
+		let password: string = pword!.value;
 
 		const profileData = {
 			profileID: profileID,
@@ -121,7 +120,6 @@ function profileCreate(): void {
 			profileLinks: 'This user has not completed this section',
 			profilePassword: password,
 			profileProjects: 'This user has not completed this section'
-			
 		};
 
 		//For now, userName will be omega
@@ -133,9 +131,10 @@ function profileCreate(): void {
 		createProfOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
 			console.log(j['result']);
-			let hyperlink = "<a href='edit_profile.html'>Click Here to Finish Your Profile!</a>"
-			console.log("hyperlink: " + hyperlink);
-			createProfOutput.innerHTML ='User:' + firstName + ' ' + lastName + "'s profile has been created. " + hyperlink;
+			let hyperlink = "<a href='edit_profile.html'>Click Here to Finish Your Profile!</a>";
+			console.log('hyperlink: ' + hyperlink);
+			createProfOutput.innerHTML =
+				'User:' + firstName + ' ' + lastName + "'s profile has been created. " + hyperlink;
 		} else {
 			createProfOutput.innerHTML = 'Error Occurred During Profile Creation';
 		}
@@ -171,16 +170,20 @@ function projectRead(name: string): void {
 		let projectButtons: string[] = project.projectButtons;
 		let projectNumWorkers: string = project.projectNumWorkers;
 
-		for (let i = 0; i < projectButtons.length; i++) {
-			//trying to add formatting to buttons but not working
+		let rowDiv: HTMLElement = document.getElementById('projectButtons');
+		projectButtons.forEach((element) => {
 			var button = document.createElement('button');
+			button.type = 'button';
 			button.classList.add('btn');
 			button.classList.add('btn-success');
-			if (i != 0) {
-				button.classList.add('ml-2');
+			button.classList.add('btn-sm');
+			button.classList.add('mr-1');
+			if (element !== null) {
+				button.classList.add('mt-2');
 			}
-			button.textContent = projectButtons[i];
-		}
+			button.textContent = element;
+			rowDiv.appendChild(button);
+		});
 		//let readProjectOutput = document.getElementById('readProjectOutput');
 		//readProjectOutput.style.visibility = 'visible';
 		if (j['result'] !== 'error') {
@@ -189,15 +192,13 @@ function projectRead(name: string): void {
 			document.getElementById('projectDescription').innerHTML = projectDescription;
 			document.getElementById('projectWorkers').innerHTML = projectWorkers;
 			document.getElementById('projectProgress').innerHTML = projectProgress;
-            document.getElementById('projectLinks').innerHTML = projectLinks;
-            let pButtons: string = projectButtons.toString();
-			document.getElementById('projectButtons').innerHTML = pButtons;
+			document.getElementById('projectLinks').innerHTML = projectLinks;
 			document.getElementById('projectNumWorkers').innerHTML = projectNumWorkers;
 
 			//readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
 		} else {
-            //readProjectOutput.innerHTML = 'Does not work';
-            console.log("Error Occurred in projectRead");
+			//readProjectOutput.innerHTML = 'Does not work';
+			console.log('Error Occurred in projectRead');
 		}
 	})();
 }
@@ -234,6 +235,22 @@ function profileRead(lastName: string): void {
 		let about: string = profile.profileAbout;
 		let projects: string = profile.profileProjects;
 		let links: string = profile.profileLinks;
+		let skillsArray: string[] = profile.skills;
+
+		let rowDiv: HTMLElement = document.getElementById('skillsSection');
+		skillsArray.forEach((element) => {
+			var button = document.createElement('button');
+			button.type = 'button';
+			button.classList.add('btn');
+			button.classList.add('btn-success');
+			button.classList.add('btn-sm');
+			button.classList.add('mr-1');
+			if (element !== null) {
+				button.classList.add('mt-2');
+			}
+			button.textContent = element;
+			rowDiv.appendChild(button);
+		});
 
 		if (j['result'] !== 'error') {
 			//Now, fill in HTML with stuff we read
@@ -252,28 +269,28 @@ function profileRead(lastName: string): void {
 function projectUpdate(): void {
 	(async () => {
 		let pName = document!.getElementById('projectName') as HTMLInputElement;
-        let projectName: string = pName!.value;
-        let pDesc = document!.getElementById('projectDescription') as HTMLInputElement;
-        let projectDescription: string = pDesc!.value;
-        let pWork = document!.getElementById('projectWorkers') as HTMLInputElement;
-        let projectWorkers: string = pWork!.value;
-        let pProg = document!.getElementById('projectProgress') as HTMLInputElement;
-        let projectProgress: string = pProg!.value;
-        let pLink = document!.getElementById('projectLinks') as HTMLInputElement;
-        let projectLinks: string = pLink!.value;
-        let pNW = document!.getElementById('projectNumWorkers') as HTMLInputElement;
-        let projectNumWorkers: string = pNW!.value
-		let projectButtons: string[] = $.map($('input:checkbox:checked'), function (e: HTMLInputElement, i) {
+		let projectName: string = pName!.value;
+		let pDesc = document!.getElementById('projectDescription') as HTMLInputElement;
+		let projectDescription: string = pDesc!.value;
+		let pWork = document!.getElementById('projectWorkers') as HTMLInputElement;
+		let projectWorkers: string = pWork!.value;
+		let pProg = document!.getElementById('projectProgress') as HTMLInputElement;
+		let projectProgress: string = pProg!.value;
+		let pLink = document!.getElementById('projectLinks') as HTMLInputElement;
+		let projectLinks: string = pLink!.value;
+		let pNW = document!.getElementById('projectNumWorkers') as HTMLInputElement;
+		let projectNumWorkers: string = pNW!.value;
+		let projectButtons: string[] = $.map($('input:checkbox:checked'), function(e: HTMLInputElement, i) {
 			return e.value;
 		});
 		const projectData = {
-			projectName        : projectName,
-			projectDescription : projectDescription,
-			projectWorkers     : projectWorkers,
-			projectProgress    : projectProgress,
-			projectLinks       : projectLinks,
-			projectButtons     : projectButtons,
-			projectNumWorkers  : projectNumWorkers
+			projectName: projectName,
+			projectDescription: projectDescription,
+			projectWorkers: projectWorkers,
+			projectProgress: projectProgress,
+			projectLinks: projectLinks,
+			projectButtons: projectButtons,
+			projectNumWorkers: projectNumWorkers
 		};
 
 		let userName = 'omega';
@@ -295,27 +312,28 @@ function profileUpdate() {
 	(async () => {
 		//Get relevant info from html page
 		//NOTE: id, email, password will be retrieved from db, they won't be on the edit profile page, but we need them for the JSON
-        let pID = document!.getElementById('idInput') as HTMLInputElement;
-        let profileID: number = parseInt(pID!.value);
-        let fName = document!.getElementById('firstNameInput') as HTMLInputElement;
-        let firstName: string = fName!.value;
-        let lName = document!.getElementById('lastNameInput') as HTMLInputElement;
-        let lastName: string = lName!.value;
-        let em = document!.getElementById('inputEmail') as HTMLInputElement;
-        let email: string = em!.value;
-        let pword = document!.getElementById('passwordInput') as HTMLInputElement;
-        let password: string = pword!.value;
-        let bio = document!.getElementById('bioInput') as HTMLInputElement;
-        let profileBio = bio!.value;
-        let about = document!.getElementById('aboutInput') as HTMLInputElement;
-        let profileAbout = about!.value;
-        let projects = document!.getElementById('projectInput') as HTMLInputElement;
-        let profileProjects = projects!.value;
-        let links = document.getElementById('linkInput') as HTMLInputElement;
-        let profileLinks = links!.value;
-        //BUTTONS, IDK
-        
-        
+		let pID = document!.getElementById('idInput') as HTMLInputElement;
+		let profileID: number = parseInt(pID!.value);
+		let fName = document!.getElementById('firstNameInput') as HTMLInputElement;
+		let firstName: string = fName!.value;
+		let lName = document!.getElementById('lastNameInput') as HTMLInputElement;
+		let lastName: string = lName!.value;
+		let em = document!.getElementById('inputEmail') as HTMLInputElement;
+		let email: string = em!.value;
+		let pword = document!.getElementById('passwordInput') as HTMLInputElement;
+		let password: string = pword!.value;
+		let bio = document!.getElementById('bioInput') as HTMLInputElement;
+		let profileBio = bio!.value;
+		let about = document!.getElementById('aboutInput') as HTMLInputElement;
+		let profileAbout = about!.value;
+		let projects = document!.getElementById('projectInput') as HTMLInputElement;
+		let profileProjects = projects!.value;
+		let links = document.getElementById('linkInput') as HTMLInputElement;
+		let profileLinks = links!.value;
+		//BUTTONS, IDK
+		let skills: string[] = $.map($('input:checkbox:checked'), function(e: HTMLInputElement, i) {
+			return e.value;
+		});
 
 		const profileData = {
 			profileID: profileID,
@@ -326,8 +344,8 @@ function profileUpdate() {
 			profileBio: profileBio,
 			profileAbout: profileAbout,
 			profileProjects: profileProjects,
-			profileLinks: profileLinks
-			//BUTTONS
+			profileLinks: profileLinks,
+			skills: skills
 		};
 
 		//Example userName for now
@@ -374,18 +392,19 @@ function projectDelete(): void {
 		}
 
 		// tried javascript sleep
-		setTimeout(() => {  console.log("World!"); }, 5000);
+		setTimeout(() => {
+			console.log('World!');
+		}, 5000);
 		// redirects to the index.html page after deleting
-		document.location.href = "../index.html";
-
+		document.location.href = '../index.html';
 	})();
 }
 
 function profileDelete(): void {
 	(async () => {
 		// let profileName = document.getElementById('profileName').innerHTML;
-        let dProf = document!.getElementById('delID') as HTMLInputElement;
-        let delProf = dProf!.value;
+		let dProf = document!.getElementById('delID') as HTMLInputElement;
+		let delProf = dProf!.value;
 		//Then, delete in database using projectName
 		let userName = 'omega';
 
@@ -394,9 +413,9 @@ function profileDelete(): void {
 		const newURL = url + '/users/' + userName + '/deleteProfile';
 		console.log('counterDelete: fetching ' + newURL);
 		const resp = await postData(newURL, data);
-        const j = await resp.json();
+		const j = await resp.json();
 		if (j['result'] !== 'error') {
-            let deleteOutput = document.getElementById('deleteProf') as HTMLOutputElement;
+			let deleteOutput = document.getElementById('deleteProf') as HTMLOutputElement;
 			deleteOutput.style.visibility = 'visible';
 			deleteOutput.innerHTML = 'Profile: ' + delProf + ' has been deleted';
 		} else {
@@ -407,7 +426,7 @@ function profileDelete(): void {
 
 //Clears the results div and adds a "Results" header
 function resultsHelper(): void {
-	let resultsDiv = document.getElementById("results")
+	let resultsDiv = document.getElementById('results');
 	let child = resultsDiv.lastElementChild;
 	while (child) {
 		resultsDiv.removeChild(child);
@@ -416,7 +435,7 @@ function resultsHelper(): void {
 	let resultHeader = document.createElement('h5');
 	resultHeader.classList.add('card-header');
 	resultHeader.classList.add('mt-4');
-	resultHeader.innerHTML = "Results:";
+	resultHeader.innerHTML = 'Results:';
 	resultsDiv.appendChild(resultHeader);
 }
 
@@ -453,14 +472,13 @@ function findAllProjects(): void {
 function projectSearch() {
 	console.log('finding all projects');
 	(async () => {
-
-        let sk = document!.getElementById('searchBar') as HTMLInputElement;
-        let searchKey = sk!.value;
+		let sk = document!.getElementById('searchBar') as HTMLInputElement;
+		let searchKey = sk!.value;
 
 		const data = {
 			searchKey: searchKey
 		};
-		console.log("Search key in client: " + searchKey);
+		console.log('Search key in client: ' + searchKey);
 		const newURL: string = url + '/users/' + 'omega' + '/projectSearch';
 		const resp = await postData(newURL, data);
 
@@ -470,23 +488,21 @@ function projectSearch() {
 		console.log(resp);
 
 		let resultList = j['resultList'];
-		console.log("resultList: " + resultList);
+		console.log('resultList: ' + resultList);
 		console.log('resultList[0][projectName]: ' + resultList[0]['projectName']);
 		console.log('resultList[0][lastName]: ' + resultList[0]['lastName']);
 
-
 		resultsHelper();
 
-		if(resultList[0]['projectName']){
-			console.log("resultList contains projects");
+		if (resultList[0]['projectName']) {
+			console.log('resultList contains projects');
 			for (let i = 0; i < resultList.length; i++) {
 				let projectName = resultList[i]['projectName'];
 				let projectDescription = resultList[i]['projectDescription'];
 				let projectButtons = resultList[i]['projectButtons'];
 				addProject(projectName, projectDescription, projectButtons);
 			}
-		}
-		else if(resultList[0]['lastName']){
+		} else if (resultList[0]['lastName']) {
 			console.log('resultList contains profiles');
 			for (let i = 0; i < resultList.length; i++) {
 				let firstName = resultList[i]['firstName'];
@@ -495,8 +511,6 @@ function projectSearch() {
 				addProfile(firstName, lastName, profileBio);
 			}
 		}
-
-		
 	})();
 }
 
@@ -531,13 +545,13 @@ function addProject(projectName: string, projectDescription: string, projectButt
 	cardBodyDiv.classList.add('card-body');
 
 	let a: HTMLElement = document.createElement('a');
-    //a.href = './pages/project_description.html?name=' + projectName;
-    a.setAttribute('href', './pages/project_description.html?name=' + projectName);
+	//a.href = './pages/project_description.html?name=' + projectName;
+	a.setAttribute('href', './pages/project_description.html?name=' + projectName);
 	// a.onClick = projectClick(projectName, 'index')
 	a.textContent = projectName;
 	a.classList.add('card-title');
-    //a.style = 'color: green;font-size: 24px;';
-    a.setAttribute('style', 'color: green;font-size: 24px;');
+	//a.style = 'color: green;font-size: 24px;';
+	a.setAttribute('style', 'color: green;font-size: 24px;');
 
 	let text: HTMLElement = document.createElement('p');
 	text.textContent = projectDescription;
@@ -583,13 +597,13 @@ function addProfile(firstName: string, lastName: string, profileBio: string) {
 	cardBodyDiv.classList.add('card-body');
 
 	let a: HTMLElement = document.createElement('a');
-    //a.href = './pages/profile.html?lastName=' + lastName;
-    a.setAttribute('href', './pages/profile.html?lastName=' + lastName);
+	//a.href = './pages/profile.html?lastName=' + lastName;
+	a.setAttribute('href', './pages/profile.html?lastName=' + lastName);
 	// a.onClick = projectClick(projectName, 'index')
 	a.textContent = firstName + ' ' + lastName;
 	a.classList.add('card-title');
-    //a.style = 'color: green;font-size: 24px;';
-    a.setAttribute('style', 'color: green;font-size: 24px;');
+	//a.style = 'color: green;font-size: 24px;';
+	a.setAttribute('style', 'color: green;font-size: 24px;');
 
 	let text: HTMLElement = document.createElement('p');
 	text.textContent = profileBio;
@@ -606,4 +620,3 @@ function addProfile(firstName: string, lastName: string, profileBio: string) {
 	cardDiv.appendChild(cardBodyDiv);
 	mainDiv.appendChild(cardDiv);
 }
-

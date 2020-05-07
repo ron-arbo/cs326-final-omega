@@ -68,9 +68,18 @@ var MyServer = /** @class */ (function () {
         this.router.post('/users/:userId/deleteProject', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
         //Profile-related endpoints
         this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-        this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this), this.readProfileHandler.bind(this)]);
-        this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this), this.updateProfileHandler.bind(this)]);
-        this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this), this.deleteProfileHandler.bind(this)]);
+        this.router.post('/users/:userId/readProfile', [
+            this.errorHandler.bind(this),
+            this.readProfileHandler.bind(this)
+        ]);
+        this.router.post('/users/:userId/updateProfile', [
+            this.errorHandler.bind(this),
+            this.updateProfileHandler.bind(this)
+        ]);
+        this.router.post('/users/:userId/deleteProfile', [
+            this.errorHandler.bind(this),
+            this.deleteProfileHandler.bind(this)
+        ]);
         //Other endpoints
         this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
         this.router.post('/users/:userID/projectSearch', [this.projectSearchHandler.bind(this)]);
@@ -137,7 +146,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProfile(request.body.profileID, request.body.firstName, request.body.lastName, request.body.profileAbout, request.body.profileBio, request.body.profileEmail, request.body.profileLinks, request.body.profilePassword, request.body.profileProjects, response)];
+                    case 0: return [4 /*yield*/, this.createProfile(request.body.profileID, request.body.firstName, request.body.lastName, request.body.profileAbout, request.body.profileBio, request.body.profileEmail, request.body.profileLinks, request.body.profilePassword, request.body.profileProjects, request.body.skills, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -187,7 +196,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProfile(request.body.profileID, request.body.profileEmail, request.body.profilePassword, request.body.firstName, request.body.lastName, request.body.profileBio, request.body.profileAbout, request.body.profileProjects, request.body.profileLinks, response)];
+                    case 0: return [4 /*yield*/, this.updateProfile(request.body.profileID, request.body.profileEmail, request.body.profilePassword, request.body.firstName, request.body.lastName, request.body.profileBio, request.body.profileAbout, request.body.profileProjects, request.body.profileLinks, request.body.skills, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -271,14 +280,14 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.createProfile = function (profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects, response) {
+    MyServer.prototype.createProfile = function (profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects, skills, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
                     //Put new user in database
-                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects)];
+                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects, skills)];
                     case 1:
                         //Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
                         //Put new user in database
@@ -357,13 +366,13 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.updateProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links, response) {
+    MyServer.prototype.updateProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links, skills, response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: 
                     //Update Profile in Database
-                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links)];
+                    return [4 /*yield*/, this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links, skills)];
                     case 1:
                         //Update Profile in Database
                         _a.sent();

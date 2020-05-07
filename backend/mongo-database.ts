@@ -49,7 +49,7 @@ export class Database {
 		projectProgress: string,
 		projectLinks: string,
 		projectNumWorkers: string,
-		projectButtons: string
+		projectButtons: []
 	): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
@@ -81,7 +81,8 @@ export class Database {
 		bio: string,
 		about: string,
 		project: string,
-		links: string
+		links: string,
+		skills: string[]
 	): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
@@ -99,7 +100,8 @@ export class Database {
 					profileBio: bio,
 					profileAbout: about,
 					profileProjects: project,
-					profileLinks: links
+					profileLinks: links,
+					skills: skills
 				}
 			},
 			{ upsert: true }
@@ -151,7 +153,6 @@ export class Database {
 		let result = await collection.deleteOne({ profileID: parseInt(key) });
 	}
 
-
 	//OTHER Functions
 	public async find(): Promise<string> {
 		let db = this.client.db(this.dbName);
@@ -180,7 +181,7 @@ export class Database {
 
 		// returns all projects
 		let projects: Array<string> = [];
-		console.log("Searching for projects/profiles with name: " + key);
+		console.log('Searching for projects/profiles with name: ' + key);
 		let projectResult = await collection.find({ projectName: key }).toArray().then((projList) => {
 			console.log(`Successfully found ${projList.length} projects.`);
 			// console.log(items);
@@ -195,17 +196,16 @@ export class Database {
 			profiles.push(profList);
 			return profList;
 		});
-		console.log("profileResult: " + profileResult);
+		console.log('profileResult: ' + profileResult);
 
 		//Check if 0 projects found, must have been a profile. If 0 profiles found, then invalid search
 		if (projectResult.length !== 0) {
 			console.log('result is a project');
 			return projects[0];
-		} else if(profileResult.length !== 0){
-			console.log("result is a profile");
+		} else if (profileResult.length !== 0) {
+			console.log('result is a profile');
 			return profiles[0];
-		}
-		else{
+		} else {
 			return null;
 		}
 	}

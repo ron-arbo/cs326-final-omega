@@ -36,14 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var url = 'http://localhost:8080/codetogether'; //Local host
 //const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
-var projName = "";
+var projName = '';
 window.onload = function () {
     var url2 = document.location.href, params = url2.split('?')[1].split('&'), //Will be 'name' or 'lastName' in our case (Splits after ?, before &)
     data = {
         name: null,
         lastName: null
     }, tmp;
-    this.console.log("Original url: " + url2);
+    this.console.log('Original url: ' + url2);
     for (var i = 0, l = params.length; i < l; i++) {
         tmp = params[i].split('='); //Splits around equals, so tmp[0] is the variable name and tmp[1] is the variable value
         data[tmp[0]] = tmp[1];
@@ -57,9 +57,9 @@ window.onload = function () {
         this.projectRead(data.name);
         this.projName = data.name;
     }
-    //Read profile from html
     else if (data['lastName']) {
-        this.console.log("calling profileRead on: " + data.lastName);
+        //Read profile from html
+        this.console.log('calling profileRead on: ' + data.lastName);
         this.profileRead(data.lastName);
     }
     // //Signing in, redirect to update the rest of their profile
@@ -185,8 +185,9 @@ function profileCreate() {
                     if (j['result'] !== 'error') {
                         console.log(j['result']);
                         hyperlink = "<a href='edit_profile.html'>Click Here to Finish Your Profile!</a>";
-                        console.log("hyperlink: " + hyperlink);
-                        createProfOutput.innerHTML = 'User:' + firstName + ' ' + lastName + "'s profile has been created. " + hyperlink;
+                        console.log('hyperlink: ' + hyperlink);
+                        createProfOutput.innerHTML =
+                            'User:' + firstName + ' ' + lastName + "'s profile has been created. " + hyperlink;
                     }
                     else {
                         createProfOutput.innerHTML = 'Error Occurred During Profile Creation';
@@ -200,7 +201,7 @@ function profileCreate() {
 function projectRead(name) {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var pName, projectData, userName, newURL, resp, j, project, projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectButtons, projectNumWorkers, i, button, pButtons;
+        var pName, projectData, userName, newURL, resp, j, project, projectName, projectDescription, projectWorkers, projectProgress, projectLinks, projectButtons, projectNumWorkers, rowDiv;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, name];
@@ -227,15 +228,20 @@ function projectRead(name) {
                     projectLinks = project.projectLinks;
                     projectButtons = project.projectButtons;
                     projectNumWorkers = project.projectNumWorkers;
-                    for (i = 0; i < projectButtons.length; i++) {
-                        button = document.createElement('button');
+                    rowDiv = document.getElementById('projectButtons');
+                    projectButtons.forEach(function (element) {
+                        var button = document.createElement('button');
+                        button.type = 'button';
                         button.classList.add('btn');
                         button.classList.add('btn-success');
-                        if (i != 0) {
-                            button.classList.add('ml-2');
+                        button.classList.add('btn-sm');
+                        button.classList.add('mr-1');
+                        if (element !== null) {
+                            button.classList.add('mt-2');
                         }
-                        button.textContent = projectButtons[i];
-                    }
+                        button.textContent = element;
+                        rowDiv.appendChild(button);
+                    });
                     //let readProjectOutput = document.getElementById('readProjectOutput');
                     //readProjectOutput.style.visibility = 'visible';
                     if (j['result'] !== 'error') {
@@ -245,14 +251,14 @@ function projectRead(name) {
                         document.getElementById('projectWorkers').innerHTML = projectWorkers;
                         document.getElementById('projectProgress').innerHTML = projectProgress;
                         document.getElementById('projectLinks').innerHTML = projectLinks;
-                        pButtons = projectButtons.toString();
-                        document.getElementById('projectButtons').innerHTML = pButtons;
+                        // let pButtons: string = projectButtons.toString();
+                        // document.getElementById('projectButtons').innerHTML = pButtons;
                         document.getElementById('projectNumWorkers').innerHTML = projectNumWorkers;
                         //readProjectOutput.innerHTML = 'Read the output of project: ' + j['name'];
                     }
                     else {
                         //readProjectOutput.innerHTML = 'Does not work';
-                        console.log("Error Occurred in projectRead");
+                        console.log('Error Occurred in projectRead');
                     }
                     return [2 /*return*/];
             }
@@ -262,7 +268,7 @@ function projectRead(name) {
 function profileRead(lastName) {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var lName, profileData, userName, newURL, resp, j, profile, firstName, lastName2, bio, about, projects, links;
+        var lName, profileData, userName, newURL, resp, j, profile, firstName, lastName2, bio, about, projects, links, skillsArray, rowDiv;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, lastName];
@@ -289,6 +295,21 @@ function profileRead(lastName) {
                     about = profile.profileAbout;
                     projects = profile.profileProjects;
                     links = profile.profileLinks;
+                    skillsArray = profile.skills;
+                    rowDiv = document.getElementById('skillsSection');
+                    skillsArray.forEach(function (element) {
+                        var button = document.createElement('button');
+                        button.type = 'button';
+                        button.classList.add('btn');
+                        button.classList.add('btn-success');
+                        button.classList.add('btn-sm');
+                        button.classList.add('mr-1');
+                        if (element !== null) {
+                            button.classList.add('mt-2');
+                        }
+                        button.textContent = element;
+                        rowDiv.appendChild(button);
+                    });
                     if (j['result'] !== 'error') {
                         //Now, fill in HTML with stuff we read
                         document.getElementById('profileName').innerHTML = '<b>' + firstName + ' ' + lastName2 + '</b>';
@@ -362,7 +383,7 @@ function projectUpdate() {
 function profileUpdate() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var pID, profileID, fName, firstName, lName, lastName, em, email, pword, password, bio, profileBio, about, profileAbout, projects, profileProjects, links, profileLinks, profileData, userName, newURL, resp, j, updateOutput;
+        var pID, profileID, fName, firstName, lName, lastName, em, email, pword, password, bio, profileBio, about, profileAbout, projects, profileProjects, links, profileLinks, skills, profileData, userName, newURL, resp, j, updateOutput;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -384,6 +405,9 @@ function profileUpdate() {
                     profileProjects = projects.value;
                     links = document.getElementById('linkInput');
                     profileLinks = links.value;
+                    skills = $.map($('input:checkbox:checked'), function (e, i) {
+                        return e.value;
+                    });
                     profileData = {
                         profileID: profileID,
                         profileEmail: email,
@@ -393,8 +417,8 @@ function profileUpdate() {
                         profileBio: profileBio,
                         profileAbout: profileAbout,
                         profileProjects: profileProjects,
-                        profileLinks: profileLinks
-                        //BUTTONS
+                        profileLinks: profileLinks,
+                        skills: skills
                     };
                     userName = 'omega';
                     newURL = url + '/users/' + userName + '/updateProfile';
@@ -449,9 +473,11 @@ function projectDelete() {
                         document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
                     }
                     // tried javascript sleep
-                    setTimeout(function () { console.log("World!"); }, 5000);
+                    setTimeout(function () {
+                        console.log('World!');
+                    }, 5000);
                     // redirects to the index.html page after deleting
-                    document.location.href = "../index.html";
+                    document.location.href = '../index.html';
                     return [2 /*return*/];
             }
         });
@@ -491,7 +517,7 @@ function profileDelete() {
 }
 //Clears the results div and adds a "Results" header
 function resultsHelper() {
-    var resultsDiv = document.getElementById("results");
+    var resultsDiv = document.getElementById('results');
     var child = resultsDiv.lastElementChild;
     while (child) {
         resultsDiv.removeChild(child);
@@ -500,7 +526,7 @@ function resultsHelper() {
     var resultHeader = document.createElement('h5');
     resultHeader.classList.add('card-header');
     resultHeader.classList.add('mt-4');
-    resultHeader.innerHTML = "Results:";
+    resultHeader.innerHTML = 'Results:';
     resultsDiv.appendChild(resultHeader);
 }
 // get all projects from the database
@@ -551,7 +577,7 @@ function projectSearch() {
                     data = {
                         searchKey: searchKey
                     };
-                    console.log("Search key in client: " + searchKey);
+                    console.log('Search key in client: ' + searchKey);
                     newURL = url + '/users/' + 'omega' + '/projectSearch';
                     return [4 /*yield*/, postData(newURL, data)];
                 case 1:
@@ -563,12 +589,12 @@ function projectSearch() {
                     console.log('printing response:-- ');
                     console.log(resp);
                     resultList = j['resultList'];
-                    console.log("resultList: " + resultList);
+                    console.log('resultList: ' + resultList);
                     console.log('resultList[0][projectName]: ' + resultList[0]['projectName']);
                     console.log('resultList[0][lastName]: ' + resultList[0]['lastName']);
                     resultsHelper();
                     if (resultList[0]['projectName']) {
-                        console.log("resultList contains projects");
+                        console.log('resultList contains projects');
                         for (i = 0; i < resultList.length; i++) {
                             projectName = resultList[i]['projectName'];
                             projectDescription = resultList[i]['projectDescription'];

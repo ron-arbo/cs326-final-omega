@@ -39,9 +39,18 @@ export class MyServer {
 
 		//Profile-related endpoints
 		this.router.post('/users/:userId/createProfile', this.createProfileHandler.bind(this));
-		this.router.post('/users/:userId/readProfile', [this.errorHandler.bind(this),this.readProfileHandler.bind(this)]);
-		this.router.post('/users/:userId/updateProfile', [this.errorHandler.bind(this),this.updateProfileHandler.bind(this)]);
-		this.router.post('/users/:userId/deleteProfile', [this.errorHandler.bind(this),this.deleteProfileHandler.bind(this)]);
+		this.router.post('/users/:userId/readProfile', [
+			this.errorHandler.bind(this),
+			this.readProfileHandler.bind(this)
+		]);
+		this.router.post('/users/:userId/updateProfile', [
+			this.errorHandler.bind(this),
+			this.updateProfileHandler.bind(this)
+		]);
+		this.router.post('/users/:userId/deleteProfile', [
+			this.errorHandler.bind(this),
+			this.deleteProfileHandler.bind(this)
+		]);
 
 		//Other endpoints
 		this.router.post('/users/:userId/allProjects', [this.findAllProjectsHandler.bind(this)]);
@@ -59,14 +68,12 @@ export class MyServer {
 	private async errorHandler(request, response, next): Promise<void> {
 		let value: boolean = false;
 		//Looking for project
-		if(request.body.projectName){
+		if (request.body.projectName) {
 			value = await this.theDatabase.isFoundProj(request.body.projectName);
-		}
-		else if(request.body.lastName){
+		} else if (request.body.lastName) {
 			value = await this.theDatabase.isFoundProf(request.body.lastName);
-		}
-		else{
-			console.log('Neither a projectName nor a lastName was found in the request')
+		} else {
+			console.log('Neither a projectName nor a lastName was found in the request');
 		}
 		//Check that value is found, if not respond to client with error, if so, continue to next handler
 		if (!value) {
@@ -101,6 +108,7 @@ export class MyServer {
 			request.body.profileLinks,
 			request.body.profilePassword,
 			request.body.profileProjects,
+			request.body.skills,
 			response
 		);
 	}
@@ -137,6 +145,7 @@ export class MyServer {
 			request.body.profileAbout,
 			request.body.profileProjects,
 			request.body.profileLinks,
+			request.body.skills,
 			response
 		);
 	}
@@ -172,7 +181,7 @@ export class MyServer {
 		projectProgress: string,
 		projectLinks: string,
 		projectNumWorkers: string,
-		projectButtons: string,
+		projectButtons: [],
 		response
 	): Promise<void> {
 		//Put new project in database
@@ -204,12 +213,24 @@ export class MyServer {
 		profileLinks: string,
 		profilePassword: string,
 		profileProjects: string,
+		skills: string[],
 		response
 	): Promise<void> {
 		//Set these attributes to empty for now, since the sign up page doesn't have them. The user can udpate them later
 
 		//Put new user in database
-		await this.theDatabase.putProfile(profileID, firstName, lastName, profileAbout, profileBio, profileEmail, profileLinks, profilePassword, profileProjects);
+		await this.theDatabase.putProfile(
+			profileID,
+			firstName,
+			lastName,
+			profileAbout,
+			profileBio,
+			profileEmail,
+			profileLinks,
+			profilePassword,
+			profileProjects,
+			skills
+		);
 		//Respond to client
 		response.write(
 			JSON.stringify({
@@ -258,7 +279,7 @@ export class MyServer {
 		projectProgress: string,
 		projectLinks: string,
 		projectNumWorkers: string,
-		projectButtons: string,
+		projectButtons: [],
 		response
 	): Promise<void> {
 		//Update Project in database
@@ -290,10 +311,22 @@ export class MyServer {
 		about: string,
 		project: string,
 		links: string,
+		skills: string[],
 		response
 	): Promise<void> {
 		//Update Profile in Database
-		await this.theDatabase.putProfile(profileID, email, password, firstName, lastName, bio, about, project, links);
+		await this.theDatabase.putProfile(
+			profileID,
+			email,
+			password,
+			firstName,
+			lastName,
+			bio,
+			about,
+			project,
+			links,
+			skills
+		);
 		//Respond to client about update
 		response.write(
 			JSON.stringify({

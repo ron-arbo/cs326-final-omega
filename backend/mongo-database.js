@@ -109,7 +109,7 @@ var Database = /** @class */ (function () {
             });
         });
     };
-    Database.prototype.putProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links) {
+    Database.prototype.putProfile = function (profileID, email, password, firstName, lastName, bio, about, project, links, skills) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, result;
             return __generator(this, function (_a) {
@@ -126,7 +126,8 @@ var Database = /** @class */ (function () {
                                     profileBio: bio,
                                     profileAbout: about,
                                     profileProjects: project,
-                                    profileLinks: links
+                                    profileLinks: links,
+                                    skills: skills
                                 }
                             }, { upsert: true })];
                     case 1:
@@ -256,7 +257,7 @@ var Database = /** @class */ (function () {
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
                         projects = [];
-                        console.log("Searching for projects/profiles with name: " + key);
+                        console.log('Searching for projects/profiles with name: ' + key);
                         return [4 /*yield*/, collection.find({ projectName: key }).toArray().then(function (projList) {
                                 console.log("Successfully found " + projList.length + " projects.");
                                 // console.log(items);
@@ -275,14 +276,14 @@ var Database = /** @class */ (function () {
                             })];
                     case 2:
                         profileResult = _a.sent();
-                        console.log("profileResult: " + profileResult);
+                        console.log('profileResult: ' + profileResult);
                         //Check if 0 projects found, must have been a profile. If 0 profiles found, then invalid search
                         if (projectResult.length !== 0) {
                             console.log('result is a project');
                             return [2 /*return*/, projects[0]];
                         }
                         else if (profileResult.length !== 0) {
-                            console.log("result is a profile");
+                            console.log('result is a profile');
                             return [2 /*return*/, profiles[0]];
                         }
                         else {
