@@ -7,7 +7,7 @@
 * website: https://cs-326-final-omega.herokuapp.com/
 
 # Team Omega
-## Codetogether
+## CodeTogether
 ## Spring 2020  
 
 ## Overview:  
