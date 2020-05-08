@@ -391,9 +391,9 @@ function projectDelete(): void {
 		}
 
 		// tried javascript sleep
-		setTimeout(() => {
-			console.log('World!');
-		}, 5000);
+		// setTimeout(() => {
+		// 	console.log('World!');
+		// }, 5000);
 		// redirects to the index.html page after deleting
 		document.location.href = '../index.html';
 	})();
