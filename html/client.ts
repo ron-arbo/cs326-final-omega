@@ -1,5 +1,5 @@
-// const url = 'http://localhost:8080/codetogether'; //Local host
-const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+ const url = 'http://localhost:8080/codetogether'; //Local host
+//const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 const projName = '';
 window.onload = function() {
 	let url2 = document.location.href,
@@ -375,7 +375,7 @@ function projectDelete(): void {
 		//Then, delete in database using projectName
 		let userName = 'omega';
 
-		const data = { name: deleteProject };
+		const data = { projectName: deleteProject };
 
 		const newURL = url + '/users/' + userName + '/deleteProject';
 		console.log('counterDelete: fetching ' + newURL);
@@ -395,7 +395,7 @@ function projectDelete(): void {
 		// 	console.log('World!');
 		// }, 5000);
 		// redirects to the index.html page after deleting
-		document.location.href = '../index.html';
+		//document.location.href = '../index.html';
 	})();
 }
 

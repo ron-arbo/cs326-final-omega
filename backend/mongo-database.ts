@@ -173,7 +173,7 @@ export class Database {
 	public async delProject(key: string): Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-
+		console.log("Deleting project with name: " + key);
 		let result = await collection.deleteOne({ projectName: key });
 	}
 

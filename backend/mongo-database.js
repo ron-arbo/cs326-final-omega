@@ -220,6 +220,7 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
+                        console.log("Deleting project with name: " + key);
                         return [4 /*yield*/, collection.deleteOne({ projectName: key })];
                     case 1:
                         result = _a.sent();

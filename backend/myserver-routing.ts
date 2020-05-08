@@ -151,7 +151,7 @@ export class MyServer {
 
 	//DELETE Handlers
 	private async deleteHandler(request, response): Promise<void> {
-		await this.deleteProject(request.body.name, response);
+		await this.deleteProject(request.body.projectName, response);
 	}
 
 	private async deleteProfileHandler(request, response): Promise<void> {
@@ -332,6 +332,7 @@ export class MyServer {
 
 	//DELETE Functions
 	public async deleteProject(name: string, response): Promise<void> {
+		console.log("Deleting: " + name);
 		await this.theDatabase.delProject(name);
 		response.write(
 			JSON.stringify({

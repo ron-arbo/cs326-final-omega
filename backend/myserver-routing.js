@@ -211,7 +211,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteProject(request.body.name, response)];
+                    case 0: return [4 /*yield*/, this.deleteProject(request.body.projectName, response)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -394,7 +394,9 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.delProject(name)];
+                    case 0:
+                        console.log("Deleting: " + name);
+                        return [4 /*yield*/, this.theDatabase.delProject(name)];
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({

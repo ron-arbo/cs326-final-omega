@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// const url = 'http://localhost:8080/codetogether'; //Local host
-var url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
+var url = 'http://localhost:8080/codetogether'; //Local host
+//const url = 'https://cs-326-final-omega.herokuapp.com/codetogether';
 var projName = '';
 window.onload = function () {
     var url2 = document.location.href, params = url2.split('?')[1].split('&'), //Will be 'name' or 'lastName' in our case (Splits after ?, before &)
@@ -447,7 +447,7 @@ function projectDelete() {
                     deleteProject = this.projName;
                     console.log(this.projName);
                     userName = 'omega';
-                    data = { name: deleteProject };
+                    data = { projectName: deleteProject };
                     newURL = url + '/users/' + userName + '/deleteProject';
                     console.log('counterDelete: fetching ' + newURL);
                     return [4 /*yield*/, postData(newURL, data)];
@@ -464,12 +464,6 @@ function projectDelete() {
                     else {
                         document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
                     }
-                    // tried javascript sleep
-                    // setTimeout(() => {
-                    // 	console.log('World!');
-                    // }, 5000);
-                    // redirects to the index.html page after deleting
-                    document.location.href = '../index.html';
                     return [2 /*return*/];
             }
         });
