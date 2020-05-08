@@ -79,6 +79,14 @@ TJ Goldblatt: https://github.com/tjgoldblatt
 
    * The delete endpoint:<br/>
    ``localhost:8080/codetogether/users/:userID/deleteProfile``
+   
+* Other Endpoints:
+
+  * Find all projects endpoint: <br/>
+  ``localhost:8080/codetogether/users/:userID/allProjects``
+  
+  * Project searching endpoint: <br/>
+  ``localhost:8080/codetogether/users/:userID/projectSearch``
 
 
 ### Responses
@@ -116,7 +124,7 @@ Our database is a collection containing two types of documents: Projects and Pro
        profileLinks: String,      //The user's links for things like github, linkedin, facebook, etc. 
        profilePassword: String,   //The password used by the user to sign and log in 
        profileProjects: String,   //The 'projects' section for the user's profile page
-skills: Strings[],   //An array of the skills a user has 
+       skills: Strings[],   //An array of the skills a user has 
    }
 ```
 
@@ -144,7 +152,7 @@ update - Ron
 delete - Ron  
 Profile Endpoints:  
 create - TJ  
-read - TJ
+read - TJ  
 update - Ron  
 delete - TJ  
 Other:  
@@ -161,14 +169,14 @@ Adding radio button selections from HTML into DB entries: TJ
 ### Post-Milestone 3
 HTML Connection/Output:  
 Project CRUD Operations work with DB and Output in HTML:  
-Create: Aryan
+Create: Aryan  
 Read: Ron  
 Update: Ron  
 Delete: TJ  
 Profile CRUD Operations Work with DB and Output in HTML:  
-Create: Aryan 
+Create: Aryan  
 Read: Ron  
-Update: Ron 
+Update: Ron  
 Delete: TJ  
   
 Other:  
