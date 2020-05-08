@@ -465,9 +465,9 @@ function projectDelete() {
                         document.getElementById('deleteOutput').innerHTML = 'Error Occurred during deletion';
                     }
                     // tried javascript sleep
-                    setTimeout(function () {
-                        console.log('World!');
-                    }, 5000);
+                    // setTimeout(() => {
+                    // 	console.log('World!');
+                    // }, 5000);
                     // redirects to the index.html page after deleting
                     document.location.href = '../index.html';
                     return [2 /*return*/];
