@@ -50,7 +50,44 @@ TJ Goldblatt: https://github.com/tjgoldblatt
 <img width="1438" alt="Screen Shot 2020-05-07 at 7 29 52 PM" src="https://user-images.githubusercontent.com/31454667/81354308-4463ab00-9099-11ea-899d-2f15f4a9a448.png">
 
 ## API
-Link to pdf here
+### All endpoints
+
+* Project Endpoints: Assuming you are deploying the server on localhost with port 8080<br/>
+
+   * The create endpoint is:<br/>
+   ``localhost:8080/codetogether/users/:userID/createProject``
+
+   * The read endpoint is:<br/>
+   ``localhost:8080/codetogether/users/:userID/readProject``
+
+   * The update endpoint:<br/>
+   ``localhost:8080/codetogether/users/:userID/updateProject``
+
+   * The delete endpoint:<br/>
+   ``localhost:8080/codetogether/users/:userID/deleteProject``
+
+* Profile Endpoints: Assuming you are deploying the server on localhost with port 8080 <br/>
+
+   * The create endpoint is: <br/>
+   ``localhost:8080/codetogether/users/:userID/createProfile``
+
+   * The read endpoint is:<br/>
+   ``localhost:8080/codetogether/users/:userID/readProfile``
+
+   * The update endpoint:<br/>
+   ``localhost:8080/codetogether/users/:userID/updateProfile``
+
+   * The delete endpoint:<br/>
+   ``localhost:8080/codetogether/users/:userID/deleteProfile``
+
+
+### Responses
+
+<img width="651" alt="Screen Shot 2020-05-07 at 8 06 34 PM" src="https://user-images.githubusercontent.com/31454667/81356123-76c3d700-909e-11ea-8749-4cc5f5b12ca3.png">
+<img width="642" alt="Screen Shot 2020-05-07 at 8 06 46 PM" src="https://user-images.githubusercontent.com/31454667/81356126-76c3d700-909e-11ea-8eff-b68c72209c20.png">
+<img width="649" alt="Screen Shot 2020-05-07 at 8 06 59 PM" src="https://user-images.githubusercontent.com/31454667/81356128-76c3d700-909e-11ea-8099-daa696a20a4a.png">
+<img width="643" alt="Screen Shot 2020-05-07 at 8 07 05 PM" src="https://user-images.githubusercontent.com/31454667/81356130-775c6d80-909e-11ea-8d3e-9d5840efc31a.png">
+
 
 ## Database Documentation
 Our database is a collection containing two types of documents: Projects and Profiles. They are described below 
