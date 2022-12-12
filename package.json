@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.3.38",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "level": "^6.0.1",
     "mongodb": "^3.5.6"
   }
